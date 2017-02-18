@@ -1,0 +1,54 @@
+.game-container{
+	height: 99vh;
+	width: 100vw;
+}
+
+.hand {
+	float: left;
+	position: relative;
+	top: 9.5vh;
+	left: 2.5vw;
+	height: 80vh;
+	width: 20vw;
+	min-width: 180px;
+	border: 1px solid blue;
+}
+
+.player-hand {
+	float: right;
+	left: -2.5vw;
+}
+
+.game-board{
+	position: absolute;
+	top: 9.5vh;
+	left: 30vw;
+	height: 80vh;
+	width: 40vw;
+	min-width: 265px;
+	border: 1px solid red;
+}
+
+.card-slot{
+	float: left;
+	position: relative;
+	height: 25vh;
+	width: 25%;
+	border: 1px solid green;
+	margin-top: 1vh;
+	margin-left: 1vh;
+	left: 3.85vw;
+}
+
+.card-offset-left {
+	left: 2vw;
+}
+
+.card-offset-right {
+	left: 5vw;
+}
+
+.card-slot:hover{
+	background-color: tan;
+	cursor: pointer;
+}
