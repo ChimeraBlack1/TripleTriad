@@ -4,10 +4,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- custom CSS -->
+	  
+	<!-- Normalize CSS -->  
 	  <link rel="stylesheet" href="normalize.css">
+    <!-- custom CSS -->
 	  <link rel="stylesheet" href="style.css">	  
+	  
   </head>
   <body>
 	  
@@ -42,8 +44,8 @@
 	  </div>
     
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	  <!-- jQuery -->
+	  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 	  <!-- custom js -->
 	  <script src="app.js"></script>
 	  
