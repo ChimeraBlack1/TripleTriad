@@ -107,7 +107,7 @@ var card = {
 			$("#" + Player.playerCard.name).hide();
 		
 			// PLAY ENEMY TURN
-			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor, Player.playerCard.value);
+			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor);
 			
 			// RESET CURRENTCARD
 			
@@ -160,45 +160,44 @@ var card = {
 
 
 var Enemy = {
-	
 	hand: {
 		CardOne:  {
-			name: 'enemyCardOne ', 
+			name: 'enemyCardOne', 
 			north: 6,
 			east: 4,
 			south: 1,
 			west: 3
 		},
 		CardTwo:  {
-			name: 'enemyCardTwo ', 
+			name: 'enemyCardTwo', 
 			north: 3,
 			east: 3,
 			south: 3,
 			west: 3
 		},
 		CardThree:  {
-			name: 'enemyCardThree ', 
+			name: 'enemyCardThree', 
 			north: 1,
 			east: 4,
 			south: 4,
 			west: 1
 		},
 	 	CardFour:  {
-			name: 'enemyCardFour ', 
+			name: 'enemyCardFour', 
 			north: 4,
 			east: 6,
 			south: 4,
 			west: 6
 		},
 	 	CardFive:  {
-			name: 'enemyCardFive ', 
+			name: 'enemyCardFive', 
 			north: 3,
 			east: 3,
 			south: 9,
 			west: 7
 		},
 	 	CardSix:  {
-			name:'enemyCardSix ', 
+			name:'enemyCardSix', 
 			north: 1,
 			east: 1,
 			south: 3,
@@ -296,14 +295,16 @@ var Enemy = {
 				openMoves[i] = possibleSlots[i];		  
 			}				
 		}
-		
-		
-		
+
 		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
-		this.compareCard(Player.playerCard.value);
+		var goodMovesBro = this.compareCard(Player.playerCard.value);
+		console.log(goodMovesBro);
+		console.log(openMoves);
 		
-		
-		// AND TELL ME WHICH CARDS HAVE AJACENT VALUES THAT ARE HIGHER
+		// DECIDE WHICH MOVES MATTER
+		if (playerSlot && openMoves) {
+			
+		}
 		
 
 //		console.log(openMoves);
@@ -331,20 +332,95 @@ var Enemy = {
 //		}
 	},
 	
-	goodMoves: [],//END OF 'GOODMOVES' ARRAY
+	goodMoves: {
+		top: [],
+		right: [],
+		bottom: [],
+		left: []
+	},//END OF 'GOODMOVES' OBJECT
 	
 	compareCard: function(currentCard) {
-		var compare = Object.keys(Enemy.hand.CardOne);
 		
-		for (i=1;i < 5;i++){
-//			console.log(Enemy.hand.CardOne[i]);
-//			console.log(currentCard[i]);
-//			if ([i] >= currentCard[i]){
-//				Enemy.goodMoves.push(Enemy.hand.CardOne.name);
-//			}
-		}
+		// NORTH
+			if (Enemy.hand.CardOne.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardOne.name);
+			}
+			if (Enemy.hand.CardTwo.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardTwo.name);
+			}
+			if (Enemy.hand.CardThree.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardThree.name);
+			}
+			if (Enemy.hand.CardFour.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardFour.name);
+			}
+			if (Enemy.hand.CardFive.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardFive.name);
+			}
+			if (Enemy.hand.CardSix.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardSix.name);
+			}
 		
-		console.log(compare);
+		// EAST
+			if (Enemy.hand.CardOne.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardOne.name);
+			}
+			if (Enemy.hand.CardTwo.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardTwo.name);
+			}
+			if (Enemy.hand.CardThree.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardThree.name);
+			}
+			if (Enemy.hand.CardFour.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardFour.name);
+			}
+			if (Enemy.hand.CardFive.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardFive.name);
+			}
+			if (Enemy.hand.CardSix.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardSix.name);
+			}
+		
+		// SOUTH
+			if (Enemy.hand.CardOne.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardOne.name);
+			}
+			if (Enemy.hand.CardTwo.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardTwo.name);
+			}
+			if (Enemy.hand.CardThree.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardThree.name);
+			}
+			if (Enemy.hand.CardFour.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardFour.name);
+			}
+			if (Enemy.hand.CardFive.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardFive.name);
+			}
+			if (Enemy.hand.CardSix.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardSix.name);
+			}
+		
+		// WEST
+			if (Enemy.hand.CardOne.west >= currentCard.east) {
+				Enemy.goodMoves.right.push(Enemy.hand.CardOne.name);
+			}
+			if (Enemy.hand.CardTwo.west >= currentCard.east) {
+				Enemy.goodMoves.right.push(Enemy.hand.CardTwo.name);
+			}
+			if (Enemy.hand.CardThree.west >= currentCard.east) {
+				Enemy.goodMoves.right.push(Enemy.hand.CardThree.name);
+			}
+			if (Enemy.hand.CardFour.west >= currentCard.east) {
+				Enemy.goodMoves.right.push(Enemy.hand.CardFour.name);
+			}
+			if (Enemy.hand.CardFive.west >= currentCard.east) {
+				Enemy.goodMoves.right.push(Enemy.hand.CardFive.name);
+			}
+			if (Enemy.hand.CardSix.west >= currentCard.east) {
+				Enemy.goodMoves.right.push(Enemy.hand.CardSix.name);
+			}
+		return Enemy.goodMoves;
 	}
 	
 	 
