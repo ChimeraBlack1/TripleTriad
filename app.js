@@ -237,8 +237,6 @@ var Enemy = {
 	//	1	2	3
 	//	4	5	6
 	//	7	8	9
-	
-	
 
 	chooseSlot: function(slot) {
 		
@@ -267,7 +265,7 @@ var Enemy = {
 				break;
 			case 5:
 				//2,4,6,8
-				this.decideSlot(5,[2,4,6,8],[R,L,T,L,B]);
+				this.decideSlot(5,[2,4,6,8],[R,L,T,B]);
 				break;
 			case 6:
 				//3,5,9
@@ -296,7 +294,7 @@ var Enemy = {
 		//CHECK IF ADJACENT SLOT IS FULL
 		var leftOrRight = Math.random(1,possibleSlots.length);
 		var openMoves = [];
-		var myGoodMoves = [];
+		var myGoodMoves = {};
 		
 		for (i=0;i < possibleSlots.length;i++) {
 			//IF POSSIBLE SLOT IS OPEN, ADD TO 'OPENMOVES' ARRAY;
@@ -311,46 +309,64 @@ var Enemy = {
 		var goodMoves = this.compareCard(Player.playerCard.value);
 		console.log("my attack moves are " + attackPositions);
 		console.log(goodMoves);
+		
+		
+		if (goodMoves.top.length > 0 && attackPositions.includes("T")) {
+			myGoodMoves.top = goodMoves.top;
+		}
+		
+		if (goodMoves.right.length > 0 && attackPositions.includes("R")) {
+			myGoodMoves.right = goodMoves.right;
+		}
+		
+		if (goodMoves.bottom.length > 0 && attackPositions.includes("B")) {
+			myGoodMoves.bottom = goodMoves.bottom;
+		}
+		
+		if (goodMoves.left.length > 0 && attackPositions.includes("L")) {
+			myGoodMoves.left = goodMoves.left;
+		}
+		
+		console.log(myGoodMoves);
+		
+		
+		
 
 		// DECIDE WHICH MOVES MATTER
 		console.log(openMoves + " are my possible moves");
 		 if (openMoves.length == 1) {
 			 
 			 console.log("set card into slot " + openMoves[0]);
+			 board[i] = openMoves[0];
 			 var id = "slot" + openMoves[0];
 			 var enemyCardSlotChanger = document.getElementById(id);
 			 $(enemyCardSlotChanger).css("background-color", "green");
 			 
 		 } else if(openMoves.length == 0) {
 			 var choicesArray = [];
+			 var idNumberArray = [];
 			 
 			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
-			 for (i=1; i<9;i++) {
+			 for (i=1; i<10;i++) {
 				 if (board[i] == undefined)  {
 					
 					// GET SLOT ID
-					var id = "slot" + i;
+					var id = i;
 					 
 					 // PUSH INTO CHOICES ARRAY
 					choicesArray.push(id);
-					console.log(choicesArray);
-
-					// **NEED TO CHANGE THE PLAYERCARDVALUE HERE TO THE ENEMYCARDVALUE
-//					board[i] = enemyCard;
-//					
-//					
-//					console.log("was inserted into" + i);
-//					
-//					
-
 			 	} 
 			 }
 			 
-			 var rand = choicesArray[Math.floor(Math.random() * choicesArray.length)];
+			 var rand = Math.floor(Math.random() * choicesArray.length);
+			 var randSlot = choicesArray[rand];
+			 var randSlotNumber = "slot"  + randSlot; 
+			 board[randSlot] = enemyCard;
 			 console.log(rand);
+			 console.log(randSlot);
 			 console.log("that was rand ^^ ");
 			 
-			 var enemyCardSlotChanger = document.getElementById(rand);
+			 var enemyCardSlotChanger = document.getElementById(randSlotNumber);
 			 $(enemyCardSlotChanger).css("background-color","purple");
 
 			 
