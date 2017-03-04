@@ -325,8 +325,9 @@ var Enemy = {
 			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
 			 for (i=1; i<9;i++) {
 				 if (board[i] == undefined)  {
-					board[i] = Player.playerCard.name;
-					console.log(board[i]);
+					board[i] = Player.playerCard.value;
+					var newCard = board[i];
+					console.log(newCard.name);
 					console.log("was inserted into" + i);
 					break;
 			 	} 
