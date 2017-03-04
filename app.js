@@ -50,7 +50,6 @@ var Player = {
 }; //END OF PLAYER OBJECT
  
 var cardColor = null;
-var slottedCard = null;
 var enemyCard = null;
 var enemySlot = null;
 
@@ -124,29 +123,32 @@ var card = {
 			console.log('There is nothing in that slot');
 		}else {
 			
-			switch(board[slot[0]]) {
-				case "playerCardOne":
-					slottedCard = Player.hand.cardOne[0];
+			var boardSlot = board[slot];
+			var slottedCard = boardSlot.name;
+			
+			switch(slottedCard) {
+				case 'playerCardOne':
+					slottedCard = Player.hand.cardOne.name;
 					break;
-				case "playerCardTwo":
-					slottedCard = Player.hand.cardTwo[0];
+				case 'playerCardTwo':
+					slottedCard = Player.hand.cardTwo.name;
 					break;
 				case "playerCardThree":
-					slottedCard = Player.hand.cardThree[0];
+					slottedCard = Player.hand.cardThree.name;
 					break;
 				case "playerCardFour":
-					slottedCard = Player.hand.cardFour[0];
+					slottedCard = Player.hand.cardFour.name;
 					break;
 				case "playerCardFive":
-					slottedCard = Player.hand.cardFive[0];
+					slottedCard = Player.hand.cardFive.name;
 					break;
 				case "playerCardSix":					
-					slottedCard = Player.hand.cardSix[0];
+					slottedCard = Player.hand.cardSix.name;
 					break;				 
 			}
 			
 			//board slot is full, can't place card
-			console.log(board[slot] + " " + "(" + slottedCard + ")" + " is already in that slot");
+			console.log(slottedCard + " is already in that slot");
 			return
 		}
 	},
@@ -319,6 +321,17 @@ var Enemy = {
 			 var id = "slot" + openMoves[0];
 			 var enemycardslotchanger = document.getElementById(id);
 			 $(enemycardslotchanger).css("background-color", "green");
+		 } else if(openMoves.length == 0) {
+			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
+			 for (i=1; i<9;i++) {
+				 if (board[i] == undefined)  {
+					board[i] = Player.playerCard.name;
+					console.log(board[i]);
+					console.log("was inserted into" + i);
+					break;
+			 	} 
+			 }
+			 
 		 }
 //		
 //		console.log(openMoves.length);
@@ -337,7 +350,7 @@ var Enemy = {
 		$("#slot" + enemySlot).css("background-color", cardColor);
 		board[enemySlot] = enemyCard;
 		
-		// CLEAR OUT THE GOOD MOVES ARRAY AND OBJECT
+		// CLEAR DECISIONS 
 		openMoves = [];
 		goodMoves = [];
 		this.goodMoves = {
