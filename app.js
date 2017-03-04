@@ -85,7 +85,7 @@ var card = {
 		}
 		
 		//LOG OUT SELECTED CARD
-		console.log(Player.playerCard.value);		
+//		console.log(Player.playerCard.value);		
 		return
 	},
 	
@@ -99,7 +99,7 @@ var card = {
 		
 			// CHANGE SLOT INTO CARD REPRESENTATION
 			$("#slot" + slot).css("background-color", cardColor);
-			console.log("set " + Player.playerCard.name + " into slot " + slot);
+//			console.log("set " + Player.playerCard.name + " into slot " + slot);
 			
 			// REMOVE CARD FROM PLAYER'S HAND
 			$("#" + Player.playerCard.name).hide();
@@ -294,52 +294,74 @@ var Enemy = {
 		//CHECK IF ADJACENT SLOT IS FULL
 		var leftOrRight = Math.random(1,possibleSlots.length);
 		var openMoves = [];
-		var myGoodMoves = {};
+		var myGoodMoves = [];
 		
 		for (i=0;i < possibleSlots.length;i++) {
 			//IF POSSIBLE SLOT IS OPEN, ADD TO 'OPENMOVES' ARRAY;
 			if (board[possibleSlots[i]] == undefined){
 				openMoves.push(possibleSlots[i]);
-				console.log(openMoves);
+//				console.log(openMoves);
 			}				
 		}
 		
 
 		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
 		var goodMoves = this.compareCard(Player.playerCard.value);
-		console.log("my attack moves are " + attackPositions);
-		console.log(goodMoves);
+//		console.log("my attack moves are " + attackPositions);
 		
 		
+		// IF THERE IS A GOOD MOVE AT AN AVAILABLE ATTACK POSITION ADD IT TO 'MYGOODMOVES' ARRAY
 		if (goodMoves.top.length > 0 && attackPositions.includes("T")) {
-			myGoodMoves.top = goodMoves.top;
+			myGoodMoves.push(goodMoves.top[0]);
 		}
 		
 		if (goodMoves.right.length > 0 && attackPositions.includes("R")) {
-			myGoodMoves.right = goodMoves.right;
+			myGoodMoves.push(goodMoves.right[0]);
 		}
 		
 		if (goodMoves.bottom.length > 0 && attackPositions.includes("B")) {
-			myGoodMoves.bottom = goodMoves.bottom;
+			myGoodMoves.push(goodMoves.bottom[0]);
 		}
 		
 		if (goodMoves.left.length > 0 && attackPositions.includes("L")) {
-			myGoodMoves.left = goodMoves.left;
+			myGoodMoves.push(goodMoves.left[0]);
 		}
 		
-		console.log(myGoodMoves);
 		
+		
+		// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
+		var uniqueGoodCards = [];
+		$.each(myGoodMoves, function(i, el){
+			if($.inArray(el, uniqueGoodCards) === -1) uniqueGoodCards.push(el);
+		});
+		
+		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
+		var enemyCard = uniqueGoodCards[randGoodCard];
+
+
+		console.log("Enemy Chooses " + enemyCard);
+		
+		// CLEAR 'UNIQUEGOODCARDS'
+		uniqueGoodCards = [];
+
 		
 		
 
+		
+		// DECIDE WHICH GOOD CARD TO PLAY
+		
+		// DECIDE WHICH SLOT IT SHOULD BE PLAYED IN
+
 		// DECIDE WHICH MOVES MATTER
-		console.log(openMoves + " are my possible moves");
-		 if (openMoves.length == 1) {
+		if (openMoves.length > 1) {
+			console.log(openMoves + " are The enemy's open moves");	
+		} else if (openMoves.length == 1) {
 			 
 			 console.log("set card into slot " + openMoves[0]);
 			 board[i] = openMoves[0];
 			 var id = "slot" + openMoves[0];
 			 var enemyCardSlotChanger = document.getElementById(id);
+			 // PLACE ENEMY CARD INTO SLOT
 			 $(enemyCardSlotChanger).css("background-color", "green");
 			 
 		 } else if(openMoves.length == 0) {
@@ -360,14 +382,22 @@ var Enemy = {
 			 
 			 var rand = Math.floor(Math.random() * choicesArray.length);
 			 var randSlot = choicesArray[rand];
-			 var randSlotNumber = "slot"  + randSlot; 
-			 board[randSlot] = enemyCard;
-			 console.log(rand);
+			 var randSlotNumber = "slot"  + randSlot;
 			 console.log(randSlot);
+			 console.log("that was randSlot ^^ ");
+			 console.log(rand);
 			 console.log("that was rand ^^ ");
 			 
+			 
+			 
+			 // PLACE ENEMY CARD INTO SLOT
+			 board[randSlot] = enemyCard;
+			 
+
 			 var enemyCardSlotChanger = document.getElementById(randSlotNumber);
 			 $(enemyCardSlotChanger).css("background-color","purple");
+			 
+			 console.log("I have no Attack positions for the card the Player just placed...  I'm just gonna place this here");
 
 			 
 		 }
@@ -380,8 +410,8 @@ var Enemy = {
 //		switch (openMoves) {
 //			case :
 //		}
-		// MY 'GOODMOVES' ARRAY.
-		console.log(myGoodMoves + " are my good moves");
+//		// MY 'GOODMOVES' ARRAY.
+//		console.log(myGoodMoves + " are my good moves");
 
 		
 		// SHOW ENEMY PLACING CARD ON BOARD
