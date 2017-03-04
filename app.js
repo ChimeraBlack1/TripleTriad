@@ -84,9 +84,8 @@ var card = {
 				break;				
 		}
 		
-		console.log(Player.playerCard.value);
-		
 		//LOG OUT SELECTED CARD
+		console.log(Player.playerCard.value);		
 		return
 	},
 	
@@ -316,22 +315,44 @@ var Enemy = {
 		// DECIDE WHICH MOVES MATTER
 		console.log(openMoves + " are my possible moves");
 		 if (openMoves.length == 1) {
+			 
 			 console.log("set card into slot " + openMoves[0]);
-			 console.log("#slot" + openMoves[0]);
 			 var id = "slot" + openMoves[0];
-			 var enemycardslotchanger = document.getElementById(id);
-			 $(enemycardslotchanger).css("background-color", "green");
+			 var enemyCardSlotChanger = document.getElementById(id);
+			 $(enemyCardSlotChanger).css("background-color", "green");
+			 
 		 } else if(openMoves.length == 0) {
+			 var choicesArray = [];
+			 
 			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
 			 for (i=1; i<9;i++) {
 				 if (board[i] == undefined)  {
-					board[i] = Player.playerCard.value;
-					var newCard = board[i];
-					console.log(newCard.name);
-					console.log("was inserted into" + i);
-					break;
+					
+					// GET SLOT ID
+					var id = "slot" + i;
+					 
+					 // PUSH INTO CHOICES ARRAY
+					choicesArray.push(id);
+					console.log(choicesArray);
+
+					// **NEED TO CHANGE THE PLAYERCARDVALUE HERE TO THE ENEMYCARDVALUE
+//					board[i] = enemyCard;
+//					
+//					
+//					console.log("was inserted into" + i);
+//					
+//					
+
 			 	} 
 			 }
+			 
+			 var rand = choicesArray[Math.floor(Math.random() * choicesArray.length)];
+			 console.log(rand);
+			 console.log("that was rand ^^ ");
+			 
+			 var enemyCardSlotChanger = document.getElementById(rand);
+			 $(enemyCardSlotChanger).css("background-color","purple");
+
 			 
 		 }
 //		
