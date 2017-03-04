@@ -157,8 +157,6 @@ var card = {
 
 
 
-
-
 var Enemy = {
 	hand: {
 		CardOne:  {
@@ -238,44 +236,53 @@ var Enemy = {
 	//	1	2	3
 	//	4	5	6
 	//	7	8	9
+	
+	
 
 	chooseSlot: function(slot) {
+		
+		var R = "R";
+		var L = "L";
+		var T = "T";
+		var B = "B";
+		
+		
 		switch(slot) {
 			case 1:
 				//2,4
-				this.decideSlot(1,[2,4]);
+				this.decideSlot(1,[2,4],[R,L]);
 				break;
 			case 2:
 				//1,3,5
-				this.decideSlot(2,[1,3,5]);
+				this.decideSlot(2,[1,3,5],[R,L,B]);
 				break;
 			case 3:
 				//2,6
-				this.decideSlot(3,[2,6]);
+				this.decideSlot(3,[2,6],[B,L]);
 				break;
 			case 4:
 				//1,5,7
-				this.decideSlot(4,[1,5,7]);
+				this.decideSlot(4,[1,5,7],[T,R,B]);
 				break;
 			case 5:
 				//2,4,6,8
-				this.decideSlot(5,[2,4,6,8]);
+				this.decideSlot(5,[2,4,6,8],[R,L,T,L,B]);
 				break;
 			case 6:
 				//3,5,9
-				this.decideSlot(6,[3,5,9]);
+				this.decideSlot(6,[3,5,9],[T,L,B]);
 				break;
 			case 7:
 				//4,8
-				this.decideSlot(7,[4,8]);
+				this.decideSlot(7,[4,8],[T,R]);
 				break;
 			case 8:
 				//7,5,9
-				this.decideSlot(8,[7,5,9]);
+				this.decideSlot(8,[7,5,9],[T,L,R]);
 				break;
 			case 9:
 				//8,6
-				this.decideSlot(9,[8,6]);
+				this.decideSlot(9,[8,6],[L,T]);
 				break;
 		}
 		
@@ -284,54 +291,66 @@ var Enemy = {
 	
 	
 
-	decideSlot: function (playerSlot,possibleSlots) {
+	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
 		//CHECK IF ADJACENT SLOT IS FULL
 		var leftOrRight = Math.random(1,possibleSlots.length);
-		var openMoves = {};
+		var openMoves = [];
+		var myGoodMoves = [];
 		
 		for (i=0;i < possibleSlots.length;i++) {
 			//IF POSSIBLE SLOT IS OPEN, ADD TO 'OPENMOVES' ARRAY;
 			if (board[possibleSlots[i]] == undefined){
-				openMoves[i] = possibleSlots[i];		  
+				openMoves.push(possibleSlots[i]);
+				console.log(openMoves);
 			}				
 		}
+		
 
 		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
-		var goodMovesBro = this.compareCard(Player.playerCard.value);
-		console.log(goodMovesBro);
-		console.log(openMoves);
-		
-		// DECIDE WHICH MOVES MATTER
-		if (playerSlot && openMoves) {
-			
-		}
-		
+		var goodMoves = this.compareCard(Player.playerCard.value);
+		console.log("my attack moves are " + attackPositions);
+		console.log(goodMoves);
 
-//		console.log(openMoves);
+		// DECIDE WHICH MOVES MATTER
+		console.log(openMoves + " are my possible moves");
+		 if (openMoves.length == 1) {
+			 console.log("set card into slot " + openMoves[0]);
+			 console.log("#slot" + openMoves[0]);
+			 var id = "slot" + openMoves[0];
+			 var enemycardslotchanger = document.getElementById(id);
+			 $(enemycardslotchanger).css("background-color", "green");
+		 }
+//		
+//		console.log(openMoves.length);
+		
+		// IF MY 'OPENMOVES' ARRAY CONTAINS X THEN ADD IT TO 'MYGOODMOVES'
+//		$.inArray
+//		
+//		switch (openMoves) {
+//			case :
+//		}
+		// MY 'GOODMOVES' ARRAY.
+		console.log(myGoodMoves + " are my good moves");
+
 		
 		// SHOW ENEMY PLACING CARD ON BOARD
 		$("#slot" + enemySlot).css("background-color", cardColor);
 		board[enemySlot] = enemyCard;
 		
-		console.log(enemyCard);
-//		
-//		if(board[possibleSlots[i]] == undefined && board[y] == undefined) {
-//			if (leftOrRight > 0.5) {
-//				enemySlot = 2;
-//				console.log('enemySlot is ' + enemySlot);
-//			} else {
-//				enemySlot = 4;
-//				console.log('enemySlot is '+ enemySlot);
-//			}
-//		} else if (board[x] == undefined && board[y] != undefined) {
-//
-//		} else if(board[y] == undefined && board[x] != undefined) {
-//
-//		} else {
-//			//BOTH SLOTS ARE FULL
-//		}
-	},
+		// CLEAR OUT THE GOOD MOVES ARRAY AND OBJECT
+		openMoves = [];
+		goodMoves = [];
+		this.goodMoves = {
+			top: [],
+			right: [],
+			bottom: [],
+			left: []
+		};
+		
+
+	},// END OF 'DECIDESLOT' METHOD
 	
+
 	goodMoves: {
 		top: [],
 		right: [],
