@@ -159,6 +159,8 @@ var card = {
 
 
 var Enemy = {
+	enemyCard: {name: null, value: null},
+	
 	hand: {
 		CardOne:  {
 			name: 'enemyCardOne', 
@@ -207,26 +209,26 @@ var Enemy = {
 	
 	enemyTurn: function(playerCard, slot, cardColor) {
 		
-		switch(playerCard) {
-			case "playerCardOne":
-				enemyCard = Enemy.hand.CardOne;
-				break;
-			case "playerCardTwo":
-				enemyCard = Enemy.hand.CardTwo;
-				break;
-			case "playerCardThree":
-				enemyCard = Enemy.hand.CardThree;
-				break;
-			case "playerCardFour":
-				enemyCard = Enemy.hand.CardFour;
-				break;
-			case "playerCardFive":
-				enemyCard = Enemy.hand.CardFive;
-				break;
-			case "playerCardSix":
-				enemyCard = Enemy.hand.CardSix;
-				break;
-		}
+//		switch(playerCard) {
+//			case "playerCardOne":
+//				enemyCard = Enemy.hand.CardOne;
+//				break;
+//			case "playerCardTwo":
+//				enemyCard = Enemy.hand.CardTwo;
+//				break;
+//			case "playerCardThree":
+//				enemyCard = Enemy.hand.CardThree;
+//				break;
+//			case "playerCardFour":
+//				enemyCard = Enemy.hand.CardFour;
+//				break;
+//			case "playerCardFive":
+//				enemyCard = Enemy.hand.CardFive;
+//				break;
+//			case "playerCardSix":
+//				enemyCard = Enemy.hand.CardSix;
+//				break;
+//		}
 		
 		// CHOOSE SLOT FOR ENEMYCARD PLACEMENT
 		this.chooseSlot(slot);
@@ -239,6 +241,8 @@ var Enemy = {
 	//	7	8	9
 
 	chooseSlot: function(slot) {
+		
+		
 		
 		var R = "R";
 		var L = "L";
@@ -336,25 +340,52 @@ var Enemy = {
 		});
 		
 		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
-		var enemyCard = uniqueGoodCards[randGoodCard];
+		var enemyCardName = uniqueGoodCards[randGoodCard];
 
-
-		console.log("Enemy Chooses " + enemyCard);
+		console.log("Enemy Chooses " + enemyCardName);
 		
 		// CLEAR 'UNIQUEGOODCARDS'
 		uniqueGoodCards = [];
 
-		
-		
-
-		
 		// DECIDE WHICH GOOD CARD TO PLAY
 		
 		// DECIDE WHICH SLOT IT SHOULD BE PLAYED IN
 
 		// DECIDE WHICH MOVES MATTER
 		if (openMoves.length > 1) {
+			
 			console.log(openMoves + " are The enemy's open moves");	
+			var myMoves = [];
+			
+			for (i=0;i<openMoves.length;i++){
+				var testIfOpen = openMoves[i];
+				
+				if (board[testIfOpen] == undefined) {
+					// ADD TO 'MYMOVES' ARRAY
+					myMoves.push(testIfOpen);
+				}
+				
+			}
+
+			console.log(myMoves);
+			
+			var myRandMove = Math.floor(Math.random() * myMoves.length);
+			var myFinalRandMove = myMoves[myRandMove];
+			var id = "slot" + myFinalRandMove;
+			//COLOR ENEMY SLOT CHOSEN
+			var enemyCardSlotChanger = document.getElementById(id);
+			$(enemyCardSlotChanger).css("background-color", "magenta");
+			
+			// PLACE ENEMY CARD INTO BOARD[SLOT]
+			enemyCard = this.selected(enemyCardName);
+			console.log(enemyCard);
+			console.log("this has been my enemyCard ^");
+			board[myFinalRandMove] = enemyCard;
+			
+			
+			
+			
+			
 		} else if (openMoves.length == 1) {
 			 
 			 console.log("set card into slot " + openMoves[0]);
@@ -430,6 +461,36 @@ var Enemy = {
 		
 
 	},// END OF 'DECIDESLOT' METHOD
+	
+	selected: function(enemyCardName) {
+		//SET PLAYER CARD
+		this.enemyCard.name = enemyCardName;
+	
+		switch(enemyCardName) {
+			case "enemyCardOne":
+				this.enemyCard.value = Enemy.hand.CardOne;
+				break;
+			case "enemyCardTwo":
+				this.enemyCard.value = Enemy.hand.CardTwo;
+				break;
+			case "enemyCardThree":
+				this.enemyCard.value = Enemy.hand.CardThree;
+				break;
+			case "enemyCardFour":
+				this.enemyCard.value = Enemy.hand.CardFour;
+				break;
+			case "enemyCardFive":
+				this.enemyCard.value = Enemy.hand.CardFive;
+				break;
+			case "enemyCardSix":
+				this.enemyCard.value = Enemy.hand.CardSix;
+				break;				
+		}
+		
+//		LOG OUT SELECTED CARD
+//		console.log(Enemy.enemyCard.value);		
+		return Enemy.enemyCard.value;
+	},
 	
 
 	goodMoves: {
