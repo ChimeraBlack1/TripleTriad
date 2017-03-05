@@ -85,7 +85,7 @@ var card = {
 		}
 		
 		//LOG OUT SELECTED CARD
-//		console.log(Player.playerCard.value);		
+		console.log(Player.playerCard.value);		
 		return
 	},
 	
@@ -352,7 +352,7 @@ var Enemy = {
 		// DECIDE WHICH SLOT IT SHOULD BE PLAYED IN
 
 		// DECIDE WHICH MOVES MATTER
-		if (openMoves.length > 1) {
+		if (openMoves.length >= 1) {
 			
 			console.log(openMoves + " are The enemy's open moves");	
 			var myMoves = [];
@@ -372,6 +372,7 @@ var Enemy = {
 			var myRandMove = Math.floor(Math.random() * myMoves.length);
 			var myFinalRandMove = myMoves[myRandMove];
 			var id = "slot" + myFinalRandMove;
+			
 			//COLOR ENEMY SLOT CHOSEN
 			var enemyCardSlotChanger = document.getElementById(id);
 			$(enemyCardSlotChanger).css("background-color", "magenta");
@@ -381,21 +382,8 @@ var Enemy = {
 			console.log(enemyCard);
 			console.log("this has been my enemyCard ^");
 			board[myFinalRandMove] = enemyCard;
-			
-			
-			
-			
-			
-		} else if (openMoves.length == 1) {
-			 
-			 console.log("set card into slot " + openMoves[0]);
-			 board[i] = openMoves[0];
-			 var id = "slot" + openMoves[0];
-			 var enemyCardSlotChanger = document.getElementById(id);
-			 // PLACE ENEMY CARD INTO SLOT
-			 $(enemyCardSlotChanger).css("background-color", "green");
-			 
-		 } else if(openMoves.length == 0) {
+
+		} else if(openMoves.length == 0) {
 			 var choicesArray = [];
 			 var idNumberArray = [];
 			 
@@ -432,17 +420,6 @@ var Enemy = {
 
 			 
 		 }
-//		
-//		console.log(openMoves.length);
-		
-		// IF MY 'OPENMOVES' ARRAY CONTAINS X THEN ADD IT TO 'MYGOODMOVES'
-//		$.inArray
-//		
-//		switch (openMoves) {
-//			case :
-//		}
-//		// MY 'GOODMOVES' ARRAY.
-//		console.log(myGoodMoves + " are my good moves");
 
 		
 		// SHOW ENEMY PLACING CARD ON BOARD
@@ -591,3 +568,14 @@ var Enemy = {
 
 
 
+// else if (openMoves.length == 1) {
+//			 
+//			 console.log("set card into slot " + openMoves[0]);
+//			 board[i] = openMoves[0];
+//			 var id = "slot" + openMoves[0];
+//			 var enemyCardSlotChanger = document.getElementById(id);
+//			 // PLACE ENEMY CARD INTO SLOT
+//			 $(enemyCardSlotChanger).css("background-color", "green");
+//			 
+//		 } 
+//
