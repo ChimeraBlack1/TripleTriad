@@ -384,41 +384,10 @@ var Enemy = {
 			board[myFinalRandMove] = enemyCard;
 
 		} else if(openMoves.length == 0) {
-			 var choicesArray = [];
-			 var idNumberArray = [];
-			 
-			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
-			 for (i=1; i<10;i++) {
-				 if (board[i] == undefined)  {
-					
-					// GET SLOT ID
-					var id = i;
-					 
-					 // PUSH INTO CHOICES ARRAY
-					choicesArray.push(id);
-			 	} 
-			 }
-			 
-			 var rand = Math.floor(Math.random() * choicesArray.length);
-			 var randSlot = choicesArray[rand];
-			 var randSlotNumber = "slot"  + randSlot;
-			 console.log(randSlot);
-			 console.log("that was randSlot ^^ ");
-			 console.log(rand);
-			 console.log("that was rand ^^ ");
-			 
-			 
-			 
-			 // PLACE ENEMY CARD INTO SLOT
-			 board[randSlot] = enemyCard;
-			 
-
-			 var enemyCardSlotChanger = document.getElementById(randSlotNumber);
-			 $(enemyCardSlotChanger).css("background-color","purple");
-			 
-			 console.log("I have no Attack positions for the card the Player just placed...  I'm just gonna place this here");
-
-			 
+			
+			// SETCARDRANDOMLY
+			this.setCardRandomly();
+			
 		 }
 
 		
@@ -467,6 +436,41 @@ var Enemy = {
 //		LOG OUT SELECTED CARD
 //		console.log(Enemy.enemyCard.value);		
 		return Enemy.enemyCard.value;
+	},
+
+	setCardRandomly: function () {
+		
+			var choicesArray = [];
+			var idNumberArray = [];
+			 
+			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
+			 for (i=1; i<10;i++) {
+				 if (board[i] == undefined)  {
+					
+					// GET SLOT ID
+					var id = i;
+					 
+					 // PUSH INTO CHOICES ARRAY
+					choicesArray.push(id);
+			 	} 
+			 }
+			 
+			 var rand = Math.floor(Math.random() * choicesArray.length);
+			 var randSlot = choicesArray[rand];
+			 var randSlotNumber = "slot"  + randSlot;
+			 console.log(randSlot);
+			 console.log("that was randSlot ^^ ");
+			 console.log(rand);
+			 console.log("that was rand ^^ ");
+			 
+			 // PLACE ENEMY CARD INTO SLOT
+			 board[randSlot] = enemyCard;
+
+			 var enemyCardSlotChanger = document.getElementById(randSlotNumber);
+			 $(enemyCardSlotChanger).css("background-color","purple");
+			 
+			 console.log("I have no Attack positions for the card the Player just placed...  I'm just gonna place this here");
+
 	},
 	
 
