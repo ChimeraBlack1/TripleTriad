@@ -161,6 +161,8 @@ var card = {
 var Enemy = {
 	enemyCard: {name: null, value: null},
 	
+	score: 0,
+	
 	hand: {
 		CardOne:  {
 			name: 'enemyCardOne', 
@@ -209,30 +211,9 @@ var Enemy = {
 	
 	enemyTurn: function(playerCard, slot, cardColor) {
 		
-//		switch(playerCard) {
-//			case "playerCardOne":
-//				enemyCard = Enemy.hand.CardOne;
-//				break;
-//			case "playerCardTwo":
-//				enemyCard = Enemy.hand.CardTwo;
-//				break;
-//			case "playerCardThree":
-//				enemyCard = Enemy.hand.CardThree;
-//				break;
-//			case "playerCardFour":
-//				enemyCard = Enemy.hand.CardFour;
-//				break;
-//			case "playerCardFive":
-//				enemyCard = Enemy.hand.CardFive;
-//				break;
-//			case "playerCardSix":
-//				enemyCard = Enemy.hand.CardSix;
-//				break;
-//		}
-		
+	
 		// CHOOSE SLOT FOR ENEMYCARD PLACEMENT
 		this.chooseSlot(slot);
-		console.log("yep still " + enemySlot);
 
 	},
 	
@@ -290,48 +271,27 @@ var Enemy = {
 		}
 		
 			
-	},// END OF 'CHOOSESLOT' METHOD
-	
+	},/* END OF 'CHOOSESLOT' METHOD */
 	
 
 	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
 		//CHECK IF ADJACENT SLOT IS FULL
 		var leftOrRight = Math.random(1,possibleSlots.length);
 		var openMoves = [];
-		var myGoodMoves = [];
 		
 		for (i=0;i < possibleSlots.length;i++) {
 			//IF POSSIBLE SLOT IS OPEN, ADD TO 'OPENMOVES' ARRAY;
 			if (board[possibleSlots[i]] == undefined){
 				openMoves.push(possibleSlots[i]);
-//				console.log(openMoves);
 			}				
 		}
 		
 
 		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
 		var goodMoves = this.compareCard(Player.playerCard.value);
-//		console.log("my attack moves are " + attackPositions);
 		
-		
-		// IF THERE IS A GOOD MOVE AT AN AVAILABLE ATTACK POSITION ADD IT TO 'MYGOODMOVES' ARRAY
-		if (goodMoves.top.length > 0 && attackPositions.includes("T")) {
-			myGoodMoves.push(goodMoves.top[0]);
-		}
-		
-		if (goodMoves.right.length > 0 && attackPositions.includes("R")) {
-			myGoodMoves.push(goodMoves.right[0]);
-		}
-		
-		if (goodMoves.bottom.length > 0 && attackPositions.includes("B")) {
-			myGoodMoves.push(goodMoves.bottom[0]);
-		}
-		
-		if (goodMoves.left.length > 0 && attackPositions.includes("L")) {
-			myGoodMoves.push(goodMoves.left[0]);
-		}
-		
-		
+		// COMPARE GOOD MOVES AGAINST OPEN ATTACK POSITIONS
+		var myGoodMoves = this.calcAttack(goodMoves,attackPositions);		
 		
 		// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
 		var uniqueGoodCards = [];
@@ -384,10 +344,18 @@ var Enemy = {
 			board[myFinalRandMove] = enemyCard;
 
 		} else if(openMoves.length == 0) {
+			// CHECK IF BOARD IS FULL
+			boardSize = Object.keys(board);
 			
-			// SETCARDRANDOMLY
-			this.setCardRandomly();
-			
+			 if (boardSize.length >= 9) {
+//				 this.endGame(Player.score, Enemy.score);
+				 console.log("end the game");
+			 } else {
+				 
+				// SETCARDRANDOMLY
+				this.setCardRandomly();
+			 }
+
 		 }
 
 		
@@ -406,7 +374,29 @@ var Enemy = {
 		};
 		
 
-	},// END OF 'DECIDESLOT' METHOD
+	}, /* END OF 'DECIDESLOT' METHOD */
+	
+	calcAttack: function(goodMoves,attackPositions) {
+		// IF THERE IS A GOOD MOVE AT AN AVAILABLE ATTACK POSITION ADD IT TO 'MYGOODMOVES' ARRAY
+		var myGoodMoves = [];
+		
+		if (goodMoves.top.length > 0 && attackPositions.includes("T")) {
+			myGoodMoves.push(goodMoves.top[0]);
+		}
+		
+		if (goodMoves.right.length > 0 && attackPositions.includes("R")) {
+			myGoodMoves.push(goodMoves.right[0]);
+		}
+		
+		if (goodMoves.bottom.length > 0 && attackPositions.includes("B")) {
+			myGoodMoves.push(goodMoves.bottom[0]);
+		}
+		
+		if (goodMoves.left.length > 0 && attackPositions.includes("L")) {
+			myGoodMoves.push(goodMoves.left[0]);
+		}
+		return myGoodMoves;
+	},
 	
 	selected: function(enemyCardName) {
 		//SET PLAYER CARD
@@ -472,6 +462,8 @@ var Enemy = {
 			 console.log("I have no Attack positions for the card the Player just placed...  I'm just gonna place this here");
 
 	},
+	
+	
 	
 
 	goodMoves: {
