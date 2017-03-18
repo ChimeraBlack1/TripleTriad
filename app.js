@@ -99,7 +99,6 @@ var card = {
 		
 			// CHANGE SLOT INTO CARD REPRESENTATION
 			$("#slot" + slot).css("background-color", cardColor);
-//			console.log("set " + Player.playerCard.name + " into slot " + slot);
 			
 			// REMOVE CARD FROM PLAYER'S HAND
 			$("#" + Player.playerCard.name).hide();
@@ -107,15 +106,13 @@ var card = {
 			// PLAY ENEMY TURN
 			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor);
 			
-			// RESET CURRENTCARD
-			
-		
 			// RESET PLAYERCARD
 			Player.playerCard.name = null;
 			return
 	},
 	
 	checkIfSet: function(slot) {
+		
 		if (board[slot] == undefined && Player.playerCard.name != null) {
 			this.set(slot);
 		}else if(board[slot] == undefined) {
@@ -160,6 +157,8 @@ var card = {
 
 var Enemy = {
 	enemyCard: {name: null, value: null},
+	
+	usedCards: [],
 	
 	score: 0,
 	
@@ -210,8 +209,7 @@ var Enemy = {
 	
 	
 	enemyTurn: function(playerCard, slot, cardColor) {
-		
-	
+
 		// CHOOSE SLOT FOR ENEMYCARD PLACEMENT
 		this.chooseSlot(slot);
 
@@ -222,14 +220,11 @@ var Enemy = {
 	//	7	8	9
 
 	chooseSlot: function(slot) {
-		
-		
-		
+
 		var R = "R";
 		var L = "L";
 		var T = "T";
 		var B = "B";
-		
 		
 		switch(slot) {
 			case 1:
@@ -276,7 +271,6 @@ var Enemy = {
 
 	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
 		//CHECK IF ADJACENT SLOT IS FULL
-		var leftOrRight = Math.random(1,possibleSlots.length);
 		var openMoves = [];
 		
 		for (i=0;i < possibleSlots.length;i++) {
@@ -301,8 +295,6 @@ var Enemy = {
 		
 		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
 		var enemyCardName = uniqueGoodCards[randGoodCard];
-
-		console.log("Enemy Chooses " + enemyCardName);
 		
 		// CLEAR 'UNIQUEGOODCARDS'
 		uniqueGoodCards = [];
@@ -339,31 +331,33 @@ var Enemy = {
 			
 			// PLACE ENEMY CARD INTO BOARD[SLOT]
 			enemyCard = this.selected(enemyCardName);
-			console.log(enemyCard);
-			console.log("this has been my enemyCard ^");
 			board[myFinalRandMove] = enemyCard;
+			
+			// PLACE CARD INTO 'USEDCARDS' ARRAY
+			this.usedCards.push(enemyCardName);
+//			console.log("This is used cards ^");
+			
 
 		} else if(openMoves.length == 0) {
 			// CHECK IF BOARD IS FULL
-			boardSize = Object.keys(board);
-			
+			var boardSize = Object.keys(board);
 			 if (boardSize.length >= 9) {
 //				 this.endGame(Player.score, Enemy.score);
 				 console.log("end the game");
 			 } else {
-				 
 				// SETCARDRANDOMLY
 				this.setCardRandomly();
 			 }
-
 		 }
 
-		
 		// SHOW ENEMY PLACING CARD ON BOARD
 		$("#slot" + enemySlot).css("background-color", cardColor);
 		board[enemySlot] = enemyCard;
 		
-		// CLEAR DECISIONS 
+		// REMOVE CARD FROM ENEMY HAND
+		
+		
+		// CLEAR DECISIONS
 		openMoves = [];
 		goodMoves = [];
 		this.goodMoves = {
@@ -423,9 +417,7 @@ var Enemy = {
 				break;				
 		}
 		
-//		LOG OUT SELECTED CARD
-//		console.log(Enemy.enemyCard.value);		
-		return Enemy.enemyCard.value;
+		return this.enemyCard.value;
 	},
 
 	setCardRandomly: function () {
@@ -442,7 +434,7 @@ var Enemy = {
 					 
 					 // PUSH INTO CHOICES ARRAY
 					choicesArray.push(id);
-			 	} 
+			 	}
 			 }
 			 
 			 var rand = Math.floor(Math.random() * choicesArray.length);
@@ -463,8 +455,7 @@ var Enemy = {
 
 	},
 	
-	
-	
+
 
 	goodMoves: {
 		top: [],
@@ -475,103 +466,138 @@ var Enemy = {
 	
 	compareCard: function(currentCard) {
 		
-		// NORTH
+		
+		// IF enemyCardOne NOT USED COMPARE AND CONDITIONALLY ADD enemyCardOne TO GOODMOVES.
+		if  ($.inArray("enemyCardOne",Enemy.usedCards) == -1){
+			// NORTH
 			if (Enemy.hand.CardOne.north >= currentCard.south) {
 				Enemy.goodMoves.bottom.push(Enemy.hand.CardOne.name);
 			}
-			if (Enemy.hand.CardTwo.north >= currentCard.south) {
-				Enemy.goodMoves.bottom.push(Enemy.hand.CardTwo.name);
-			}
-			if (Enemy.hand.CardThree.north >= currentCard.south) {
-				Enemy.goodMoves.bottom.push(Enemy.hand.CardThree.name);
-			}
-			if (Enemy.hand.CardFour.north >= currentCard.south) {
-				Enemy.goodMoves.bottom.push(Enemy.hand.CardFour.name);
-			}
-			if (Enemy.hand.CardFive.north >= currentCard.south) {
-				Enemy.goodMoves.bottom.push(Enemy.hand.CardFive.name);
-			}
-			if (Enemy.hand.CardSix.north >= currentCard.south) {
-				Enemy.goodMoves.bottom.push(Enemy.hand.CardSix.name);
-			}
-		
-		// EAST
+			
+			// EAST
 			if (Enemy.hand.CardOne.east >= currentCard.west) {
 				Enemy.goodMoves.left.push(Enemy.hand.CardOne.name);
 			}
-			if (Enemy.hand.CardTwo.east >= currentCard.west) {
-				Enemy.goodMoves.left.push(Enemy.hand.CardTwo.name);
-			}
-			if (Enemy.hand.CardThree.east >= currentCard.west) {
-				Enemy.goodMoves.left.push(Enemy.hand.CardThree.name);
-			}
-			if (Enemy.hand.CardFour.east >= currentCard.west) {
-				Enemy.goodMoves.left.push(Enemy.hand.CardFour.name);
-			}
-			if (Enemy.hand.CardFive.east >= currentCard.west) {
-				Enemy.goodMoves.left.push(Enemy.hand.CardFive.name);
-			}
-			if (Enemy.hand.CardSix.east >= currentCard.west) {
-				Enemy.goodMoves.left.push(Enemy.hand.CardSix.name);
-			}
-		
-		// SOUTH
+			
+			// SOUTH
 			if (Enemy.hand.CardOne.south >= currentCard.north) {
 				Enemy.goodMoves.top.push(Enemy.hand.CardOne.name);
 			}
-			if (Enemy.hand.CardTwo.south >= currentCard.north) {
-				Enemy.goodMoves.top.push(Enemy.hand.CardTwo.name);
-			}
-			if (Enemy.hand.CardThree.south >= currentCard.north) {
-				Enemy.goodMoves.top.push(Enemy.hand.CardThree.name);
-			}
-			if (Enemy.hand.CardFour.south >= currentCard.north) {
-				Enemy.goodMoves.top.push(Enemy.hand.CardFour.name);
-			}
-			if (Enemy.hand.CardFive.south >= currentCard.north) {
-				Enemy.goodMoves.top.push(Enemy.hand.CardFive.name);
-			}
-			if (Enemy.hand.CardSix.south >= currentCard.north) {
-				Enemy.goodMoves.top.push(Enemy.hand.CardSix.name);
-			}
-		
-		// WEST
+			
+			// WEST
 			if (Enemy.hand.CardOne.west >= currentCard.east) {
 				Enemy.goodMoves.right.push(Enemy.hand.CardOne.name);
 			}
+		}
+		
+		
+		
+		// IF enemyCardTwo NOT USED COMPARE AND CONDITIONALLY ADD enemyCardTwo TO GOODMOVES.
+		if  ($.inArray("enemyCardTwo",Enemy.usedCards) == -1){
+			// NORTH
+			if (Enemy.hand.CardTwo.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardTwo.name);
+			}
+			// EAST
+			if (Enemy.hand.CardTwo.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardTwo.name);
+			}
+			// SOUTH
+			if (Enemy.hand.CardTwo.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardTwo.name);
+			}
+			// WEST
 			if (Enemy.hand.CardTwo.west >= currentCard.east) {
 				Enemy.goodMoves.right.push(Enemy.hand.CardTwo.name);
 			}
+		}
+		
+		// IF enemyCardThree NOT USED COMPARE AND CONDITIONALLY ADD enemyCardTwo TO GOODMOVES.
+		if  ($.inArray("enemyCardThree",Enemy.usedCards) == -1){
+			// NORTH
+			if (Enemy.hand.CardThree.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardThree.name);
+			}
+			// EAST
+			if (Enemy.hand.CardThree.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardThree.name);
+			}
+			// SOUTH
+			if (Enemy.hand.CardThree.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardThree.name);
+			}
+			// WEST
 			if (Enemy.hand.CardThree.west >= currentCard.east) {
 				Enemy.goodMoves.right.push(Enemy.hand.CardThree.name);
 			}
+		}
+
+		// IF enemyCardFour NOT USED COMPARE AND CONDITIONALLY ADD enemyCardTwo TO GOODMOVES.
+		if  ($.inArray("enemyCardFour",Enemy.usedCards) == -1){
+			// NORTH
+			if (Enemy.hand.CardFour.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardFour.name);
+			}
+			// EAST
+			if (Enemy.hand.CardFour.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardFour.name);
+			}
+			// SOUTH
+			if (Enemy.hand.CardFour.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardFour.name);
+			}
+			// WEST
 			if (Enemy.hand.CardFour.west >= currentCard.east) {
 				Enemy.goodMoves.right.push(Enemy.hand.CardFour.name);
 			}
+
+		}
+		
+		
+		// IF enemyCardFive NOT USED COMPARE AND CONDITIONALLY ADD enemyCardTwo TO GOODMOVES.
+		if  ($.inArray("enemyCardFive",Enemy.usedCards) == -1){
+			// NORTH
+			if (Enemy.hand.CardFive.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardFive.name);
+			}
+			// EAST
+			if (Enemy.hand.CardFive.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardFive.name);
+			}
+			// SOUTH
+			if (Enemy.hand.CardFive.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardFive.name);
+			}
+			// WEST
 			if (Enemy.hand.CardFive.west >= currentCard.east) {
 				Enemy.goodMoves.right.push(Enemy.hand.CardFive.name);
 			}
+
+		}
+		
+		
+		// IF enemyCardSix NOT USED COMPARE AND CONDITIONALLY ADD enemyCardTwo TO GOODMOVES.
+		if  ($.inArray("enemyCardSix",Enemy.usedCards) == -1){
+			// NORTH
+			if (Enemy.hand.CardSix.north >= currentCard.south) {
+				Enemy.goodMoves.bottom.push(Enemy.hand.CardSix.name);
+			}
+			// EAST
+			if (Enemy.hand.CardSix.east >= currentCard.west) {
+				Enemy.goodMoves.left.push(Enemy.hand.CardSix.name);
+			}
+			// SOUTH
+			if (Enemy.hand.CardSix.south >= currentCard.north) {
+				Enemy.goodMoves.top.push(Enemy.hand.CardSix.name);
+			}
+			// WEST
 			if (Enemy.hand.CardSix.west >= currentCard.east) {
 				Enemy.goodMoves.right.push(Enemy.hand.CardSix.name);
 			}
+		}
 		return Enemy.goodMoves;
 	}
 	
 	 
 	
 };// END OF 'ENEMY' OBJECT
-
-
-
-
-// else if (openMoves.length == 1) {
-//			 
-//			 console.log("set card into slot " + openMoves[0]);
-//			 board[i] = openMoves[0];
-//			 var id = "slot" + openMoves[0];
-//			 var enemyCardSlotChanger = document.getElementById(id);
-//			 // PLACE ENEMY CARD INTO SLOT
-//			 $(enemyCardSlotChanger).css("background-color", "green");
-//			 
-//		 } 
-//
