@@ -341,10 +341,8 @@ var Enemy = {
 			 } else {
 				// SETCARDRANDOMLY
 				this.setCardRandomly();
-				
 			 }
 		 }
-		
 		
 		// PLACE CARD INTO 'USEDCARDS' ARRAY
 		this.usedCards.push(enemyCardName);
@@ -354,7 +352,6 @@ var Enemy = {
 		board[enemySlot] = enemyCard;
 		
 		// REMOVE CARD FROM ENEMY HAND
-		
 		
 		// CLEAR DECISIONS
 		openMoves = [];
@@ -481,8 +478,7 @@ var Enemy = {
 			}
 		}
 		
-		
-		
+
 		// IF enemyCardTwo NOT USED COMPARE AND CONDITIONALLY ADD enemyCardTwo TO GOODMOVES.
 		if  ($.inArray("enemyCardTwo",Enemy.usedCards) == -1){
 			// NORTH
