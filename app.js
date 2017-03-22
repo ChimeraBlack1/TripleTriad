@@ -415,11 +415,11 @@ var Enemy = {
 		
 		return this.enemyCard.value;
 	},
+	
+	setCardRandomly: function(){
 
-	setCardRandomly: function () {
-		
 			var choicesArray = [];
-			 
+			
 			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
 			 for (i=0; i<10;i++) {
 				 if (board[i] == undefined)  {
@@ -431,8 +431,8 @@ var Enemy = {
 					choicesArray.push(id);
 			 	}
 			 }
-			 
-			 var rand = Math.floor(Math.random() * choicesArray.length);
+		
+			var rand = Math.floor(Math.random() * choicesArray.length);
 			 var randSlot = choicesArray[rand];
 			 var randSlotNumber = "slot"  + randSlot;
 			 
@@ -442,7 +442,6 @@ var Enemy = {
 			 var enemyCardSlotChanger = document.getElementById(randSlotNumber);
 			 $(enemyCardSlotChanger).css("background-color","purple");
 	},
-	
 
 
 	goodMoves: {
