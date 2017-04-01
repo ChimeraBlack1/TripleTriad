@@ -1,22 +1,4 @@
-var Game = {
-	
-	// COMPARE THE PLAYERCARD TO ANY SURROUNDING ENEMY CARDS, AND 
-	// IF THE PLAYER'S CARD'S VALUE BEATS THE ENEMY'S, THEN 
-	// RECORD THE PLAYER TAKING OWNERSHIP OF THE SLOT
-	
-	// COMPARE THE ENEMYCARD TO ANY SURROUNDING PLAYER CARDS, AND
-	// IF THE ENEMY'S CARD'S VALUE BEATS THE ENEMY'S, THEN
-	// RECORD THE ENEMY TAKING OWNERSHIP OF THE SLOT
-	
-	processBattle: function (playerCardDetails, enemyCardDetails) {
-		if (Player.playerCard.value.north > Enemy.enemyCard.value.north){
-			
-		}
-	},
-	
-	score: 0,
-	
-};// END OF GAME OBJECT
+
 
 var Player = {
 	playerCard: {name: null, value: null},
@@ -343,18 +325,25 @@ var Enemy = {
 			
 			// PLACE ENEMY CARD INTO BOARD[SLOT]
 			board[myFinalRandMove] = enemyCard;
+			
+			// Game.processBattle(enemyCard, myFinalRandMove, Player.playerCard.value, playerSlot);
 
 		} else if(openMoves.length == 0) {
 			// CHECK IF BOARD IS FULL
 			var boardSize = Object.keys(board);
 			 
 			if (boardSize.length >= 9) {
+				
+				// Game.processBattle(enemyCard, myFinalRandMove, Player.playerCard.value, playerSlot);
+				
 				console.log("end the game");
 				return;
 			 } else {
 				// SETCARDRANDOMLY
 				console.log('setting the card randomly');
 				this.setCardRandomly(enemyCard);
+				 
+				// Game.processBattle(enemyCard, myFinalRandMove, Player.playerCard.value, playerSlot);
 			 }
 		 }
 		
@@ -644,3 +633,87 @@ var Enemy = {
 	 
 	
 };// END OF 'ENEMY' OBJECT
+
+
+
+var Game = {
+
+	 comparePlayerCard: function (playerSlot) {
+		 
+		// COMPARE THE PLAYERCARD TO ANY SURROUNDING ENEMY CARDS, AND 
+		// IF THE PLAYER'S CARD'S VALUE BEATS THE ENEMY'S, THEN 
+		// RECORD THE PLAYER TAKING OWNERSHIP OF THE SLOT
+	
+	 },
+		// compare playerCard placed against surrounding cards
+	 compareEnemyCard: function (enemySlot) {
+		 
+		// COMPARE THE ENEMYCARD TO ANY SURROUNDING PLAYER CARDS, AND
+		// IF THE ENEMY'S CARD'S VALUE BEATS THE ENEMY'S, THEN
+		// RECORD THE ENEMY TAKING OWNERSHIP OF THE SLOT
+
+	 },
+		// compare enemyCard placed against surrounding cards
+	
+	processBattle: function (enemyCard, myFinalRandMove, playerCardValue, playerSlot) {
+		
+		
+		
+		
+
+		switch (myFinalRandMove) {
+
+			case 1:
+				//2,4
+				
+				/*
+				if (board[2] !== undefined ) {
+					compare enemyCard.value.east VS playerCardValue.west;
+
+				 }
+				 
+				if (board[4] !== undefined) {
+					compare enemyCard.value.south VS playerCardValue.west;
+				}
+					
+				*/
+				break;
+			case 2:
+				//1,3,5
+				this.decideSlot(2,[1,3,5],[R,L,B]);
+				break;
+			case 3:
+				//2,6
+				this.decideSlot(3,[2,6],[B,L]);
+				break;
+			case 4:
+				//1,5,7
+				this.decideSlot(4,[1,5,7],[T,R,B]);
+				break;
+			case 5:
+				//2,4,6,8
+				this.decideSlot(5,[2,4,6,8],[R,L,T,B]);
+				break;
+			case 6:
+				//3,5,9
+				this.decideSlot(6,[3,5,9],[T,L,B]);
+				break;
+			case 7:
+				//4,8
+				this.decideSlot(7,[4,8],[T,R]);
+				break;
+			case 8:
+				//7,5,9
+				this.decideSlot(8,[7,5,9],[T,L,R]);
+				break;
+			case 9:
+				//8,6
+				this.decideSlot(9,[8,6],[L,T]);
+				break;
+		};
+		
+	},
+	
+	score: 0,
+	
+};// END OF GAME OBJECT
