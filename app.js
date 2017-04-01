@@ -1,4 +1,22 @@
-
+var Game = {
+	
+	// COMPARE THE PLAYERCARD TO ANY SURROUNDING ENEMY CARDS, AND 
+	// IF THE PLAYER'S CARD'S VALUE BEATS THE ENEMY'S, THEN 
+	// RECORD THE PLAYER TAKING OWNERSHIP OF THE SLOT
+	
+	// COMPARE THE ENEMYCARD TO ANY SURROUNDING PLAYER CARDS, AND
+	// IF THE ENEMY'S CARD'S VALUE BEATS THE ENEMY'S, THEN
+	// RECORD THE ENEMY TAKING OWNERSHIP OF THE SLOT
+	
+	processBattle: function (playerCardDetails, enemyCardDetails) {
+		if (Player.playerCard.value.north > Enemy.enemyCard.value.north){
+			
+		}
+	},
+	
+	score: 0,
+	
+};// END OF GAME OBJECT
 
 var Player = {
 	playerCard: {name: null, value: null},
@@ -105,7 +123,9 @@ var card = {
 		
 			// PLAY ENEMY TURN
 			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor);
-			
+		
+			// Game.processBattle(Player.playerCard.name, Enemy.enemyCard.name);
+		
 			// RESET PLAYERCARD
 			Player.playerCard.name = null;
 			return
@@ -156,11 +176,12 @@ var card = {
 
 
 var Enemy = {
-	enemyCard: {name: null, value: null},
+	enemyCard: {
+		name: null, 
+		value: null
+	},
 	
 	usedCards: [],
-	
-	score: 0,
 	
 	hand: {
 		CardOne:  {
@@ -266,11 +287,9 @@ var Enemy = {
 		}
 		
 			
-	},/* END OF 'CHOOSESLOT' METHOD */
+	},/* END OF 'chooseSlot' METHOD */
 	
-
-	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
-		//CHECK IF ADJACENT SLOT IS FULL
+	openMoves: function(possibleSlots) {
 		var openMoves = [];
 		
 		for (i=0;i < possibleSlots.length;i++) {
@@ -280,12 +299,10 @@ var Enemy = {
 			}				
 		}
 		
-
-		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
-		var goodMoves = this.compareCard(Player.playerCard.value);
-		
-		// COMPARE GOOD MOVES AGAINST OPEN ATTACK POSITIONS
-		var myGoodMoves = this.calcAttack(goodMoves,attackPositions);		
+		return openMoves;
+	}, /* END OF 'openMoves' METHOD */
+	
+	chooseCard: function(myGoodMoves) {
 		
 		// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
 		var uniqueGoodCards = [];
@@ -293,40 +310,53 @@ var Enemy = {
 			if($.inArray(el, uniqueGoodCards) === -1) uniqueGoodCards.push(el);
 		});
 		
+		// GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE UNIQUE GOOD CARDS ARRAY
 		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
+		
+		// GRAB A UNIQUE CARD BASED ON THE ABOVE RANDOM NUMBER
 		var enemyCardName = uniqueGoodCards[randGoodCard];
+		
+		// PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE
+		enemyCard = this.selected(enemyCardName);
 		
 		// CLEAR 'UNIQUEGOODCARDS'
 		uniqueGoodCards = [];
 
-		// DECIDE WHICH GOOD CARD TO PLAY
-		enemyCard = this.selected(enemyCardName);
+		return {
+			enemyCard: enemyCard, 
+			enemyCardName: enemyCardName
+		};
+	},
+	
 
-
-		// DECIDE WHICH MOVES MATTER
+	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
+		//CHECK IF ADJACENT SLOT HAS A CARD ALREADY
+		var openMoves = this.openMoves(possibleSlots);
+		
+		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
+		var goodMoves = this.compareCard(Player.playerCard.value);
+		
+		// COMPARE GOOD MOVES AGAINST OPEN ATTACK POSITIONS
+		var myGoodMoves = this.calcAttack(goodMoves,attackPositions);		
+		
+		// FINALLY, CHOOSE A CARD TO PLAY
+		// AND PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE
+		var enemyCardDetails = this.chooseCard(myGoodMoves);
+		enemyCard = enemyCardDetails.enemyCard;
+		enemyCardName = enemyCardDetails.enemyCardName;
+		
+		// IF THE ENEMY HAS AN OPEN MOVE
 		if (openMoves.length >= 1) {
 			
 			console.log(openMoves + " are The enemy's open moves");	
-			var myMoves = [];
+			// GET A RANDOM NUMBER IN BETWEEN 1 AND THE 'MYMOVES' ARRAY LENGTH
+			var myRandMove = Math.floor(Math.random() * openMoves.length);
 			
-			for (i=0;i<openMoves.length;i++){
-				var testIfOpen = openMoves[i];
-				
-				if (board[testIfOpen] == undefined) {
-					// ADD TO 'MYMOVES' ARRAY
-					myMoves.push(testIfOpen);
-				}
-				
-			}
-
-			console.log(myMoves);
+			// FINAL ENEMY SLOT CHOICE
+			var myFinalRandMove = openMoves[myRandMove];
 			
-			// DECIDE WHICH SLOT IT SHOULD BE PLAYED IN
-			var myRandMove = Math.floor(Math.random() * myMoves.length);
-			var myFinalRandMove = myMoves[myRandMove];
+			// CHANGE THE COLOR OF THE CHOSEN SLOT
 			var id = "slot" + myFinalRandMove;
-			
-			//COLOR ENEMY SLOT CHOSEN
 			var enemyCardSlotChanger = document.getElementById(id);
 			$(enemyCardSlotChanger).css("background-color", "magenta");
 			
@@ -336,11 +366,13 @@ var Enemy = {
 		} else if(openMoves.length == 0) {
 			// CHECK IF BOARD IS FULL
 			var boardSize = Object.keys(board);
-			 if (boardSize.length >= 9) {
+			 
+			if (boardSize.length >= 9) {
 				 console.log("end the game");
 			 } else {
 				// SETCARDRANDOMLY
-				this.setCardRandomly();
+				console.log('setting the card randomly');
+				this.setCardRandomly(enemyCard);
 			 }
 		 }
 		
@@ -389,7 +421,7 @@ var Enemy = {
 	},
 	
 	selected: function(enemyCardName) {
-		//SET PLAYER CARD
+		// SET PLAYER CARD
 		this.enemyCard.name = enemyCardName;
 	
 		switch(enemyCardName) {
@@ -416,31 +448,34 @@ var Enemy = {
 		return this.enemyCard.value;
 	},
 	
-	setCardRandomly: function(){
+	setCardRandomly: function(enemyCard){
+			console.log("calling SET CARD RANDOMLY!")
 
 			var choicesArray = [];
 			
 			 // LOOP THROUGH SLOTS ON BOARD UNTIL ONE IS 'UNDEFINED'
-			 for (i=0; i<10;i++) {
+			 for (i=1; i<10;i++) {
 				 if (board[i] == undefined)  {
 					
 					// GET SLOT ID
 					var id = i;
 					 
 					 // PUSH INTO CHOICES ARRAY
-					choicesArray.push(id);
-			 	}
-			 }
+					 choicesArray.push(id);
+				}
+			}
 		
-			var rand = Math.floor(Math.random() * choicesArray.length);
-			 var randSlot = choicesArray[rand];
-			 var randSlotNumber = "slot"  + randSlot;
+			var rand = Math.floor(Math.random()* choicesArray.length);
+			console.log(rand);
+			console.log("That was rand ^");
+			var randSlot = choicesArray[rand];
+			var randSlotNumber = "slot"  + randSlot;
 			 
-			 // PLACE ENEMY CARD INTO SLOT
-			 board[randSlot] = enemyCard;
+			// PLACE ENEMY CARD INTO SLOT
+			board[randSlot] = enemyCard;
 
-			 var enemyCardSlotChanger = document.getElementById(randSlotNumber);
-			 $(enemyCardSlotChanger).css("background-color","purple");
+			var enemyCardSlotChanger = document.getElementById(randSlotNumber);
+			$(enemyCardSlotChanger).css("background-color","purple");
 	},
 
 
