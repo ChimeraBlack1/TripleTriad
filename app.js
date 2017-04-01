@@ -62,7 +62,7 @@ var Player = {
 			north: 5,
 			east: 1,
 			south: 6,
-			west: 1
+			west: 9
 		},		
 	}
 }; //END OF PLAYER OBJECT
@@ -301,33 +301,7 @@ var Enemy = {
 		
 		return openMoves;
 	}, /* END OF 'openMoves' METHOD */
-	
-	chooseCard: function(myGoodMoves) {
-		
-		// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
-		var uniqueGoodCards = [];
-		$.each(myGoodMoves, function(i, el){
-			if($.inArray(el, uniqueGoodCards) === -1) uniqueGoodCards.push(el);
-		});
-		
-		// GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE UNIQUE GOOD CARDS ARRAY
-		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
-		
-		// GRAB A UNIQUE CARD BASED ON THE ABOVE RANDOM NUMBER
-		var enemyCardName = uniqueGoodCards[randGoodCard];
-		
-		// PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE
-		enemyCard = this.selected(enemyCardName);
-		
-		// CLEAR 'UNIQUEGOODCARDS'
-		uniqueGoodCards = [];
 
-		return {
-			enemyCard: enemyCard, 
-			enemyCardName: enemyCardName
-		};
-	},
-	
 
 	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
 		//CHECK IF ADJACENT SLOT HAS A CARD ALREADY
@@ -335,6 +309,9 @@ var Enemy = {
 		
 		// FOR EACH POSSILBLE MOVE, COMPARE EACH CARD IN MY HAND TO THE CARD PLACED
 		var goodMoves = this.compareCard(Player.playerCard.value);
+		
+		console.log(goodMoves);
+		console.log("that was goodMoves");
 		
 		// COMPARE GOOD MOVES AGAINST OPEN ATTACK POSITIONS
 		var myGoodMoves = this.calcAttack(goodMoves,attackPositions);		
@@ -404,22 +381,62 @@ var Enemy = {
 		var myGoodMoves = [];
 		
 		if (goodMoves.top.length > 0 && attackPositions.includes("T")) {
-			myGoodMoves.push(goodMoves.top[0]);
+			for (i=0;i<goodMoves.top.length;i++) {
+				myGoodMoves.push(goodMoves.top[i]);
+			}
 		}
 		
 		if (goodMoves.right.length > 0 && attackPositions.includes("R")) {
-			myGoodMoves.push(goodMoves.right[0]);
+			for(i=0;i<goodMoves.right.length;i++){
+				myGoodMoves.push(goodMoves.right[i]);	
+			}			
 		}
 		
 		if (goodMoves.bottom.length > 0 && attackPositions.includes("B")) {
-			myGoodMoves.push(goodMoves.bottom[0]);
+			for(i=0;i<goodMoves.bottom.length;i++) {
+				myGoodMoves.push(goodMoves.bottom[i]);	
+			}			
 		}
 		
 		if (goodMoves.left.length > 0 && attackPositions.includes("L")) {
-			myGoodMoves.push(goodMoves.left[0]);
+			for(i=0;i<goodMoves.left.length;i++){
+				myGoodMoves.push(goodMoves.left[i]);	
+			}			
 		}
 		return myGoodMoves;
 	},
+	
+		
+	chooseCard: function(myGoodMoves) {
+		
+//		console.log(myGoodMoves);
+//		console.log("That was my Good Moves");
+		// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
+		var uniqueGoodCards = [];
+		$.each(myGoodMoves, function(i, el){
+			if($.inArray(el, uniqueGoodCards) === -1) uniqueGoodCards.push(el);
+		});
+		
+		console.log(uniqueGoodCards);
+		console.log("That was unique good cards");
+		// GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE UNIQUE GOOD CARDS ARRAY
+		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
+		
+		// GRAB A UNIQUE CARD BASED ON THE ABOVE RANDOM NUMBER
+		var enemyCardName = uniqueGoodCards[randGoodCard];
+		
+		// PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE
+		enemyCard = this.selected(enemyCardName);
+		
+		// CLEAR 'UNIQUEGOODCARDS'
+		uniqueGoodCards = [];
+
+		return {
+			enemyCard: enemyCard,
+			enemyCardName: enemyCardName
+		};
+	},
+	
 	
 	selected: function(enemyCardName) {
 		// SET PLAYER CARD
