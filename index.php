@@ -14,13 +14,13 @@
   <body>
 	  
 	  <div class="game-container">
-		  <div class="hand">
-			 <div class="player-card"></div>
-			  <div class="player-card all-player-cards one"></div>
-			  <div class="player-card all-player-cards two"></div> 
-			  <div class="player-card all-player-cards three"></div>
-			  <div class="player-card all-player-cards four"></div>
-			  <div class="player-card all-player-cards five"></div>
+		  <div id="EnemyHand" class="hand">
+			 <div id="enemyCardOne" class="player-card"></div>
+			 <div id="enemyCardTwo" class="player-card all-player-cards one"></div>
+			 <div id="enemyCardThree" class="player-card all-player-cards two"></div> 
+			 <div id="enemyCardFour" class="player-card all-player-cards three"></div>
+			 <div id="enemyCardFive" class="player-card all-player-cards four"></div>
+			 <div id="enemyCardSix" class="player-card all-player-cards five"></div>
 		  </div>
 		  <div class="game-board">
 			  <div id="slot1" class="card-slot card-offset-left" onclick="card.checkIfSet(1)"></div>

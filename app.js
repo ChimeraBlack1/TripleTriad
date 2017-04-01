@@ -384,6 +384,7 @@ var Enemy = {
 		board[enemySlot] = enemyCard;
 		
 		// REMOVE CARD FROM ENEMY HAND
+		$("#" + enemyCardName).hide();
 		
 		// CLEAR DECISIONS
 		openMoves = [];
