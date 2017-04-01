@@ -119,7 +119,7 @@ var card = {
 			$("#slot" + slot).css("background-color", cardColor);
 			
 			// REMOVE CARD FROM PLAYER'S HAND
-			$("#" + Player.playerCard.name).hide();
+			$("#" + Player.playerCard.name).css("visibility", "hidden");
 		
 			// PLAY ENEMY TURN
 			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor);
@@ -384,7 +384,7 @@ var Enemy = {
 		board[enemySlot] = enemyCard;
 		
 		// REMOVE CARD FROM ENEMY HAND
-		$("#" + enemyCardName).hide();
+		$("#" + enemyCardName).css("visibility", "hidden");
 		
 		// CLEAR DECISIONS
 		openMoves = [];
