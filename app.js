@@ -301,6 +301,12 @@ var Enemy = {
 		
 		return openMoves;
 	}, /* END OF 'openMoves' METHOD */
+	
+	removeCard: function (enemyCardName) {
+		// REMOVE CARD FROM ENEMY HAND
+		$("#" + enemyCardName).css("visibility", "hidden");
+	},
+			
 
 
 	decideSlot: function (playerSlot, possibleSlots, attackPositions) {
@@ -345,7 +351,8 @@ var Enemy = {
 			var boardSize = Object.keys(board);
 			 
 			if (boardSize.length >= 9) {
-				 console.log("end the game");
+				console.log("end the game");
+				return;
 			 } else {
 				// SETCARDRANDOMLY
 				console.log('setting the card randomly');
@@ -359,9 +366,8 @@ var Enemy = {
 		// SHOW ENEMY PLACING CARD ON BOARD
 		$("#slot" + enemySlot).css("background-color", cardColor);
 		board[enemySlot] = enemyCard;
-		
-		// REMOVE CARD FROM ENEMY HAND
-		$("#" + enemyCardName).css("visibility", "hidden");
+
+		this.removeCard(enemyCardName);
 		
 		// CLEAR DECISIONS
 		openMoves = [];
