@@ -9,42 +9,48 @@ var Player = {
 			north: 1,
 			east: 2,
 			south: 1,
-			west: 7
+			west: 7,
+			posession: 'player'
 		},
 		cardTwo: {
 			name: 'playerCardTwo',
 			north: 1,
 			east: 3,
 			south: 5,
-			west: 4
+			west: 4,
+			posession: 'player'
 		},
 		cardThree: {
 			name: 'playerCardThree',
 			north: 2,
 			east: 1,
 			south: 4,
-			west: 8
+			west: 8,
+			posession: 'player'
 		},
 		cardFour: {
 			name:'playerCardFour',
 			north: 7,
 			east: 1,
 			south: 1,
-			west: 1
+			west: 1,
+			posession: 'player'
 		},
 		cardFive: {
 			name: 'playerCardFive',
 			north: 9,
 			east: 7,
 			south: 3,
-			west: 3
+			west: 3,
+			posession: 'player'
 		},
 		cardSix: {
 			name: 'playerCardSix',
 			north: 5,
 			east: 1,
 			south: 6,
-			west: 9
+			west: 9,
+			posession: 'player'
 		},		
 	}
 }; //END OF PLAYER OBJECT
@@ -103,10 +109,10 @@ var card = {
 			// REMOVE CARD FROM PLAYER'S HAND
 			$("#" + Player.playerCard.name).css("visibility", "hidden");
 		
+			Game.playerAttack(slot)
+		
 			// PLAY ENEMY TURN
 			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor);
-		
-			// Game.processBattle(Player.playerCard.name, Enemy.enemyCard.name);
 		
 			// RESET PLAYERCARD
 			Player.playerCard.name = null;
@@ -171,42 +177,48 @@ var Enemy = {
 			north: 6,
 			east: 4,
 			south: 1,
-			west: 3
+			west: 3,
+			posession: 'enemy'
 		},
 		CardTwo:  {
 			name: 'enemyCardTwo', 
 			north: 3,
 			east: 3,
 			south: 3,
-			west: 3
+			west: 3,
+			posession: 'enemy'
 		},
 		CardThree:  {
 			name: 'enemyCardThree', 
 			north: 1,
 			east: 4,
 			south: 4,
-			west: 1
+			west: 1,
+			posession: 'enemy'
 		},
 	 	CardFour:  {
 			name: 'enemyCardFour', 
 			north: 4,
 			east: 6,
 			south: 4,
-			west: 6
+			west: 6,
+			posession: 'enemy'
 		},
 	 	CardFive:  {
 			name: 'enemyCardFive', 
 			north: 3,
 			east: 3,
 			south: 9,
-			west: 7
+			west: 7,
+			posession: 'enemy'
 		},
 	 	CardSix:  {
 			name:'enemyCardSix', 
 			north: 1,
 			east: 1,
 			south: 3,
-			west: 2
+			west: 2,
+			posession: 'enemy'
 		}
 	},
 	
@@ -637,10 +649,111 @@ var Enemy = {
 
 
 var Game = {
+	
+	
+	
+	
+	
+	checkOwnership: function(player, Card, playerCardValue, enemyCardValue) {
+		// Game.checkOwnership(Card);
+		var cardName = Card.posession;
+		
+		if (playerCardValue - enemyCardValue > 0 && player == "player") {
+			if(cardName == 'enemy') { 
+				this.increasePlayerScore();
+				this.togglePosession(Card);
+			}
+		} else if (enemyCardValue - playerCardValue > 0 && player == "enemy"){
+			if(cardName == 'player') {
+				this.increaseEnemyScore();
+				this.togglePosession(Card);
+			}
+		}
+	},
+	
 
-	 comparePlayerCard: function (playerSlot) {
-		 
+	playerAttack: function (slot) {
+		
+		var player = "player";
+
 		// COMPARE THE PLAYERCARD TO ANY SURROUNDING ENEMY CARDS, AND 
+		 
+		 switch (slot) {
+
+			case 1:
+				//2,4
+				if (board[2] !== undefined ) {
+					var Card = board[2];
+					var playerCardValue = Player.playerCard.value.east;
+					var enemyCardValue = Card.west;
+					
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+				}
+				
+				if (board[4] !== undefined) {
+					var Card = board[4];
+					var playerCardValue = Player.playerCard.value.south;
+					var enemyCardValue = Card.north;
+					
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+				}
+				break;
+			case 2:
+				//1,3,5
+				if (board[1] !== undefined ) {
+					var Card = board[1];
+					var playerCardValue = Player.playerCard.value.west;
+					var enemyCardValue = Card.east;
+					
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+				}
+				 
+				if (board[3] !== undefined ) {
+					var Card = board[1];
+					var playerCardValue = Player.playerCard.value.east;
+					var enemyCardValue = Card.west;
+					
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+				}
+				 
+				if (board[5] !== undefined ) {
+					var Card = board[1];
+					var playerCardValue = Player.playerCard.value.east;
+					var enemyCardValue = Card.west;
+					
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+				}
+				
+				break;
+			case 3:
+				//2,6
+				
+				break;
+			case 4:
+				//1,5,7
+				
+				break;
+			case 5:
+				//2,4,6,8
+				
+				break;
+			case 6:
+				//3,5,9
+				
+				break;
+			case 7:
+				//4,8
+				
+				break;
+			case 8:
+				//7,5,9
+				break;
+			case 9:
+				//8,6
+				break;
+		};
+		
+		 
 		// IF THE PLAYER'S CARD'S VALUE BEATS THE ENEMY'S, THEN 
 		// RECORD THE PLAYER TAKING OWNERSHIP OF THE SLOT
 	
@@ -655,65 +768,33 @@ var Game = {
 	 },
 		// compare enemyCard placed against surrounding cards
 	
-	processBattle: function (enemyCard, myFinalRandMove, playerCardValue, playerSlot) {
-		
-		
-		
-		
 
-		switch (myFinalRandMove) {
-
-			case 1:
-				//2,4
-				
-				/*
-				if (board[2] !== undefined ) {
-					compare enemyCard.value.east VS playerCardValue.west;
-
-				 }
-				 
-				if (board[4] !== undefined) {
-					compare enemyCard.value.south VS playerCardValue.west;
-				}
-					
-				*/
-				break;
-			case 2:
-				//1,3,5
-				this.decideSlot(2,[1,3,5],[R,L,B]);
-				break;
-			case 3:
-				//2,6
-				this.decideSlot(3,[2,6],[B,L]);
-				break;
-			case 4:
-				//1,5,7
-				this.decideSlot(4,[1,5,7],[T,R,B]);
-				break;
-			case 5:
-				//2,4,6,8
-				this.decideSlot(5,[2,4,6,8],[R,L,T,B]);
-				break;
-			case 6:
-				//3,5,9
-				this.decideSlot(6,[3,5,9],[T,L,B]);
-				break;
-			case 7:
-				//4,8
-				this.decideSlot(7,[4,8],[T,R]);
-				break;
-			case 8:
-				//7,5,9
-				this.decideSlot(8,[7,5,9],[T,L,R]);
-				break;
-			case 9:
-				//8,6
-				this.decideSlot(9,[8,6],[L,T]);
-				break;
-		};
-		
+	
+	increasePlayerScore: function() {
+		this.playerScore += 1;
+		var playerScore = this.playerScore;
+		console.log("the player's score is: " + playerScore);
+		return this.playerScore;
 	},
 	
-	score: 0,
+	increaseEnemyScore: function() { 
+		this.enemyScore += 1;
+		var enemyScore = this.enemyScore;
+		console.log("the enemy's score is: " + enemyScore);
+		return this.enemyScore;
+	},
+	
+	togglePosession: function(Card) {
+		if (Card.posession == 'player'){
+			Card.posession = 'enemy';
+		} else {
+			Card.posession = 'player';
+		}
+		
+		return Card.posession;
+	},
+	
+	playerScore: 0,
+	enemyScore: 0
 	
 };// END OF GAME OBJECT
