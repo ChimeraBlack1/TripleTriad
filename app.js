@@ -319,11 +319,6 @@ var Enemy = {
 			// PLACE ENEMY CARD INTO BOARD[SLOT]
 			board[myFinalRandMove] = enemyCard;
 			
-			console.log(myFinalRandMove);
-			console.log("THAT WAS myFinalRandMove");
-		
-			console.log(enemyCard);
-			console.log("THAT WAS enemyCard")
 			Game.enemyAttack(myFinalRandMove, enemyCard);
 		
 	},
@@ -363,8 +358,10 @@ var Enemy = {
 				
 				if (finalScore > 0) {
 					console.log("Game over - Player wins: " + playerScore + " to " + enemyScore);
-				} else {
+				} else if (finalScore < 0) {
 					console.log("Game over - Enemy wins: " + enemyScore + " to " + playerScore);	
+				} else {
+					console.log("Game over - Tie! " + enemyScore + " all");
 				}
 				
 				
