@@ -106,14 +106,14 @@ Cards
 */
 
 .player-card {
-	border: 1px solid blue;
 	height: 25vh;
 	width: 80%;
 	margin-left: 10%;
 	margin-top: 10%;
 	float: left;
-	border-radius: 2px;
 	cursor: pointer;
+	background-image: url('./img/skull_monk_card_back.png');
+	background-size: cover;
 	
 }
 
@@ -124,35 +124,36 @@ Cards
 .all-player-cards {
 	margin-top: -20vh;
 	position: relative;
+	
 }
 
 
 
 .one {
 	z-index: 1;
-	background-color: grey;
 }
 
 
 .two {
 	z-index: 2;
-	background-color: green;
+	background-image: url('./img/skull_monk_card_back.png');
+	background-size: cover;
 }
 
 
 .three {
 	z-index: 3;
-	background-color: black;
+/*	background-color: black;*/
 }
 
 .four {
 	z-index: 4;
-	background-color: red;
+/*	background-color: red;*/
 }
 
 .five {
 	z-index: 5;
-	background-color: orange;
+/*	background-color: orange;*/
 }
 
 
