@@ -88,6 +88,7 @@ Board
 	cursor: pointer;
 }
 
+
 /* 
 ***
 ----
@@ -123,9 +124,6 @@ Cards
 	cursor: pointer;
 }
 
-.player-card {
-	background-size: cover;
-}
 
 .enemyCard {
 	background-image: url('./img/cardBacks/skull_monk_card_back.png');
@@ -140,44 +138,58 @@ Cards
 .all-player-cards {
 	margin-top: -20vh;
 	position: relative;
-	
 }
 
 
 
-.one {
+.one, 
+.pc1 {
 	z-index: 1;
-	background-image: url('./img/witch%2001.jpg');	
-	background-size: contain;
+	background-image: url('./img/witch%2001.jpg');
+	background-size: cover;
+    background-position-x: -40px;
 }
 
 
-.two {
+.two, 
+.pc2 {
 	z-index: 2;
 	background-image: url('./img/witch%2002.jpg');
+	background-size: cover;
+    background-position-x: -10px;
 }
 
 
-.three {
+.three, 
+.pc3 {
 	z-index: 3;
 	background-image: url('./img/witch%2003.jpg');
+	background-size: cover;
+	background-position-x: -25px;
 }
 
-.four {
+.four, 
+.pc4 {
 	z-index: 4;
 	background-image: url('./img/witch%2004.jpg');
-	background-size: contain;
+	background-size: cover;
+    background-position-x: -75px;
 }
 
-.five {
+.five, 
+.pc5 {
 	z-index: 5;
 	background-image: url('./img/witch%2005.jpg');
+	background-size: cover;
+	background-position-x: -35px;
 }
 
 
-.six {
+.six, 
+.pc6 {
 	z-index:6;
 	background-image: url('./img/witch%2006.jpg');
+	background-size: cover;
 }
 
 

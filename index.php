@@ -37,12 +37,12 @@
 		  </div>
 		  <div class="hand player-hand">
 			<div class="cardContainer">
-			  <div id="playerCardOne" class="card player-card one " onclick="card.selected('playerCardOne');"></div> 
-			  <div id="playerCardTwo" class="card player-card all-player-cards two" onclick="card.selected('playerCardTwo');"></div>
-			  <div id="playerCardThree" class="card player-card all-player-cards three" onclick="card.selected('playerCardThree');"></div>
-			  <div id="playerCardFour" class="card player-card all-player-cards four" onclick="card.selected('playerCardFour');"></div>
-			  <div id="playerCardFive" class="card player-card all-player-cards five" onclick="card.selected('playerCardFive');"></div> 
-			  <div id="playerCardSix" class="card player-card all-player-cards six" onclick="card.selected('playerCardSix');"></div>
+			  <div id="playerCardOne" class="card one " onclick="card.selected('playerCardOne');"></div> 
+			  <div id="playerCardTwo" class="card all-player-cards two" onclick="card.selected('playerCardTwo');"></div>
+			  <div id="playerCardThree" class="card all-player-cards three" onclick="card.selected('playerCardThree');"></div>
+			  <div id="playerCardFour" class="card all-player-cards four" onclick="card.selected('playerCardFour');"></div>
+			  <div id="playerCardFive" class="card all-player-cards five" onclick="card.selected('playerCardFive');"></div> 
+			  <div id="playerCardSix" class="card all-player-cards six" onclick="card.selected('playerCardSix');"></div>
 			</div>
 		  </div>	  	
 	  </div>

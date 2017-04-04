@@ -55,7 +55,7 @@ var Player = {
 	}
 }; //END OF PLAYER OBJECT
  
-var cardColor = null;
+var cardImg = null;
 //var enemyCard = null;
 var enemySlot = null;
 
@@ -95,16 +95,42 @@ var card = {
 		return
 	},
 	
+	addPlayerCard: function (slot) {
+		
+		var pcN = Player.playerCard.name;
+		
+		switch(pcN){
+			case "playerCardOne":
+				var pc = "pc1"				
+				break;
+			case "playerCardTwo":
+				var pc = "pc2"				
+				break;
+			case "playerCardThree":
+				var pc = "pc3"				
+				break;
+			case "playerCardFour":
+				var pc = "pc4"				
+				break;
+			case "playerCardFive":
+				var pc = "pc5"				
+				break;
+			case "playerCardSix":
+				var pc = "pc6"				
+				break;
+				
+		}
+		
+		return $("#slot" + slot).addClass(pc);
+	},
+	
 	set: function(slot) {
 			
 			// PLACE CARD ONTO BOARD OBJECT
-			board[slot] = Player.playerCard.value;
-
-			// CAPTURE CARD COLOR INFORMATION
-			var cardColor = $("#" + Player.playerCard.name).css("background-color");
+			board[slot] = Player.playerCard.value;			
 		
 			// CHANGE SLOT INTO CARD REPRESENTATION
-			$("#slot" + slot).css("background-color", cardColor);
+			this.addPlayerCard(slot);
 			
 			// REMOVE CARD FROM PLAYER'S HAND
 			$("#" + Player.playerCard.name).css("visibility", "hidden");
@@ -113,7 +139,7 @@ var card = {
 			Game.playerAttack(slot);
 		
 			// PLAY ENEMY TURN
-			Enemy.enemyTurn(Player.playerCard.name, slot, cardColor);
+			Enemy.enemyTurn(slot);
 		
 			// RESET PLAYERCARD
 			Player.playerCard.name = null;
@@ -224,7 +250,7 @@ var Enemy = {
 	},
 	
 	
-	enemyTurn: function(playerCard, slot, cardColor) {
+	enemyTurn: function(slot) {
 
 		// CHOOSE SLOT FOR ENEMYCARD PLACEMENT
 		this.chooseSlot(slot);
@@ -380,7 +406,7 @@ var Enemy = {
 		this.usedCards.push(enemyCardName);
 
 		// SHOW ENEMY PLACING CARD ON BOARD
-		$("#slot" + enemySlot).css("background-color", cardColor);
+		$("#slot" + enemySlot).css("background-color", cardImg);
 		board[enemySlot] = enemyCard;
 
 		this.removeCard(enemyCardName);
