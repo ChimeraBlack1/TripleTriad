@@ -39,6 +39,11 @@ Board
 */
 
 
+.goBigger, 
+.goBigger h1 {
+	display: none;
+}
+
 
 /* 
 ***
@@ -105,19 +110,30 @@ Cards
 ***
 */
 
-.player-card {
-	height: 25vh;
-	width: 80%;
-	margin-left: 10%;
-	margin-top: 10%;
-	float: left;
-	cursor: pointer;
-	background-image: url('./img/skull_monk_card_back.png');
-	background-size: cover;
-	
+.cardContainer {
+	position: relative;
+	width: 50%;
+	margin: 15% auto;
 }
 
-.player-card:hover {
+.card {
+	height: 27vh;
+	width: 100%;
+	float: left;
+	cursor: pointer;
+}
+
+.player-card {
+	background-size: cover;
+}
+
+.enemyCard {
+	background-image: url('./img/cardBacks/skull_monk_card_back.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.card:hover {
 	margin-bottom: 5vh;
 }
 
@@ -131,29 +147,51 @@ Cards
 
 .one {
 	z-index: 1;
+	background-image: url('./img/witch%2001.jpg');	
+	background-size: contain;
 }
 
 
 .two {
 	z-index: 2;
-	background-image: url('./img/skull_monk_card_back.png');
-	background-size: cover;
+	background-image: url('./img/witch%2002.jpg');
 }
 
 
 .three {
 	z-index: 3;
-/*	background-color: black;*/
+	background-image: url('./img/witch%2003.jpg');
 }
 
 .four {
 	z-index: 4;
-/*	background-color: red;*/
+	background-image: url('./img/witch%2004.jpg');
+	background-size: contain;
 }
 
 .five {
 	z-index: 5;
-/*	background-color: orange;*/
+	background-image: url('./img/witch%2005.jpg');
 }
 
 
+.six {
+	z-index:6;
+	background-image: url('./img/witch%2006.jpg');
+}
+
+
+@media(max-width: 700px) {
+	*{
+		visibility: hidden;
+	}
+	
+	.goBigger,
+	.goBigger h1 {
+		visibility: visible;
+		text-align: center;
+		margin: 0 auto;
+		display: inline-block;
+	}
+	
+}
