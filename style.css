@@ -125,11 +125,7 @@ Cards
 }
 
 
-.enemyCard {
-	background-image: url('./img/cardBacks/skull_monk_card_back.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-}
+
 
 .card:hover {
 	margin-bottom: 5vh;
@@ -140,6 +136,14 @@ Cards
 	position: relative;
 }
 
+
+/* 
+***
+----
+PLAYER CARD IMAGES
+----
+***
+*/
 
 
 .one, 
@@ -192,6 +196,71 @@ Cards
 	background-size: cover;
 }
 
+
+
+/* 
+***
+----
+ENEMY CARD IMAGES
+----
+***
+*/
+
+
+.enemyCard {
+	background-image: url('./img/cardBacks/skull_monk_card_back.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+
+.ec1 {
+	background-image: url('./img/skeleton.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ec2 {
+	background-image: url('./img/skeleton07.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ec3 {
+	background-image: url('./img/skeleton%2003.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ec4 {
+	background-image: url('./img/skeleton%2004.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ec5 {
+	background-image: url('./img/skeleton%2005.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ec6 {
+	background-image: url('./img/skeleton%2006.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+
+
+
+/* 
+***
+----
+MEDIA QUERIES
+----
+***
+*/
 
 @media(max-width: 700px) {
 	*{

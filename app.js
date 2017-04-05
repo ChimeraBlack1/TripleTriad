@@ -3,6 +3,7 @@
 var Player = {
 	playerCard: {name: null, value: null},
 	
+	
 	hand: {
 		cardOne: {
 			name: 'playerCardOne',
@@ -157,27 +158,6 @@ var card = {
 			var boardSlot = board[slot];
 			var slottedCard = boardSlot.name;
 			
-			switch(slottedCard) {
-				case 'playerCardOne':
-					slottedCard = Player.hand.cardOne.name;
-					break;
-				case 'playerCardTwo':
-					slottedCard = Player.hand.cardTwo.name;
-					break;
-				case "playerCardThree":
-					slottedCard = Player.hand.cardThree.name;
-					break;
-				case "playerCardFour":
-					slottedCard = Player.hand.cardFour.name;
-					break;
-				case "playerCardFive":
-					slottedCard = Player.hand.cardFive.name;
-					break;
-				case "playerCardSix":					
-					slottedCard = Player.hand.cardSix.name;
-					break;				 
-			}
-			
 			//board slot is full, can't place card
 			console.log(slottedCard + " is already in that slot");
 			return
@@ -243,8 +223,8 @@ var Enemy = {
 			name:'enemyCardSix', 
 			north: 1,
 			east: 1,
-			south: 3,
-			west: 2,
+			south: 7,
+			west: 3,
 			posession: 'enemy'
 		}
 	},
@@ -327,6 +307,35 @@ var Enemy = {
 		// REMOVE CARD FROM ENEMY HAND
 		$("#" + enemyCardName).css("visibility", "hidden");
 	},
+	
+	addEnemyCard: function (slot, enemyCard) {
+		
+		var pcN = enemyCard.name;
+		
+		switch(pcN){
+			case "enemyCardOne":
+				var pc = "ec1"				
+				break;
+			case "enemyCardTwo":
+				var pc = "ec2"				
+				break;
+			case "enemyCardThree":
+				var pc = "ec3"				
+				break;
+			case "enemyCardFour":
+				var pc = "ec4"				
+				break;
+			case "enemyCardFive":
+				var pc = "ec5"				
+				break;
+			case "enemyCardSix":
+				var pc = "ec6"				
+				break;
+				
+		}
+		
+		return $("#slot" + slot).addClass(pc);
+	},
 			
 	finalChoice: function(openMoves) {
 			
@@ -336,11 +345,8 @@ var Enemy = {
 			
 			// FINAL ENEMY SLOT CHOICE
 			var myFinalRandMove = openMoves[myRandMove];
-			
-			// CHANGE THE COLOR OF THE CHOSEN SLOT
-			var id = "slot" + myFinalRandMove;
-			var enemyCardSlotChanger = document.getElementById(id);
-			$(enemyCardSlotChanger).css("background-color", "magenta");
+		
+			this.addEnemyCard(myFinalRandMove, enemyCard);
 			
 			// PLACE ENEMY CARD INTO BOARD[SLOT]
 			board[myFinalRandMove] = enemyCard;
@@ -366,6 +372,9 @@ var Enemy = {
 		enemyCard = enemyCardDetails.enemyCard;
 		enemyCardName = enemyCardDetails.enemyCardName;
 		
+		// PLACE CARD INTO 'USEDCARDS' ARRAY
+		this.usedCards.push(enemyCardName);
+		
 		// IF THE ENEMY HAS AN OPEN MOVE
 		if (openMoves.length >= 1) {
 		
@@ -390,7 +399,6 @@ var Enemy = {
 					console.log("Game over - Tie! " + enemyScore + " all");
 				}
 				
-				
 				return;
 				
 			 } else {
@@ -402,8 +410,9 @@ var Enemy = {
 			 }
 		 }
 		
-		// PLACE CARD INTO 'USEDCARDS' ARRAY
-		this.usedCards.push(enemyCardName);
+		
+		
+		console.log(this.usedCards);
 
 		// SHOW ENEMY PLACING CARD ON BOARD
 		$("#slot" + enemySlot).css("background-color", cardImg);
@@ -454,30 +463,65 @@ var Enemy = {
 		return myGoodMoves;
 	},
 	
+		cardNames: [
+		'enemyCardOne',
+		'enemyCardTwo',
+		'enemyCardThree',
+		'enemyCardFour',
+		'enemyCardFive',
+		'enemyCardSix',
+	],
+	
 		
 	chooseCard: function(myGoodMoves) {
 		
-//		console.log(myGoodMoves);
-//		console.log("That was my Good Moves");
-		// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
-		var uniqueGoodCards = [];
-		$.each(myGoodMoves, function(i, el){
-			if($.inArray(el, uniqueGoodCards) === -1) uniqueGoodCards.push(el);
-		});
 		
+		/* 
+			IF THERE ARE NO GOOD CARDS AVAILABLE, JUST GRAB ANY CARD FROM YOUR HAND
+		*/
+			if (myGoodMoves.length > 1) {
+				
+				// ELIMINATE DUPLICATE CARD REFERENCES IN PREPARATION TO RANDOMLY DECIDE WHICH GOOD CARD TO PLAY
+				var uniqueGoodCards = [];
+				$.each(myGoodMoves, function(i, el){
+				if($.inArray(el, uniqueGoodCards) === -1) uniqueGoodCards.push(el);
+				});
 
-		// GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE UNIQUE GOOD CARDS ARRAY
-		var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
-		
-		// GRAB A UNIQUE CARD BASED ON THE ABOVE RANDOM NUMBER
-		var enemyCardName = uniqueGoodCards[randGoodCard];
-		
-		// PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE
-		enemyCard = this.selected(enemyCardName);
-		console.log(enemyCard);
-		
-		// CLEAR 'UNIQUEGOODCARDS'
-		uniqueGoodCards = [];
+				// GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE UNIQUE GOOD CARDS ARRAY
+				var randGoodCard = Math.floor(Math.random() * uniqueGoodCards.length);
+
+				// GRAB A UNIQUE CARD BASED ON THE ABOVE RANDOM NUMBER
+				var enemyCardName = uniqueGoodCards[randGoodCard];
+
+				// PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE
+				enemyCard = this.selected(enemyCardName);
+				console.log(enemyCard);
+
+				// CLEAR 'UNIQUEGOODCARDS'
+				uniqueGoodCards = [];
+
+			} else {
+				
+				var usedCards = this.usedCards;
+				var randCardArray = [];
+				var playerHand = this.cardNames;
+				
+				$.each(playerHand, function(i, el){
+					if ($.inArray(el, usedCards) === -1) randCardArray.push(el);
+				});
+				
+				// GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE RANDCARDARRAY
+				var randGoodCard = Math.floor(Math.random() * randCardArray.length);
+				
+				// GET A CARD BASED ON THE ABOVE RANDOM #
+				var enemyCardName = randCardArray[randGoodCard];
+				
+				enemyCard = this.selected(enemyCardName);
+				
+				// CLEAR 'RANDCARDARRAY'
+				randCardArray = [];
+				
+			}
 
 		return {
 			enemyCard: enemyCard,
