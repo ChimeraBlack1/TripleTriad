@@ -584,10 +584,11 @@ var Enemy = {
 			// PLACE ENEMY CARD INTO SLOT
 			board[randSlot] = enemyCard;
 		
+			this.addEnemyCard(randSlot, enemyCard);
 		 	Game.enemyAttack(randSlot, enemyCard);
 
-			var enemyCardSlotChanger = document.getElementById(randSlotNumber);
-			$(enemyCardSlotChanger).css("background-color","purple");
+//			var enemyCardSlotChanger = document.getElementById(randSlotNumber);
+//			$(enemyCardSlotChanger).css("background-color","purple");
 	},
 
 
