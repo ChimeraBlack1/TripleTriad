@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 /* 
 ***
 ----
@@ -7,8 +11,11 @@ Game
 */
 
 .game-container{
-	height: 99vh;
+	height: 100vh;
 	width: 100vw;
+    background-image: url(img/backgrounds/castle_bg_3840x2400.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* 
@@ -27,7 +34,7 @@ Enemy
 	height: 80vh;
 	width: 20vw;
 	min-width: 180px;
-	border: 1px solid blue;
+/*	border: 1px solid blue;*/
 }
 
 /* 
@@ -61,7 +68,7 @@ Board
 	height: 80vh;
 	width: 40vw;
 	min-width: 265px;
-	border: 1px solid red;
+/*	border: 1px solid red;*/
 }
 
 .card-slot{
@@ -69,10 +76,12 @@ Board
 	position: relative;
 	height: 25vh;
 	width: 25%;
-	border: 1px solid green;
+/*	border: 1px solid green;*/
+    box-shadow: inset 10px #000;
 	margin-top: 1vh;
 	margin-left: 1vh;
 	left: 3.85vw;
+    background-color: #111;
 }
 
 .card-offset-left {
