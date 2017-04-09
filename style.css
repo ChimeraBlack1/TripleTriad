@@ -31,8 +31,7 @@ Enemy
 .hand {
 	float: left;
 	position: relative;
-	top: 9.5vh;
-	left: 2.5vw;
+	top: 0;
 	height: 80vh;
 	width: 20vw;
 	min-width: 180px;
@@ -78,7 +77,6 @@ Board
 	position: relative;
 	height: 25vh;
 	width: 25%;
-/*	border: 1px solid green;*/
     box-shadow: inset 10px #000;
 	margin-top: 1vh;
 	margin-left: 1vh;
@@ -111,7 +109,7 @@ Player Hand
 
 .player-hand {
 	float: right;
-	left: -2.5vw;
+	left: -10vw;
 }
 
 /* 
@@ -129,8 +127,8 @@ Cards
 }
 
 .card {
-	height: 27vh;
-	width: 100%;
+	height: 51vh;
+	width: 17.5vw;
 	float: left;
 	cursor: pointer;
 }
@@ -139,11 +137,11 @@ Cards
 
 
 .card:hover {
-	margin-bottom: 5vh;
+	margin-bottom: 7vh;
 }
 
 .all-player-cards {
-	margin-top: -20vh;
+	margin-top: -44vh;
 	position: relative;
 }
 
@@ -160,50 +158,56 @@ PLAYER CARD IMAGES
 .one, 
 .pc1 {
 	z-index: 1;
-	background-image: url('./img/witch%2001.jpg');
-	background-size: cover;
-    background-position-x: -40px;
+	background-image: url('./img/op/pc01_test01.png');
 }
 
 
 .two, 
 .pc2 {
 	z-index: 2;
-	background-image: url('./img/witch%2002.jpg');
-	background-size: cover;
-    background-position-x: -10px;
+	background-image: url('./img/op/pc02_test01.png');
 }
 
 
 .three, 
 .pc3 {
 	z-index: 3;
-	background-image: url('./img/witch%2003.jpg');
-	background-size: cover;
-	background-position-x: -25px;
+	background-image: url('./img/op/pc03_test01.png');
 }
 
 .four, 
 .pc4 {
 	z-index: 4;
-	background-image: url('./img/witch%2004.jpg');
-	background-size: cover;
-    background-position-x: -75px;
+	background-image: url('./img/op/pc04_test01.png');
 }
 
 .five, 
 .pc5 {
 	z-index: 5;
-	background-image: url('./img/witch%2005.jpg');
-	background-size: cover;
-	background-position-x: -35px;
+	background-image: url(./img/op/pc05_test01.png);
 }
 
 
 .six, 
 .pc6 {
 	z-index:6;
-	background-image: url('./img/witch%2006.jpg');
+	background-image: url(./img/op/pc06_test01.png);
+}
+
+.one, 
+.two,
+.three,
+.four,
+.five,
+.six,
+.pc1, .pc1:hover,
+.pc2, .pc2:hover,
+.pc3, .pc3:hover,
+.pc4, .pc4:hover,
+.pc5, .pc5:hover,
+.pc6, .pc6:hover {
+	background-color: transparent;
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 
@@ -217,48 +221,46 @@ ENEMY CARD IMAGES
 ***
 */
 
+.ec1, .ec1:hover,
+.ec2, .ec2:hover,
+.ec3, .ec3:hover,
+.ec4, .ec4:hover,
+.ec5, .ec5:hover,
+.ec6, .ec6:hover,
+.enemyCard, .enemyCard:hover {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: transparent;
+}
+
 
 .enemyCard {
 	background-image: url('./img/cardBacks/skull_monk_card_back.png');
-	background-repeat: no-repeat;
-	background-size: contain;
 }
 
 
 .ec1 {
 	background-image: url('./img/skeleton.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .ec2 {
 	background-image: url('./img/skeleton07.png');
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .ec3 {
 	background-image: url('./img/skeleton%2003.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .ec4 {
 	background-image: url('./img/skeleton%2004.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .ec5 {
 	background-image: url('./img/skeleton%2005.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 .ec6 {
 	background-image: url('./img/skeleton%2006.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
 }
 
 

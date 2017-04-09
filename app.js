@@ -24,16 +24,16 @@ var Player = {
 		cardThree: {
 			name: 'playerCardThree',
 			north: 2,
-			east: 1,
+			east: 8,
 			south: 4,
-			west: 8,
+			west: 1,
 			posession: 'player'
 		},
 		cardFour: {
 			name:'playerCardFour',
 			north: 7,
 			east: 1,
-			south: 1,
+			south: 3,
 			west: 1,
 			posession: 'player'
 		},
