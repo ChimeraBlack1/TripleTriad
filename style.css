@@ -10,10 +10,15 @@ Game
 ***
 */
 
+
+.selected {
+	margin-left: -200px;
+}
+
 .game-container{
 	height: 100vh;
 	width: 100vw;
-    background-image: url(img/backgrounds/castle_bg_3840x2400.jpg);
+    background-image: url(img/op/bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -67,7 +72,7 @@ Board
 	top: 9.5vh;
 	left: 30vw;
 	height: 80vh;
-	width: 40vw;
+	width: 460px;
 	min-width: 265px;
 /*	border: 1px solid red;*/
 }
@@ -75,9 +80,9 @@ Board
 .card-slot{
 	float: left;
 	position: relative;
-	height: 25vh;
-	width: 25%;
-    box-shadow: inset 10px #000;
+	height: 180px;
+	width: 111px;
+    box-shadow: 10px 10px 25px 2px #000 inset;
 	margin-top: 1vh;
 	margin-left: 1vh;
 	left: 3.85vw;
@@ -108,8 +113,7 @@ Player Hand
 
 
 .player-hand {
-	float: right;
-	left: -10vw;
+	float: right;	
 }
 
 /* 
@@ -128,7 +132,7 @@ Cards
 
 .card {
 	height: 51vh;
-	width: 17.5vw;
+	width: 180px;
 	float: left;
 	cursor: pointer;
 }
@@ -158,40 +162,40 @@ PLAYER CARD IMAGES
 .one, 
 .pc1 {
 	z-index: 1;
-	background-image: url('./img/op/pc01_test01.png');
+	background-image: url('./img/op/necromancerSM.png');
 }
 
 
 .two, 
 .pc2 {
 	z-index: 2;
-	background-image: url('./img/op/pc02_test01.png');
+	background-image: url('./img/op/pyromancerSM.png');
 }
 
 
 .three, 
 .pc3 {
 	z-index: 3;
-	background-image: url('./img/op/pc03_test01.png');
+	background-image: url('./img/op/enchantressSM.png');
 }
 
 .four, 
 .pc4 {
 	z-index: 4;
-	background-image: url('./img/op/pc04_test01.png');
+	background-image: url('./img/op/iceMaidenSM.png');
 }
 
 .five, 
 .pc5 {
 	z-index: 5;
-	background-image: url(./img/op/pc05_test01.png);
+	background-image: url(./img/op/doomseekerSM.png);
 }
 
 
 .six, 
 .pc6 {
 	z-index:6;
-	background-image: url(./img/op/pc06_test01.png);
+	background-image: url(./img/op/acolyteSM.png);
 }
 
 .one, 
@@ -208,7 +212,7 @@ PLAYER CARD IMAGES
 .pc6, .pc6:hover {
 	background-color: transparent;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: contain;
 }
 
 
@@ -262,6 +266,9 @@ ENEMY CARD IMAGES
 .ec6 {
 	background-image: url('./img/skeleton%2006.jpg');
 }
+
+
+
 
 
 

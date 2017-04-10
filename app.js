@@ -92,7 +92,25 @@ var card = {
 		}
 		
 		//LOG OUT SELECTED CARD
-		console.log(Player.playerCard.value);		
+		console.log(Player.playerCard.value);
+		
+		// CHECK IF ANY OTHER CARDS ALREADY HAVE THE SELECTED CLASS.  REMOVE IT IF THEY DO
+		
+//		for(i=0;i<Player.hand.length; i++) {
+//			if() {
+//				
+//			}
+//		}
+//		
+		
+		// IF CARD IS ALREADY SELECTED, REMOVE IT FROM SELECTED ON CLICK
+		var id =  "#" + newPlayerCard;
+		if($(id).hasClass("selected")){
+			$(id).removeClass("selected");
+		}else {
+			$(id).addClass("selected");	
+		}
+				
 		return
 	},
 	
