@@ -69,6 +69,10 @@ var card = {
 	selected: function(newPlayerCard) {
 		//SET PLAYER CARD
 		Player.playerCard.name = newPlayerCard;
+		// SET ID FOR GETTING ELEMENT
+		var id =  "#" + newPlayerCard;
+		// ARRAY OF PLAYERCARD NAMES FOR ACCESSING BY ELEMENT ID
+		var playerCards = ["playerCardOne", "playerCardTwo","playerCardThree", "playerCardFour", "playerCardFive", "playerCardSix"];
 	
 		switch(newPlayerCard) {
 			case "playerCardOne":
@@ -93,31 +97,25 @@ var card = {
 		
 		//LOG OUT SELECTED CARD
 		console.log(Player.playerCard.value);
-		
-		// CHECK IF ANY OTHER CARDS ALREADY HAVE THE SELECTED CLASS.  REMOVE IT IF THEY DO
-		
-//		for(i=0;i<Player.hand.length; i++) {
-//			if() {
-//				
-//			}
-//		}
-//		
-	
-		
-		var playerCards = ["playerCardOne", "playerCardTwo","playerCardThree", "playerCardFour", "playerCardFive", "playerCardSix"];
-		
-		for (i=0;i<playerCards.length;i++){
-			if ($("#" + playerCards[i]).hasClass("selected")){
-				$("#" + playerCards[i]).removeClass("selected");
-			}
-		}
 
-		// TOGGLE 'SELECTED' CLASS ONCLICK
-		var id =  "#" + newPlayerCard;
-		$(id).addClass("selected");	
 		
-		if($(this).hasClass("selected")) {
-			$(this).removeClass("selected");
+		// IF THE PLAYER CLICKED THE SELECTED CARD,
+		if($(id).hasClass("selected")){
+			// TOGGLE 'SELECTED' CLASS ONCLICK
+			$(id).removeClass("selected");
+			
+		} else {
+			// OTHERWISE,
+			
+			// REMOVE 'selected' CLASS FROM ALL PLAYER CARDS
+			for (i=0;i<playerCards.length;i++){
+				if ($("#" + playerCards[i]).hasClass("selected")){
+					$("#" + playerCards[i]).removeClass("selected");
+				}
+			}
+			
+			//AND ADD THE 'selected' CLASS TO THE CARD THE PLAYER CLICKED ON
+			$(id).addClass("selected");	
 		}
 				
 		return
