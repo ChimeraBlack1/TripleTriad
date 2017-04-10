@@ -1,3 +1,5 @@
+/* Cards have an apect ratio of 1.62 */
+
 * {
     box-sizing: border-box;
 }
@@ -23,7 +25,6 @@ Game
     background-size: cover;
 }
 
-/*  Comment for posterity */
 
 /* 
 ***
@@ -70,22 +71,21 @@ Board
 .game-board{
 	position: absolute;
 	top: 9.5vh;
-	left: 30vw;
-	height: 80vh;
-	width: 460px;
+	left: 35vw;
+	height: 500px;
+	width: 310px;
 	min-width: 265px;
 /*	border: 1px solid red;*/
 }
 
+
+/* Apect ratio of 1.62 */
 .card-slot{
-	float: left;
-	position: relative;
-	height: 180px;
-	width: 111px;
+    position: relative;
+    display: inline-block;
+    height: 162px;
+	width: 100px;
     box-shadow: 10px 10px 25px 2px #000 inset;
-	margin-top: 1vh;
-	margin-left: 1vh;
-	left: 3.85vw;
     background-color: #111;
 }
 
@@ -269,11 +269,6 @@ ENEMY CARD IMAGES
 
 
 
-
-
-
-
-
 /* 
 ***
 ----
@@ -283,9 +278,8 @@ MEDIA QUERIES
 */
 
 @media(max-width: 700px) {
-	*{
-		visibility: hidden;
-	}
+/*
+	
 	
 	.goBigger,
 	.goBigger h1 {
@@ -294,5 +288,10 @@ MEDIA QUERIES
 		margin: 0 auto;
 		display: inline-block;
 	}
+    
+    * {
+		visibility: hidden;
+	}
+*/
 	
 }
