@@ -102,13 +102,22 @@ var card = {
 //			}
 //		}
 //		
+	
 		
-		// IF CARD IS ALREADY SELECTED, REMOVE IT FROM SELECTED ON CLICK
+		var playerCards = ["playerCardOne", "playerCardTwo","playerCardThree", "playerCardFour", "playerCardFive", "playerCardSix"];
+		
+		for (i=0;i<playerCards.length;i++){
+			if ($("#" + playerCards[i]).hasClass("selected")){
+				$("#" + playerCards[i]).removeClass("selected");
+			}
+		}
+
+		// TOGGLE 'SELECTED' CLASS ONCLICK
 		var id =  "#" + newPlayerCard;
-		if($(id).hasClass("selected")){
-			$(id).removeClass("selected");
-		}else {
-			$(id).addClass("selected");	
+		$(id).addClass("selected");	
+		
+		if($(this).hasClass("selected")) {
+			$(this).removeClass("selected");
 		}
 				
 		return
