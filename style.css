@@ -23,7 +23,7 @@ Game
     background-size: cover;
 }
 
-/*  Comment for posterity */
+
 
 /* 
 ***
@@ -33,14 +33,7 @@ Enemy
 ***
 */
 
-.hand {
-	float: left;
-	position: relative;
-	top: 0;
-	height: 80vh;
-	width: 20vw;
-	min-width: 180px;
-}
+
 
 /* 
 ***
@@ -69,7 +62,7 @@ Board
 .game-board{
 	position: absolute;
 	top: 9.5vh;
-	left: 30vw;
+	left: 35%;
 	height: 80vh;
 	width: 460px;
 	min-width: 265px;
@@ -112,7 +105,7 @@ Player Hand
 
 
 .player-hand {
-	float: right;	
+	right: 4%;
 }
 
 /* 
@@ -123,6 +116,15 @@ Cards
 ***
 */
 
+.hand {
+	float: left;
+	position: absolute;
+	top: 5.5%;
+	height: 80vh;
+	width: 240px;
+}
+
+
 .cardContainer {
 	position: relative;
 	width: 50%;
@@ -130,13 +132,11 @@ Cards
 }
 
 .card {
-	height: 51vh;
+	height: 45vh;
 	width: 180px;
 	float: left;
 	cursor: pointer;
 }
-
-
 
 
 .card:hover {
@@ -144,8 +144,7 @@ Cards
 }
 
 .all-player-cards {
-	margin-top: -44vh;
-	position: relative;
+	margin-top: -38vh;
 }
 
 
