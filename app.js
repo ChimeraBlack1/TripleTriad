@@ -108,7 +108,7 @@ var card = {
 			// OTHERWISE,
 			
 			// REMOVE 'selected' CLASS FROM ALL PLAYER CARDS
-			for (i=0;i<playerCards.length;i++){
+			for (var i=0;i<playerCards.length;i++){
 				if ($("#" + playerCards[i]).hasClass("selected")){
 					$("#" + playerCards[i]).removeClass("selected");
 				}

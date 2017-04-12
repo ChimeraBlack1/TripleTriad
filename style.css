@@ -12,7 +12,7 @@ Game
 
 
 .selected {
-	margin-left: -200px;
+	margin-left: -140px;
 }
 
 .game-container{
@@ -40,7 +40,6 @@ Enemy
 	height: 80vh;
 	width: 20vw;
 	min-width: 180px;
-/*	border: 1px solid blue;*/
 }
 
 /* 
