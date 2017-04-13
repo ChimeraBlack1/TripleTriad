@@ -12,20 +12,19 @@
 	  
   </head>
   <body>
-	  <div id="goBigger" class="goBigger"><h1  class="goBigger">Please view on a larger resoultion</h1></div>
-	  <div class="game-container">
+	 <div class="game-container">
 
-
-			 <div id="enemyCardOne" class="card enemyCard"></div>
-			 <div id="enemyCardTwo" class="card all-player-cards enemyCard"></div>
-			 <div id="enemyCardThree" class="card all-player-cards enemyCard"></div> 
-			 <div id="enemyCardFour" class="card all-player-cards enemyCard"></div>
-			 <div id="enemyCardFive" class="card all-player-cards enemyCard"></div>
-			 <div id="enemyCardSix" class="card all-player-cards enemyCard"></div>
+         <div class="hand enemyHand">
+			 <div id="enemyCardOne" class="card enemyCard enemyCardOne"></div>
+			 <div id="enemyCardTwo" class="card enemyCard"></div>
+			 <div id="enemyCardThree" class="card enemyCard"></div> 
+			 <div id="enemyCardFour" class="card enemyCard"></div>
+			 <div id="enemyCardFive" class="card enemyCard"></div>
+			 <div id="enemyCardSix" class="card enemyCard"></div>
+        </div>
 
 
 		  <div class="game-board">
-            
 			  <div id="slot1" class="card-slot" onclick="card.checkIfSet(1)"></div>
 			  <div id="slot2" class="card-slot" onclick="card.checkIfSet(2)"></div>	
 			  <div id="slot3" class="card-slot" onclick="card.checkIfSet(3)"></div>
@@ -35,15 +34,16 @@
 			  <div id="slot7" class="card-slot" onclick="card.checkIfSet(7)"></div>
 			  <div id="slot8" class="card-slot" onclick="card.checkIfSet(8)"></div>
 			  <div id="slot9" class="card-slot" onclick="card.checkIfSet(9)"></div>
-            
 		  </div>
 
-			  <div id="playerCardOne" class="card one " onclick="card.selected('playerCardOne');"></div> 
-			  <div id="playerCardTwo" class="card all-player-cards two" onclick="card.selected('playerCardTwo');"></div>
-			  <div id="playerCardThree" class="card all-player-cards three" onclick="card.selected('playerCardThree');"></div>
-			  <div id="playerCardFour" class="card all-player-cards four" onclick="card.selected('playerCardFour');"></div>
-			  <div id="playerCardFive" class="card all-player-cards five" onclick="card.selected('playerCardFive');"></div> 
-			  <div id="playerCardSix" class="card all-player-cards six" onclick="card.selected('playerCardSix');"></div>
+         <div class="hand playerHand">
+			  <div id="playerCardOne" class="card pc1" onclick="card.selected('playerCardOne');"></div> 
+			  <div id="playerCardTwo" class="card pc2" onclick="card.selected('playerCardTwo');"></div>
+			  <div id="playerCardThree" class="card pc3" onclick="card.selected('playerCardThree');"></div>
+			  <div id="playerCardFour" class="card pc4" onclick="card.selected('playerCardFour');"></div>
+			  <div id="playerCardFive" class="card pc5" onclick="card.selected('playerCardFive');"></div> 
+			  <div id="playerCardSix" class="card pc6" onclick="card.selected('playerCardSix');"></div>
+         </div>
 
 	  	
 	  </div>

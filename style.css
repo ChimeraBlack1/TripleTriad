@@ -12,51 +12,15 @@ Game
 ***
 */
 
-
-.selected {
-	margin-left: -200px;
-}
-
 .game-container{
 	height: 100vh;
 	width: 100vw;
     background-image: url(img/op/bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    position: absolute;
 }
 
-
-/* 
-***
-----
-Enemy 
-----
-***
-*/
-
-.hand {
-	float: left;
-	position: relative;
-	top: 0;
-	height: 80vh;
-	width: 20vw;
-	min-width: 180px;
-/*	border: 1px solid blue;*/
-}
-
-/* 
-***
-----
-Board
-----
-***
-*/
-
-
-.goBigger, 
-.goBigger h1 {
-	display: none;
-}
 
 
 /* 
@@ -68,38 +32,62 @@ Board
 */
 
 
-.game-board{
-	position: absolute;
-	top: 9.5vh;
-	left: 35vw;
-	height: 500px;
-	width: 310px;
-	min-width: 265px;
-/*	border: 1px solid red;*/
-}
-
-
-/* Apect ratio of 1.62 */
 .card-slot{
-    position: relative;
-    display: inline-block;
     height: 162px;
-	width: 100px;
-    box-shadow: 10px 10px 25px 2px #000 inset;
-    background-color: #111;
-}
-
-.card-offset-left {
-	left: 2vw;
-}
-
-.card-offset-right {
-	left: 5vw;
+    width: 100px;
+    background-color: black;
+    display: inline-block;
+    
 }
 
 .card-slot:hover{
 	background-color: tan;
 	cursor: pointer;
+}
+
+.selected {
+	margin-left: -200px;
+}
+
+
+
+/* 
+***
+----
+hands
+----
+***
+*/
+
+.hand {
+    position: absolute;
+}
+
+
+/* 
+***
+----
+Cards
+----
+***
+*/
+
+
+
+.card {
+	height: 100px;
+	width: 62px;
+    margin-left: -40px;
+	cursor: pointer;
+    position: relative;
+    display: inline-block;
+    transition: margin-bottom 400ms ease-out;
+}
+
+.card:hover {
+    margin-bottom: 40px;
+    z-index: 100;
+    top: 70;
 }
 
 
@@ -112,50 +100,19 @@ Player Hand
 */
 
 
-.player-hand {
-	float: right;	
-}
-
-/* 
-***
-----
-Cards
-----
-***
-*/
-
-.cardContainer {
-	position: relative;
-	width: 50%;
-	margin: 15% auto;
-}
-
-.card {
-	height: 51vh;
-	width: 180px;
-	float: left;
-	cursor: pointer;
-}
-
-
-
-
-.card:hover {
-	margin-bottom: 7vh;
-}
-
-.all-player-cards {
-	margin-top: -44vh;
-	position: relative;
+.playerHand {
+    position: absolute;
+    bottom: 1%;
+    width: 195px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 
 /* 
-***
-----
 PLAYER CARD IMAGES
-----
-***
 */
 
 
@@ -163,6 +120,7 @@ PLAYER CARD IMAGES
 .pc1 {
 	z-index: 1;
 	background-image: url('./img/op/necromancerSM.png');
+    margin-left: 0;
 }
 
 
@@ -220,9 +178,25 @@ PLAYER CARD IMAGES
 /* 
 ***
 ----
-ENEMY CARD IMAGES
+Enemy Hand
 ----
 ***
+*/
+
+.enemyHand {
+    position: absolute;
+    top: -10%;
+    width: 195px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: inline-block;
+    transform: rotateX(180deg);
+}
+
+
+/* 
+ENEMY CARD IMAGES
 */
 
 .ec1, .ec1:hover,
@@ -242,6 +216,10 @@ ENEMY CARD IMAGES
 	background-image: url('./img/cardBacks/skull_monk_card_back.png');
 }
 
+
+.enemyCardOne {
+    margin-left: 0;
+}
 
 .ec1 {
 	background-image: url('./img/skeleton.jpg');
@@ -278,20 +256,6 @@ MEDIA QUERIES
 */
 
 @media(max-width: 700px) {
-/*
 	
-	
-	.goBigger,
-	.goBigger h1 {
-		visibility: visible;
-		text-align: center;
-		margin: 0 auto;
-		display: inline-block;
-	}
     
-    * {
-		visibility: hidden;
-	}
-*/
-	
 }
