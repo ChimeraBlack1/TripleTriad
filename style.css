@@ -67,6 +67,7 @@ hands
 
 .hand {
     position: absolute;
+	width: 245px;
 }
 
 
@@ -83,16 +84,17 @@ Cards
 .card {
 	height: 100px;
 	width: 62px;
-    margin-left: -40px;
+    margin-left: -30px;
 	cursor: pointer;
     position: relative;
     display: inline-block;
-    transition: margin-bottom 400ms ease-out;
 }
 
 .card:hover {
-    margin-bottom: 40px;
+    position: absolute;
+	bottom: 200%;
     z-index: 100;
+	transform: scale(3);
 }
 
 
@@ -114,13 +116,40 @@ Player Hand
 .playerHand {
     position: absolute;
     bottom: 1%;
-    width: 195px;
     left: 0;
     right: 0;
     margin: 0 auto;
     display: inline-block;
 }
 
+/*
+PLAYER CARD ROTATION
+*/
+
+
+.one {
+	transform: rotate(-10deg) translateY(2%);
+}
+
+.two  {
+	transform: rotate(-5deg) translateY(-2%);
+}
+
+.three {
+	transform: rotate(-2deg) translateY(-5%);
+}
+
+.four {
+	transform: rotate(2deg) translateY(-5%);
+}
+
+.five {
+	transform: rotate(5deg) translateY(-2%);
+}
+
+.six {
+	transform: rotate(10deg) translateY(2%);
+}
 
 /* 
 PLAYER CARD IMAGES
@@ -197,7 +226,6 @@ Enemy Hand
 .enemyHand {
     position: absolute;
     top: -10%;
-    width: 195px;
     left: 0;
     right: 0;
     margin: 0 auto;
