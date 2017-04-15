@@ -169,11 +169,12 @@ MAGNIFIED PLAYERCARDS
 
 .visible {
 	visibility: visible;
+	transition: margin-bottom 1000ms;
+	margin-bottom: 10px;
 }
 
-
 .hidden {
-	visibility: hidden;
+	visibility: hidden;	
 }
 /*
 PLAYER CARD ROTATION
