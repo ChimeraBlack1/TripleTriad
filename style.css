@@ -35,6 +35,7 @@ Board
 .game-board {
     width: 180px;
     height: 270px;
+	z-index: 10;
     position: absolute;
     padding-left: 6px;
     top: 25%;
@@ -55,6 +56,61 @@ Board
 	cursor: pointer;
 }
 
+
+
+/*
+Magnified Board
+*/
+
+.magnifiedBoard {
+	position: fixed;	
+	width: 400px;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	height: 99vh;
+/*	display: none;*/
+}
+
+.magSlot{
+	height: 300px;
+	width: 186px;
+	position: fixed;
+	background-size: cover;
+	bottom: 125px;
+	
+}
+
+.magSlotOne {
+	top: 125px;
+	left: 0;
+}
+
+.magSlotTwo {
+	top: 160px;
+	left: 0;
+}
+
+.magSlotThree {
+	top: 195px;
+	left: 0;
+}
+
+
+.magSlotFour {
+	top: 125px;
+	right: 0;
+}
+
+.magSlotFive {
+	top: 160px;
+	right: 0;
+}
+
+.magSlotSix {
+	top: 195px;
+	right: 0;
+}
 
 
 /* 
@@ -113,6 +169,7 @@ Player Hand
     right: 0;
     margin: 0 auto;
     display: inline-block;
+	z-index: 100;
 }
 
 
