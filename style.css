@@ -63,53 +63,67 @@ Magnified Board
 */
 
 .magnifiedBoard {
-	position: fixed;	
 	width: 400px;
 	margin: 0 auto;
-	left: 0;
-	right: 0;
-	height: 99vh;
-/*	display: none;*/
+	height: 100vh;
 }
 
 .magSlot{
-	height: 300px;
-	width: 186px;
-	position: fixed;
+	height: 200px;
+	width: 124px;
+	position: fixed;	
 	background-size: cover;
-	bottom: 125px;
-	
+	bottom: 125px;	
 }
 
 .magSlotOne {
-	top: 125px;
-	left: 0;
+	top:275px;
+	margin-left: 75px;
+	margin-top: 20px;
 }
 
+
 .magSlotTwo {
-	top: 160px;
-	left: 0;
+	top: 275px;
+	margin-left: 140px;
+	margin-top: 20px;
 }
 
 .magSlotThree {
-	top: 195px;
-	left: 0;
+	top: 275px;	
+	margin-left: 200px;
+	margin-top: 20px;
 }
 
-
 .magSlotFour {
-	top: 125px;
-	right: 0;
+	top: 160px;
+	margin-left: 200px;
 }
 
 .magSlotFive {
 	top: 160px;
-	right: 0;
+	margin-left: 30px;
 }
 
 .magSlotSix {
-	top: 195px;
-	right: 0;
+	top: 160px;
+	margin-left: 90px;
+}
+
+.magSlotSeven {
+	top: 160px;	
+	margin-left: 200px;
+}
+
+.magSlotEight {
+	top: 80px;
+	margin-left: 140px;
+	margin-top: 20px;
+}
+
+.magSlotNine {
+	top: 160px;
+	margin-left: 90px;
 }
 
 
@@ -169,7 +183,6 @@ Player Hand
     right: 0;
     margin: 0 auto;
     display: inline-block;
-	z-index: 100;
 }
 
 
@@ -189,7 +202,6 @@ MAGNIFIED PLAYERCARDS
 	height: 300px;
 	width: 186px;
 	position: fixed;
-	z-index: 10;
 	background-size: cover;
 	bottom: 125px;
 }
@@ -228,10 +240,12 @@ MAGNIFIED PLAYERCARDS
 	visibility: visible;
 	transition: margin-bottom 1000ms;
 	margin-bottom: 10px;
+	z-index: 10;
 }
 
 .hidden {
 	visibility: hidden;	
+	z-index: 0;
 }
 
 /*
