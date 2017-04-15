@@ -90,13 +90,6 @@ Cards
     display: inline-block;
 }
 
-.card:hover {
-    position: absolute;
-	bottom: 200%;
-    z-index: 100;
-	transform: scale(3);
-}
-
 
 .selected {
     margin-bottom: 40px;
@@ -122,6 +115,67 @@ Player Hand
     display: inline-block;
 }
 
+
+
+/*
+MAGNIFIED PLAYERCARDS
+*/
+
+.magnifiedHand {
+	width: 250px;
+	margin: 0 auto;
+	border: 1px solid red;
+	height: 100vh;
+	
+}
+
+.magnifiedCard {
+	height: 300px;
+	width: 186px;
+	position: fixed;
+	z-index: 10;
+	background-size: cover;
+	bottom: 125px;
+}
+
+.magOne {
+	background-image: url('./img/op/necromancerSM.png');
+	margin-left: -50px;
+}
+
+.magTwo {
+	background-image: url('./img/op/pyromancerSM.png');
+}
+
+.magThree {
+	background-image: url('./img/op/enchantressSM.png');
+	margin-left: 20px;
+}
+
+.magFour {
+	background-image: url('./img/op/iceMaidenSM.png');
+	margin-left: 50px;
+}
+
+.magFive {
+	background-image: url(./img/op/doomseekerSM.png);
+	margin-left: 90px;
+}
+
+.magSix {
+	background-image: url(./img/op/acolyteSM.png);
+	margin-left: 120px;
+}
+
+
+.visible {
+	visibility: visible;
+}
+
+
+.hidden {
+	visibility: hidden;
+}
 /*
 PLAYER CARD ROTATION
 */
