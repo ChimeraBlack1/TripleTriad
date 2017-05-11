@@ -786,6 +786,7 @@ var Game = {
 		this.playerScore += 1;
 		var playerScore = this.playerScore;
 		var enemyScore = this.enemyScore;
+        document.getElementById('playerScore').innerHTML = playerScore;
 		console.log("the  player's score is now: " + playerScore + " and the enemy's score is still: " + enemyScore);
 		
 	},
@@ -794,6 +795,7 @@ var Game = {
 		this.enemyScore += 1;
 		var enemyScore = this.enemyScore;
 		var playerScore = this.playerScore;
+        document.getElementById('playerScore').innerHTML = enemyScore;
 		console.log("the enemy's score is: " + enemyScore + " and the player's score is: " + playerScore);
 		
 	},
@@ -808,8 +810,8 @@ var Game = {
 		
 	},
 	
-	playerScore: 0,
-	enemyScore: 0,
+	playerScore: 6,
+	enemyScore: 6,
 
 	playerAttack: function (slot) {
 		
