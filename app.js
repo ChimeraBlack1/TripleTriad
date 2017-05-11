@@ -784,18 +784,22 @@ var Game = {
 	
 	increasePlayerScore: function() {
 		this.playerScore += 1;
+        this.enemyScore += -1;
 		var playerScore = this.playerScore;
 		var enemyScore = this.enemyScore;
         document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('enemyScore').innerHTML = enemyScore;
 		console.log("the  player's score is now: " + playerScore + " and the enemy's score is still: " + enemyScore);
 		
 	},
 	
 	increaseEnemyScore: function() { 
 		this.enemyScore += 1;
+        this.playerScore += -1;
 		var enemyScore = this.enemyScore;
 		var playerScore = this.playerScore;
-        document.getElementById('playerScore').innerHTML = enemyScore;
+        document.getElementById('playerScore').innerHTML = playerScore;
+        document.getElementById('enemyScore').innerHTML = enemyScore;
 		console.log("the enemy's score is: " + enemyScore + " and the player's score is: " + playerScore);
 		
 	},
