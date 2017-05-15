@@ -772,6 +772,10 @@ var Enemy = {
 
 
 var Game = {
+    
+    newGame: function() {
+      window.location.reload();  
+    },
 
 	checkOwnership: function(player, Card, playerCardValue, enemyCardValue, testSlot) {
 		// Game.checkOwnership(Card);

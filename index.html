@@ -76,9 +76,18 @@
 		 <div id="magSlotSix" class="magSlot magSlotSix"></div>	 
 		 <div id="magSlotSeven" class="magSlot magSlotSeven"></div>
 		 <div id="magSlotEight" class="magSlot magSlotEight"></div>
-		 <div id="magSlotNine" class="magSlot magSlotNine"></div>
+		 <div id="magSlotNine" class="magSlot magSlotNine"></div> 
 	  </div>
     
+      <div id="winner" class="winner hidden">
+          <div class="winner-name">
+              <span id="winnerName">Player</span> 
+              Wins!
+          </div>
+          <div id="playerFinal" class="player-final-score"></div>
+          <div id="enemyFinal" class="enemy-final-score"></div>
+          <div id="playAgain" class="play-again" onclick="Game.newGame()">Play Again?</div>
+      </div>
 
 	  <!-- jQuery -->
 	  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
