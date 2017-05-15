@@ -421,6 +421,46 @@ ENEMY CARD IMAGES
 }
 
 
+/*
+***
+----
+SCORE
+----
+***
+*/
+
+
+.score {
+    position: absolute;
+    top: 10%;
+    color: #fff;
+    text-align: center;
+    padding-top: 15px;
+    width: 100px;
+}
+
+.score-title {
+    color: #fff;
+    position: absolute;
+    top: 5%;
+}
+
+.enemyScore {
+    left: 22.5%; 
+}
+
+.playerScore {
+    right: 22%;
+}
+
+.enemyScore-title {
+    left: 22.5%;
+}
+
+.playerScore-title {
+    right: 23%;
+}
+
 
 /* 
 ***
