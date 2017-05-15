@@ -584,7 +584,7 @@ var Enemy = {
 	},
 	
 	setCardRandomly: function(enemyCard){
-			console.log("calling SET CARD RANDOMLY!")
+			console.log("calling SET CARD RANDOMLY!");
 
 			var choicesArray = [];
 			
@@ -1237,7 +1237,5 @@ var Game = {
 				break;
 		};
 	 }// compare enemyCard placed against surrounding cards
-	
-	
 	
 };// END OF GAME OBJECT
