@@ -418,21 +418,23 @@ var Enemy = {
 			var boardSize = Object.keys(board);
 			 
 			if (boardSize.length >= 9) {
-				
-				var playerScore = Game.playerScore;
-				var enemyScore = Game.enemyScore;
-				
-				var finalScore = playerScore - enemyScore;
-				
-				if (finalScore > 0) {
-					console.log("Game over - Player wins: " + playerScore + " to " + enemyScore);
-				} else if (finalScore < 0) {
-					console.log("Game over - Enemy wins: " + enemyScore + " to " + playerScore);	
-				} else {
-					console.log("Game over - Tie! " + enemyScore + " all");
-				}
-				
-				return;
+                
+                Game.endGame();
+                
+//				var playerScore = Game.playerScore;
+//				var enemyScore = Game.enemyScore;
+//				
+//				var finalScore = playerScore - enemyScore;
+//				
+//				if (finalScore > 0) {
+//					console.log("Game over - Player wins: " + playerScore + " to " + enemyScore);
+//				} else if (finalScore < 0) {
+//					console.log("Game over - Enemy wins: " + enemyScore + " to " + playerScore);	
+//				} else {
+//					console.log("Game over - Tie! " + enemyScore + " all");
+//				}
+//				
+//				return;
 				
 			 } else {
 				 
@@ -616,6 +618,10 @@ var Enemy = {
 			 
 			// PLACE ENEMY CARD INTO SLOT
 			board[randSlot] = enemyCard;
+        
+            // CLAIM POSESSION OF THE CHOSEN SLOT
+            var slotID = "#slot" + randSlot;
+            $(slotID).css("border", "1px solid red");
 		
 			this.addEnemyCard(randSlot, enemyCard);
 		 	Game.enemyAttack(randSlot, enemyCard);
@@ -772,6 +778,25 @@ var Enemy = {
 
 
 var Game = {
+    
+    endGame: function() {
+        
+        
+        if(Game.playerScore > Game.enemyScore) {
+            document.getElementById("winnerName").innerHTML = "Player Wins!";
+        } else if (Game.playerScore < Game.enemyScore) {
+            document.getElementById("winnerName").innerHTML = "Enemy Wins!";
+        } else {
+            document.getElementById("winnerName").innerHTML = "TIE!";
+        }
+        
+        $("#winner").css("visibility", "visible");
+        document.getElementById("playerFinal").innerHTML = Game.playerScore;
+        document.getElementById("enemyFinal").innerHTML = Game.enemyScore;
+        
+        return;
+        
+    },
     
     newGame: function() {
       window.location.reload();  
