@@ -153,8 +153,12 @@ var card = {
 	set: function(slot) {
 			
 			// PLACE CARD ONTO BOARD OBJECT
-			board[slot] = Player.playerCard.value;			
-		
+			board[slot] = Player.playerCard.value;	
+        
+            // HIGHLIGHT SLOT PLAYER CLAIMED
+            var slotID = "#slot" + slot;
+            $(slotID).css("border", "1px solid green");
+        	
 			// CHANGE SLOT INTO CARD REPRESENTATION
 			this.addPlayerCard(slot);
 			
@@ -375,6 +379,10 @@ var Enemy = {
 			
 			// PLACE ENEMY CARD INTO BOARD[SLOT]
 			board[myFinalRandMove] = enemyCard;
+        
+            // CLAIM POSESSION OF THE CHOSEN SLOT
+            var slotID = "#slot" + myFinalRandMove;
+            $(slotID).css("border", "1px solid red");
 			
 			Game.enemyAttack(myFinalRandMove, enemyCard);
 		
@@ -410,21 +418,23 @@ var Enemy = {
 			var boardSize = Object.keys(board);
 			 
 			if (boardSize.length >= 9) {
-				
-				var playerScore = Game.playerScore;
-				var enemyScore = Game.enemyScore;
-				
-				var finalScore = playerScore - enemyScore;
-				
-				if (finalScore > 0) {
-					console.log("Game over - Player wins: " + playerScore + " to " + enemyScore);
-				} else if (finalScore < 0) {
-					console.log("Game over - Enemy wins: " + enemyScore + " to " + playerScore);	
-				} else {
-					console.log("Game over - Tie! " + enemyScore + " all");
-				}
-				
-				return;
+                
+                Game.endGame();
+                
+//				var playerScore = Game.playerScore;
+//				var enemyScore = Game.enemyScore;
+//				
+//				var finalScore = playerScore - enemyScore;
+//				
+//				if (finalScore > 0) {
+//					console.log("Game over - Player wins: " + playerScore + " to " + enemyScore);
+//				} else if (finalScore < 0) {
+//					console.log("Game over - Enemy wins: " + enemyScore + " to " + playerScore);	
+//				} else {
+//					console.log("Game over - Tie! " + enemyScore + " all");
+//				}
+//				
+//				return;
 				
 			 } else {
 				 
@@ -595,8 +605,8 @@ var Enemy = {
 					// GET SLOT ID
 					var id = i;
 					 
-					 // PUSH INTO CHOICES ARRAY
-					 choicesArray.push(id);
+				    // PUSH INTO CHOICES ARRAY
+					choicesArray.push(id);
 				}
 			}
 		
@@ -608,6 +618,10 @@ var Enemy = {
 			 
 			// PLACE ENEMY CARD INTO SLOT
 			board[randSlot] = enemyCard;
+        
+            // CLAIM POSESSION OF THE CHOSEN SLOT
+            var slotID = "#slot" + randSlot;
+            $(slotID).css("border", "1px solid red");
 		
 			this.addEnemyCard(randSlot, enemyCard);
 		 	Game.enemyAttack(randSlot, enemyCard);
@@ -764,20 +778,43 @@ var Enemy = {
 
 
 var Game = {
+    
+    endGame: function() {
+        
+        
+        if(Game.playerScore > Game.enemyScore) {
+            document.getElementById("winnerName").innerHTML = "Player Wins!";
+        } else if (Game.playerScore < Game.enemyScore) {
+            document.getElementById("winnerName").innerHTML = "Enemy Wins!";
+        } else {
+            document.getElementById("winnerName").innerHTML = "TIE!";
+        }
+        
+        $("#winner").css("visibility", "visible");
+        document.getElementById("playerFinal").innerHTML = Game.playerScore;
+        document.getElementById("enemyFinal").innerHTML = Game.enemyScore;
+        
+        return;
+        
+    },
+    
+    newGame: function() {
+      window.location.reload();  
+    },
 
-	checkOwnership: function(player, Card, playerCardValue, enemyCardValue) {
+	checkOwnership: function(player, Card, playerCardValue, enemyCardValue, testSlot) {
 		// Game.checkOwnership(Card);
 		var cardName = Card.posession;
 		
 		if (playerCardValue - enemyCardValue > 0 && player == "player") {
 			if(cardName == 'enemy') { 
 				this.increasePlayerScore();
-				this.togglePosession(Card);
+				this.togglePosession(Card, testSlot);
 			}
 		} else if (playerCardValue - enemyCardValue > 0 && player == "enemy"){
 			if(cardName == 'player') {
 				this.increaseEnemyScore();
-				this.togglePosession(Card);
+				this.togglePosession(Card, testSlot);
 			}
 		}
 	},
@@ -789,7 +826,6 @@ var Game = {
 		var enemyScore = this.enemyScore;
         document.getElementById('playerScore').innerHTML = playerScore;
         document.getElementById('enemyScore').innerHTML = enemyScore;
-		console.log("the  player's score is now: " + playerScore + " and the enemy's score is still: " + enemyScore);
 		
 	},
 	
@@ -800,15 +836,18 @@ var Game = {
 		var playerScore = this.playerScore;
         document.getElementById('playerScore').innerHTML = playerScore;
         document.getElementById('enemyScore').innerHTML = enemyScore;
-		console.log("the enemy's score is: " + enemyScore + " and the player's score is: " + playerScore);
 		
 	},
 	
-	togglePosession: function(Card) {
-		if (Card.posession == 'player'){
-			Card.posession = 'enemy';
+	togglePosession: function(Card, testSlot) {
+		var pos = "#slot" + testSlot;
+        
+        if (Card.posession == "player"){
+			Card.posession = "enemy";
+            $(pos).css("border", "1px solid red");
 		} else {
 			Card.posession = 'player';
+            $(pos).css("border", "1px solid green");
 		}
 		
 		
@@ -829,18 +868,21 @@ var Game = {
 				//2,4
 				if (board[2] !== undefined ) {
 					var Card = board[2];
+                    var testSlot = 2;
 					var playerCardValue = Player.playerCard.value.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 2;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				
 				if (board[4] !== undefined) {
 					var Card = board[4];
 					var playerCardValue = Player.playerCard.value.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 4;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 2:
@@ -849,24 +891,27 @@ var Game = {
 					var Card = board[1];
 					var playerCardValue = Player.playerCard.value.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 1;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				 
 				if (board[3] !== undefined ) {
 					var Card = board[3];
 					var playerCardValue = Player.playerCard.value.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 3;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				 
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = Player.playerCard.value.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				
 				break;
@@ -876,15 +921,17 @@ var Game = {
 					var Card = board[2];
 					var playerCardValue = Player.playerCard.value.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 2;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[6] !== undefined ) {
 					var Card = board[6];
 					var playerCardValue = Player.playerCard.value.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 6;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 4:
@@ -893,22 +940,25 @@ var Game = {
 					var Card = board[1];
 					var playerCardValue = Player.playerCard.value.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 1;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = Player.playerCard.value.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[7] !== undefined ) {
 					var Card = board[7];
 					var playerCardValue = Player.playerCard.value.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 7;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				
 				break;
@@ -918,29 +968,33 @@ var Game = {
 					var Card = board[2];
 					var playerCardValue = Player.playerCard.value.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 2;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[4] !== undefined ) {
 					var Card = board[4];
 					var playerCardValue = Player.playerCard.value.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 4;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[6] !== undefined ) {
 					var Card = board[6];
 					var playerCardValue = Player.playerCard.value.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 6;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				if (board[8] !== undefined ) {
 					var Card = board[8];
 					var playerCardValue = Player.playerCard.value.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 8;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 6:
@@ -949,22 +1003,25 @@ var Game = {
 					var Card = board[3];
 					var playerCardValue = Player.playerCard.value.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 3;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = Player.playerCard.value.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[9] !== undefined ) {
 					var Card = board[9];
 					var playerCardValue = Player.playerCard.value.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 9;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				break;
 			case 7:
@@ -973,15 +1030,17 @@ var Game = {
 					var Card = board[4];
 					var playerCardValue = Player.playerCard.value.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 4;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[8] !== undefined ) {
 					var Card = board[8];
 					var playerCardValue = Player.playerCard.value.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 8;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				break;
 			case 8:
@@ -990,22 +1049,25 @@ var Game = {
 					var Card = board[7];
 					var playerCardValue = Player.playerCard.value.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 7;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = Player.playerCard.value.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[9] !== undefined ) {
 					var Card = board[9];
 					var playerCardValue = Player.playerCard.value.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 9;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 9:
@@ -1014,15 +1076,17 @@ var Game = {
 					var Card = board[8];
 					var playerCardValue = Player.playerCard.value.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 8;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[6] !== undefined ) {
 					var Card = board[6];
 					var playerCardValue = Player.playerCard.value.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 6;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				break;
 		};
@@ -1037,7 +1101,7 @@ var Game = {
 		 
 		var player = "enemy";
 
-		// COMPARE THE ENEMYCARD TO ANY SURROUNDING PLAYER CARDS, AND 
+		// COMPARE THE ENEMYCARD TO ANY SURROUNDING PLAYER CARDS 
 		 
 		 switch (enemySlot) {
 
@@ -1047,16 +1111,18 @@ var Game = {
 					var Card = board[2];
 					var playerCardValue = enemyCard.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 2;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				
 				if (board[4] !== undefined) {
 					var Card = board[4];
 					var playerCardValue = enemyCard.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 4;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 2:
@@ -1065,24 +1131,27 @@ var Game = {
 					var Card = board[1];
 					var playerCardValue = enemyCard.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 1;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				 
 				if (board[3] !== undefined ) {
 					var Card = board[3];
 					var playerCardValue = enemyCard.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 3;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				 
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = enemyCard.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				
 				break;
@@ -1092,15 +1161,17 @@ var Game = {
 					var Card = board[2];
 					var playerCardValue = enemyCard.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 2;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[6] !== undefined ) {
 					var Card = board[6];
 					var playerCardValue = enemyCard.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 6;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 4:
@@ -1109,22 +1180,25 @@ var Game = {
 					var Card = board[1];
 					var playerCardValue = enemyCard.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 1;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = enemyCard.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[7] !== undefined ) {
 					var Card = board[7];
 					var playerCardValue = enemyCard.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 7;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				
 				break;
@@ -1134,29 +1208,33 @@ var Game = {
 					var Card = board[2];
 					var playerCardValue = enemyCard.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 2;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[4] !== undefined ) {
 					var Card = board[4];
 					var playerCardValue = enemyCard.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 4;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[6] !== undefined ) {
 					var Card = board[6];
 					var playerCardValue = enemyCard.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 6;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				if (board[8] !== undefined ) {
 					var Card = board[8];
 					var playerCardValue = enemyCard.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 8;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 6:
@@ -1165,22 +1243,25 @@ var Game = {
 					var Card = board[3];
 					var playerCardValue = enemyCard.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 3;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = enemyCard.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[9] !== undefined ) {
 					var Card = board[9];
 					var playerCardValue = enemyCard.south;
 					var enemyCardValue = Card.north;
+                    var testSlot = 9;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				break;
 			case 7:
@@ -1189,15 +1270,17 @@ var Game = {
 					var Card = board[4];
 					var playerCardValue = enemyCard.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 4;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[8] !== undefined ) {
 					var Card = board[8];
 					var playerCardValue = enemyCard.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 8;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				break;
 			case 8:
@@ -1206,22 +1289,25 @@ var Game = {
 					var Card = board[7];
 					var playerCardValue = enemyCard.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 7;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				if (board[5] !== undefined ) {
 					var Card = board[5];
 					var playerCardValue = enemyCard.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 5;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[9] !== undefined ) {
 					var Card = board[9];
 					var playerCardValue = enemyCard.east;
 					var enemyCardValue = Card.west;
+                    var testSlot = 9;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				break;
 			case 9:
@@ -1230,15 +1316,17 @@ var Game = {
 					var Card = board[8];
 					var playerCardValue = enemyCard.west;
 					var enemyCardValue = Card.east;
+                    var testSlot = 8;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				}
 				if (board[6] !== undefined ) {
 					var Card = board[6];
 					var playerCardValue = enemyCard.north;
 					var enemyCardValue = Card.south;
+                    var testSlot = 6;
 					
-					this.checkOwnership(player, Card, playerCardValue, enemyCardValue);
+					this.checkOwnership(player, Card, playerCardValue, enemyCardValue, testSlot);
 				} 
 				break;
 		};
