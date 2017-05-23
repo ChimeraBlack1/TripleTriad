@@ -220,10 +220,26 @@ hands
 ***
 */
 
+
 .hand {
     position: absolute;
-	width: 245px;
+	width: 200px;
 }
+
+.playerHand {
+    top: 7rem;
+    right: 1rem;
+    display: inline-block;
+}
+
+
+.enemyHand {
+    position: absolute;
+    top: 7rem;
+    left: 5%;
+    display: inline-block;
+}
+
 
 
 /* 
@@ -235,6 +251,7 @@ Cards
 */
 
 
+/* Player */
 
 .card {
 	height: 175px;
@@ -271,21 +288,6 @@ Cards
     z-index: 100;
 }
 
-
-/* 
-***
-----
-Player Hand
-----
-***
-*/
-
-
-.playerHand {
-    top: 5rem;
-    right: 2%;
-    display: inline-block;
-}
 
 
 
@@ -417,20 +419,6 @@ PLAYER CARD IMAGES
 
 
 
-/* 
-***
-----
-Enemy Hand
-----
-***
-*/
-
-.enemyHand {
-    position: absolute;
-    top: 25%;
-    left: 5%;
-    display: inline-block;
-}
 
 
 /* 
@@ -458,9 +446,6 @@ ENEMY CARD IMAGES
 .enemyCardOne {
     margin-left: 0;
 }
-
-
-
 
 
 .ec1 {
