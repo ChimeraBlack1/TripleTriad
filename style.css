@@ -262,7 +262,6 @@ Player Hand
 
 
 .playerHand {
-    position: absolute;
     bottom: 1%;
     left: 0;
     right: 0;
@@ -338,27 +337,33 @@ PLAYER CARD ROTATION
 */
 
 
-.one {
+.one,
+.enemyCardOne{
 	transform: rotate(-10deg) translateY(2%);
 }
 
-.two  {
+.two,
+.enemyCardTwo {
 	transform: rotate(-5deg) translateY(-2%);
 }
 
-.three {
+.three,
+.enemyCardThree{
 	transform: rotate(-2deg) translateY(-5%);
 }
 
-.four {
+.four,
+.enemyCardFour {
 	transform: rotate(2deg) translateY(-5%);
 }
 
-.five {
+.five,
+.enemyCardFive  {
 	transform: rotate(5deg) translateY(-2%);
 }
 
-.six {
+.six,
+.enemyCardSix {
 	transform: rotate(10deg) translateY(2%);
 }
 
@@ -470,6 +475,10 @@ ENEMY CARD IMAGES
 .enemyCardOne {
     margin-left: 0;
 }
+
+
+
+
 
 .ec1 {
 	background-image: url('./img/skeleton.jpg');
