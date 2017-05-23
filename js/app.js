@@ -155,6 +155,9 @@ var card = {
 			// PLACE CARD ONTO BOARD OBJECT
 			board[slot] = Player.playerCard.value;	
         
+            // ANIMATE CARD MOVING TO BOARD
+            
+        
             // HIGHLIGHT SLOT PLAYER CLAIMED
             var slotID = "#slot" + slot;
             $(slotID).css("border", "1px solid green");
