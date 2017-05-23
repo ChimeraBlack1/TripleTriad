@@ -237,14 +237,34 @@ Cards
 
 
 .card {
-	height: 100px;
-	width: 62px;
-    margin-left: -30px;
+	height: 175px;
+	width: 108.5px;
 	cursor: pointer;
-    position: relative;
+    margin: 0 auto;
     display: inline-block;
+    position: absolute;
 }
 
+
+.two {
+    top: 2rem;
+}
+
+.three {
+    top: 4rem;
+}
+
+.four {
+    top: 6rem;
+}
+
+.five {
+    top: 8rem;
+}
+
+.six {
+    top: 10rem;
+}
 
 .selected {
     margin-bottom: 40px;
@@ -262,10 +282,8 @@ Player Hand
 
 
 .playerHand {
-    bottom: 1%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    top: 5rem;
+    right: 2%;
     display: inline-block;
 }
 
@@ -332,51 +350,19 @@ MAGNIFIED PLAYERCARDS
 	z-index: 0;
 }
 
-/*
-PLAYER CARD ROTATION
-*/
-
-
-.one,
-.enemyCardOne{
-	transform: rotate(-10deg) translateY(2%);
-}
-
-.two,
-.enemyCardTwo {
-	transform: rotate(-5deg) translateY(-2%);
-}
-
-.three,
-.enemyCardThree{
-	transform: rotate(-2deg) translateY(-5%);
-}
-
-.four,
-.enemyCardFour {
-	transform: rotate(2deg) translateY(-5%);
-}
-
-.five,
-.enemyCardFive  {
-	transform: rotate(5deg) translateY(-2%);
-}
-
-.six,
-.enemyCardSix {
-	transform: rotate(10deg) translateY(2%);
-}
 
 /* 
 PLAYER CARD IMAGES
 */
 
 
+
+
 .one, 
 .pc1 {
 	z-index: 1;
 	background-image: url('./img/op/pc01_03.png');
-    margin-left: 0;
+    margin: 0 auto;
 }
 
 
@@ -441,12 +427,9 @@ Enemy Hand
 
 .enemyHand {
     position: absolute;
-    top: -10%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    top: 25%;
+    left: 5%;
     display: inline-block;
-    transform: rotateX(180deg);
 }
 
 
