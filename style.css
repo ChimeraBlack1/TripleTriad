@@ -292,7 +292,7 @@ MAGNIFIED PLAYERCARDS
 }
 
 .magOne {
-	background-image: url('./img/op/necromancerSM.png');
+	background-image: url('./img/op/pc01_03.png');
 	margin-left: -50px;
 }
 
@@ -370,7 +370,7 @@ PLAYER CARD IMAGES
 .one, 
 .pc1 {
 	z-index: 1;
-	background-image: url('./img/op/necromancerSM.png');
+	background-image: url('./img/op/pc01_03.png');
     margin-left: 0;
 }
 
