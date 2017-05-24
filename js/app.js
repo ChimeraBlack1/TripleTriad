@@ -94,15 +94,12 @@ var card = {
 				Player.playerCard.value = Player.hand.cardSix;
 				break;				
 		}
-		
-		//LOG OUT SELECTED CARD
-		console.log(Player.playerCard.value);
 
 		
 		// IF THE PLAYER CLICKED THE SELECTED CARD,
-		if($(id).hasClass("selected glow")){
+		if($(id).hasClass("selected")){
 			// TOGGLE 'SELECTED' CLASS ONCLICK
-			$(id).removeClass("selected glow");
+			$(id).removeClass("selected");
 			
 		} else {
 			// OTHERWISE,
@@ -144,7 +141,6 @@ var card = {
 			case "playerCardSix":
 				var pc = "pc6"				
 				break;
-				
 		}
 		
 		return $("#slot" + slot).addClass(pc);

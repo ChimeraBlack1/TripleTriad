@@ -15,3 +15,8 @@
   }
 }
 
+@keyframes enemyTurn {
+    from {
+        left: 0,
+    }
+}

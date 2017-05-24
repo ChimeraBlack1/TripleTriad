@@ -430,31 +430,32 @@ ENEMY CARD IMAGES
 
 .enemyCard {
 	background-image: url('./img/cardBacks/skull_monk_card_back.png');
+    top: -2rem;
 }
 
 
 .enemyCardTwo {
-	top: 2rem;
+	top: 0;
 	z-index: 1;
 }
 
 .enemyCardThree {
-	top: 4rem;
+	top: 2rem;
 	z-index: 2;
 }
 
 .enemyCardFour {
-	top: 6rem;
+	top: 4rem;
 	z-index: 3;
 }
 
 .enemyCardFive {
-	top: 8rem;
+	top: 6rem;
 	z-index: 4;
 }
 
 .enemyCardSix {
-	top: 10rem;
+	top: 8rem;
 	z-index: 5;
 }
 
