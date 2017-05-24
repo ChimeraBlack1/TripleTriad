@@ -1,89 +1,33 @@
-
-/* entire container, keeps perspective */
-.cardContainer {
-    transform: translateX(calc(94vw - 320px)) translateY(-1vh);
-    transition: 1.5s;
-}
-
-@media(min-width: 950px){
-   .cardContainer {
-        transform: translateX(calc(94.5vw - 320px)) translateY(-1vh);
-        transition: 1.5s;
-    } 
-}
-
-
-.flip-container {
-	perspective: 1000px;
-    
-}
-	/* flip the pane when hovered */
-	.flip{
-		transform: rotateY(360deg);
-	}
-
-
-/* flip speed goes here */
-
-.flipper {
-	transition: 1.5s;
-	transform-style: preserve-3d;
-
-	position: absolute;
-    bottom: 0;
-}
-
-
-/* hide back of pane during swap */
-
-
-.front, .back {
-	backface-visibility: hidden;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-
-/* front pane, placed above back */
-
-
-.front {
-	z-index: 2;
-	/* for firefox 31 */
-
-	transform: rotateY(0deg);
-}
-
-
-
-
-/* back, initially hidden pane */
-
-
-.back {
-	transform: rotateY(180deg);
-}
-
-
-
-
-
 /*
-***
-----
-TARGET
-----
-***
+#006400 - forest green
+#00ff00 - lime green
+
+
 */
 
-
-.target {
-    width: 320px;
-	height: 480px;
-    border: 1px solid green;
-    position: absolute;
-    top: 0;
-    right: 5vw;
+.glow {
+/*
+    
+    width: 100px;
+    height: 100px;
+    display: block;
+    position: fixed;
+    z-index: 100000000;
+    top:0;
+    left:0;
+    background-color: transparent;
+    
+*/
+    animation: neon3 1.5s ease-in-out infinite alternate;
 }
+
+
+@keyframes neon3 {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00ff00, 0 0 70px #00ff00, 0 0 80px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ff00, 0 0 35px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 75px #00ff00;
+  }
+}
+

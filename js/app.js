@@ -100,22 +100,22 @@ var card = {
 
 		
 		// IF THE PLAYER CLICKED THE SELECTED CARD,
-		if($(id).hasClass("selected")){
+		if($(id).hasClass("selected glow")){
 			// TOGGLE 'SELECTED' CLASS ONCLICK
-			$(id).removeClass("selected");
+			$(id).removeClass("selected glow");
 			
 		} else {
 			// OTHERWISE,
 			
 			// REMOVE 'selected' CLASS FROM ALL PLAYER CARDS
 			for (i=0;i<playerCards.length;i++){
-				if ($("#" + playerCards[i]).hasClass("selected")){
-					$("#" + playerCards[i]).removeClass("selected");
+				if ($("#" + playerCards[i]).hasClass("selected glow")){
+					$("#" + playerCards[i]).removeClass("selected glow");
 				}
 			}
 			
 			//AND ADD THE 'selected' CLASS TO THE CARD THE PLAYER CLICKED ON
-			$(id).addClass("selected");	
+			$(id).addClass("selected glow");	
 		}
 				
 		return
