@@ -367,7 +367,6 @@ var Enemy = {
 			
 	finalChoice: function(openMoves) {
 			
-			console.log(openMoves + " are The enemy's open moves");	
 			// GET A RANDOM NUMBER IN BETWEEN 1 AND THE 'MYMOVES' ARRAY LENGTH
 			var myRandMove = Math.floor(Math.random() * openMoves.length);
 			
@@ -409,7 +408,8 @@ var Enemy = {
 		
 		// IF THE ENEMY HAS AN OPEN MOVE
 		if (openMoves.length >= 1) {
-		
+		      
+            enemyTurnAnim();
 			this.finalChoice(openMoves);
 
 		} else if(openMoves.length == 0) {
@@ -419,33 +419,17 @@ var Enemy = {
 			if (boardSize.length >= 9) {
                 
                 Game.endGame();
-                
-//				var playerScore = Game.playerScore;
-//				var enemyScore = Game.enemyScore;
-//				
-//				var finalScore = playerScore - enemyScore;
-//				
-//				if (finalScore > 0) {
-//					console.log("Game over - Player wins: " + playerScore + " to " + enemyScore);
-//				} else if (finalScore < 0) {
-//					console.log("Game over - Enemy wins: " + enemyScore + " to " + playerScore);	
-//				} else {
-//					console.log("Game over - Tie! " + enemyScore + " all");
-//				}
-//				
-//				return;
 				
 			 } else {
 				 
 				// SETCARDRANDOMLY
-				console.log('setting the card randomly');
+				enemyTurnAnim();
 				this.setCardRandomly(enemyCard);
 				
 			 }
 		 }
 		
-		
-		
+
 		console.log(this.usedCards);
 
 		// SHOW ENEMY PLACING CARD ON BOARD
