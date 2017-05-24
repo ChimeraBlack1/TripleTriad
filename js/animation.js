@@ -1,6 +1,6 @@
 var enemyTurnAnim = function () {
-    
-        cardsAvailable();
+        
+        AnimateEnemy();
     
 		setTimeout(myTimeout1, 1000)
         setTimeout(myTimeout2, 2000)
@@ -8,55 +8,76 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout4, 4000)
         setTimeout(myTimeout5, 5000)
         setTimeout(myTimeout6, 6000)
-        
-        
-        
-        
+     
 }
 
 
-var usedCards = Enemy.usedCards;
 
-var enemyCardOne = usedCards.indexOf("enemyCardOne");
+function AnimateEnemy () {
+    
+    var usedCards = Enemy.usedCards;
+    var animateCards = [];
 
 
-function myTimeout1() {
-	$("#enemyCardOne").css("left", "2rem");
-}
+    if (usedCards.indexOf("enemyCardOne") == -1) {
+        animateCards.push("enemyCardOne");
+    }
+    if (usedCards.indexOf("enemyCardTwo") == -1) {
+        animateCards.push("enemyCardTwo");
+    }
 
-function myTimeout2() {
-    $("#enemyCardOne").css("left", "0");
-}
+    if (usedCards.indexOf("enemyCardThree") == -1) {
+        animateCards.push("enemyCardThree");
+    }
 
-function myTimeout3() {
-    $("#enemyCardSix").css("left", "2rem");
-}
+    if (usedCards.indexOf("enemyCardFour") == -1) {
+        animateCards.push("enemyCardFour");
+    }
 
-function myTimeout4() {
-    $("#enemyCardSix").css("left", "0");
-}
+    if (usedCards.indexOf("enemyCardFive") == -1) {
+        animateCards.push("enemyCardFive");
+    }
 
-function myTimeout5() {
-    $("#enemyCardFour").css("left", "2rem");
-}
+    if (usedCards.indexOf("enemyCardSix") == -1) {
+        animateCards.push("enemyCardSix");
+    }
 
-function myTimeout6() {
-    $("#enemyCardFour").css("left", "0");
+    console.log(animateCards);
     
 }
 
 
-var cardsAvailable = function(){
-    var enemyHand = Enemy.hand;
-    var usedCards = Enemy.usedCards;
-    var cardsAvailArray = [];
-
-    $.each(enemyHand, function(i, el){
-        if ($.inArray(el, usedCards) === -1) cardsAvailArray.push(el);
-    });
-
-    console.log(cardsAvailArray);
+function myTimeout1() {
+    // $(cardOne).css("left", "2rem");
+	$("#enemyCardOne").css("left", "2rem");
 }
+
+function myTimeout2() {
+    // $(cardOne).css("left", "0");
+    $("#enemyCardOne").css("left", "0");
+}
+
+function myTimeout3() {
+    // $(cardTwo).css("left", "0");
+    $("#enemyCardSix").css("left", "2rem");
+}
+
+function myTimeout4() {
+    // $(cardTwo).css("left", "0");
+    $("#enemyCardSix").css("left", "0");
+}
+
+function myTimeout5() {
+    // $(cardThree).css("left", "2rem");
+    $("#enemyCardFour").css("left", "2rem");
+}
+
+function myTimeout6() {
+    // $(cardThree).css("left", "0");
+    $("#enemyCardFour").css("left", "0");
+    
+}
+
 
 
 
