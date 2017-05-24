@@ -109,13 +109,13 @@ var card = {
 			
 			// REMOVE 'selected' CLASS FROM ALL PLAYER CARDS
 			for (i=0;i<playerCards.length;i++){
-				if ($("#" + playerCards[i]).hasClass("selected glow")){
-					$("#" + playerCards[i]).removeClass("selected glow");
+				if ($("#" + playerCards[i]).hasClass("selected")){
+					$("#" + playerCards[i]).removeClass("selected");
 				}
 			}
 			
 			//AND ADD THE 'selected' CLASS TO THE CARD THE PLAYER CLICKED ON
-			$(id).addClass("selected glow");	
+			$(id).addClass("selected");	
 		}
 				
 		return
