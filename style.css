@@ -220,24 +220,20 @@ hands
 ***
 */
 
-
 .hand {
-    position: absolute;
-	width: 200px;
+	position: fixed;
+	top: 8rem;
 }
 
+
 .playerHand {
-    top: 7rem;
-    right: 1rem;
-    display: inline-block;
+	right: 10rem;
 }
 
 
 .enemyHand {
-    position: absolute;
-    top: 7rem;
-    left: 5%;
-    display: inline-block;
+	top: 9.5rem;
+    left: 3rem;
 }
 
 
@@ -265,6 +261,7 @@ Cards
 
 .two {
     top: 2rem;
+	
 }
 
 .three {
@@ -284,7 +281,7 @@ Cards
 }
 
 .selected {
-    margin-bottom: 40px;
+	right: -3.5rem;
     z-index: 100;
 }
 
@@ -295,55 +292,48 @@ Cards
 MAGNIFIED PLAYERCARDS
 */
 
-.magnifiedHand {
-	width: 250px;
-	margin: 0 auto;
-	height: 100vh;
-	
-}
-
 .magnifiedCard {
 	height: 300px;
 	width: 186px;
 	position: fixed;
 	background-size: cover;
 	bottom: 125px;
+	right: 14rem;
 }
 
 .magOne {
 	background-image: url('./img/op/pc01_03.png');
-	margin-left: -50px;
+	top: 7rem;
 }
 
 .magTwo {
 	background-image: url('./img/op/pyromancerSM.png');
+	top: 10.2rem;
 }
 
 .magThree {
 	background-image: url('./img/op/enchantressSM.png');
-	margin-left: 20px;
+	top: 12.2rem;
 }
 
 .magFour {
 	background-image: url('./img/op/iceMaidenSM.png');
-	margin-left: 50px;
+	top: 14.2rem;
 }
 
 .magFive {
 	background-image: url(./img/op/doomseekerSM.png);
-	margin-left: 90px;
+	top: 16.2rem;
 }
 
 .magSix {
 	background-image: url(./img/op/acolyteSM.png);
-	margin-left: 120px;
+	top: 18.2rem;
 }
 
 
 .visible {
 	visibility: visible;
-	transition: margin-bottom 1000ms;
-	margin-bottom: 10px;
 	z-index: 10;
 }
 
@@ -443,10 +433,30 @@ ENEMY CARD IMAGES
 }
 
 
-.enemyCardOne {
-    margin-left: 0;
+.enemyCardTwo {
+	top: 2rem;
+	z-index: 1;
 }
 
+.enemyCardThree {
+	top: 4rem;
+	z-index: 2;
+}
+
+.enemyCardFour {
+	top: 6rem;
+	z-index: 3;
+}
+
+.enemyCardFive {
+	top: 8rem;
+	z-index: 4;
+}
+
+.enemyCardSix {
+	top: 10rem;
+	z-index: 5;
+}
 
 .ec1 {
 	background-image: url('./img/skeleton.jpg');
@@ -522,7 +532,13 @@ MEDIA QUERIES
 ***
 */
 
-@media(max-width: 700px) {
+@media(min-width: 1150px) {
 	
-    
+	.playerHand {
+		right: 15rem;
+	}
+	
+	.magnifiedCard {
+		
+	}
 }
