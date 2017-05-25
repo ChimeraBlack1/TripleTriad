@@ -258,18 +258,11 @@ var Enemy = {
 	},
 	
 	
-	enemyTurn: function(slot) {
-
-		// CHOOSE SLOT FOR ENEMYCARD PLACEMENT
-		this.chooseSlot(slot);
-
-	},
-	
 	//	1	2	3
 	//	4	5	6
 	//	7	8	9
 
-	chooseSlot: function(slot) {
+	enemyTurn: function(slot) {
 
 		var R = "R";
 		var L = "L";
