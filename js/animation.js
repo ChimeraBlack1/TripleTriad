@@ -1,11 +1,9 @@
 var enemyTurnAnim = function () {
         
-    AnimateEnemy();
+    AnimateEnemy();            
     
-    console.log(cardOne);
-    console.log(cardTwo);
-    console.log(cardThree);
-            
+    var time;
+
     
     if (cardAnimationArray.length == 3){
         // cardOne
@@ -18,7 +16,10 @@ var enemyTurnAnim = function () {
 
         // cardThree
         setTimeout(myTimeout5, 2500);
-        setTimeout(myTimeout6, 3000);    
+        setTimeout(myTimeout6, 3000); 
+        
+        time = 3000;
+        
     }else if (cardAnimationArray.length == 2) {
         // cardOne
         setTimeout(myTimeout1, 500);
@@ -27,13 +28,23 @@ var enemyTurnAnim = function () {
         // cardTwo
         setTimeout(myTimeout3, 1500);	
         setTimeout(myTimeout4, 2000);
+        
+        time = 2000;
 
         
     }else if (cardAnimationArray.length == 1) {
         // cardOne
         setTimeout(myTimeout1, 500);
         setTimeout(myTimeout2, 1000);
+        
+        time = 1000;
     }
+    
+    // STOP PLAYER FROM PLAYING CARDS WHILE ENEMY IS HAVING HIS TURN
+    $("#playerHandCover").removeClass("hidden");
+    setTimeout(function(){
+        $("#playerHandCover").addClass("hidden");
+    }, time);
     
 }
 

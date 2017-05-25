@@ -25,6 +25,7 @@ NEW GAME
 }
 */
 
+
 /* 
 ***
 ----
@@ -183,7 +184,7 @@ Magnified Board
 }
 
 .magSlotOne {
-	top:275px;
+	top: 275px;
 	margin-left: 75px;
 	margin-top: 20px;
 }
@@ -257,7 +258,13 @@ hands
     left: 3rem;
 }
 
-
+.playerHandCover {
+    top: 6rem;
+    width: 10rem;
+    height: 75vh;
+    right: 1.75rem;
+    z-index: 1000;    
+}
 
 /* 
 ***
@@ -544,6 +551,9 @@ SCORE
 .playerScore-title {
     right: 23%;
 }
+
+
+
 
 
 /* 
