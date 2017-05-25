@@ -1,14 +1,40 @@
 var enemyTurnAnim = function () {
         
-        AnimateEnemy();
+    AnimateEnemy();
     
-		setTimeout(myTimeout1, 500)
-        setTimeout(myTimeout2, 1000)
-		setTimeout(myTimeout3, 1500)	
-        setTimeout(myTimeout4, 2000)
-        setTimeout(myTimeout5, 2500)
-        setTimeout(myTimeout6, 3000)
-     
+    console.log(cardOne);
+    console.log(cardTwo);
+    console.log(cardThree);
+            
+    
+    if (cardAnimationArray.length == 3){
+        // cardOne
+        setTimeout(myTimeout1, 500);
+        setTimeout(myTimeout2, 1000);
+
+        // cardTwo
+        setTimeout(myTimeout3, 1500);	
+        setTimeout(myTimeout4, 2000);
+
+        // cardThree
+        setTimeout(myTimeout5, 2500);
+        setTimeout(myTimeout6, 3000);    
+    }else if (cardAnimationArray.length == 2) {
+        // cardOne
+        setTimeout(myTimeout1, 500);
+        setTimeout(myTimeout2, 1000);
+
+        // cardTwo
+        setTimeout(myTimeout3, 1500);	
+        setTimeout(myTimeout4, 2000);
+
+        
+    }else if (cardAnimationArray.length == 1) {
+        // cardOne
+        setTimeout(myTimeout1, 500);
+        setTimeout(myTimeout2, 1000);
+    }
+    
 }
 
 
@@ -42,7 +68,10 @@ function AnimateEnemy () {
         animateCards.push("enemyCardSix");
     }
     
+    
+    console.log(animateCards);
     decideWhichCardsToAnimate(animateCards);
+
 
  }
 
@@ -56,7 +85,7 @@ function myTimeout2() {
 }
 
 function myTimeout3() {
-     $(cardTwo).css("left", "0");
+     $(cardTwo).css("left", "2rem");
 }
 
 function myTimeout4() {
@@ -73,7 +102,7 @@ function myTimeout6() {
 
 
 var decideWhichCardsToAnimate = function (animateCards) {
-    var cardAnimationArray = [];
+    cardAnimationArray = [];
     
     if (animateCards.length >= 4) {
         for(i=0;i<3;i++){
@@ -127,7 +156,7 @@ var decideWhichCardsToAnimate = function (animateCards) {
     return {
         cardOne: cardOne,
         cardTwo: cardTwo,
-        cardThree: cardThree
+        cardThree: cardThree,
     };
 
 }

@@ -430,8 +430,6 @@ var Enemy = {
 		 }
 		
 
-		console.log(this.usedCards);
-
 		// SHOW ENEMY PLACING CARD ON BOARD
 		$("#slot" + enemySlot).css("background-color", cardImg);
 		board[enemySlot] = enemyCard;
