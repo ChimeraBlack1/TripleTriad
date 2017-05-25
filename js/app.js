@@ -354,8 +354,17 @@ var Enemy = {
 				break;
 				
 		}
+        
+        setTimeout(function() {
+            $("#slot" + slot).addClass(pc);
+            
+            // CLAIM POSESSION OF THE CHOSEN SLOT
+            var slotID = "#slot" + slot;
+            $(slotID).css("border", "1px solid red");
+            
+        },
+                   3000);
 		
-		return $("#slot" + slot).addClass(pc);
 	},
 			
 	finalChoice: function(openMoves) {
@@ -371,9 +380,7 @@ var Enemy = {
 			// PLACE ENEMY CARD INTO BOARD[SLOT]
 			board[myFinalRandMove] = enemyCard;
         
-            // CLAIM POSESSION OF THE CHOSEN SLOT
-            var slotID = "#slot" + myFinalRandMove;
-            $(slotID).css("border", "1px solid red");
+            
 			
 			Game.enemyAttack(myFinalRandMove, enemyCard);
 		
@@ -388,7 +395,7 @@ var Enemy = {
 		
 		
 		// COMPARE GOOD MOVES AGAINST OPEN ATTACK POSITIONS
-		var myGoodMoves = this.calcAttack(goodMoves,attackPositions);		
+		var myGoodMoves = this.calcAttack(goodMoves, attackPositions);		
 		
 		// FINALLY, CHOOSE A CARD TO PLAY
 		// AND PUT THE FINALLY SELECTED ENEMYCARD OBJECT INTO THIS VARIABLE

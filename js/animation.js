@@ -69,7 +69,6 @@ function AnimateEnemy () {
     }
     
     
-    console.log(animateCards);
     decideWhichCardsToAnimate(animateCards);
 
 
@@ -152,11 +151,5 @@ var decideWhichCardsToAnimate = function (animateCards) {
             // SET ONE CARD FOR ANIMATION
             cardOne = "#" +  cardAnimationArray[0];
     }
-
-    return {
-        cardOne: cardOne,
-        cardTwo: cardTwo,
-        cardThree: cardThree,
-    };
 
 }
