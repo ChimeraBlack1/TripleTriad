@@ -777,7 +777,7 @@ var Game = {
     },
     
     newGame: function() {
-      window.location.reload();  
+        window.location.reload();          
     },
 
 	checkOwnership: function(player, Card, playerCardValue, enemyCardValue, testSlot) {
