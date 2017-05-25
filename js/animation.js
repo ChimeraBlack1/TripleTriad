@@ -2,12 +2,12 @@ var enemyTurnAnim = function () {
         
         AnimateEnemy();
     
-		setTimeout(myTimeout1, 1000)
-        setTimeout(myTimeout2, 2000)
-		setTimeout(myTimeout3, 3000)	
-        setTimeout(myTimeout4, 4000)
-        setTimeout(myTimeout5, 5000)
-        setTimeout(myTimeout6, 6000)
+		setTimeout(myTimeout1, 500)
+        setTimeout(myTimeout2, 1000)
+		setTimeout(myTimeout3, 1500)	
+        setTimeout(myTimeout4, 2000)
+        setTimeout(myTimeout5, 2500)
+        setTimeout(myTimeout6, 3000)
      
 }
 
@@ -41,43 +41,93 @@ function AnimateEnemy () {
     if (usedCards.indexOf("enemyCardSix") == -1) {
         animateCards.push("enemyCardSix");
     }
-
-    console.log(animateCards);
     
-}
+    decideWhichCardsToAnimate(animateCards);
+
+ }
 
 
 function myTimeout1() {
-    // $(cardOne).css("left", "2rem");
-	$("#enemyCardOne").css("left", "2rem");
+    $(cardOne).css("left", "2rem");
 }
 
 function myTimeout2() {
-    // $(cardOne).css("left", "0");
-    $("#enemyCardOne").css("left", "0");
+    $(cardOne).css("left", "0");
 }
 
 function myTimeout3() {
-    // $(cardTwo).css("left", "0");
-    $("#enemyCardSix").css("left", "2rem");
+     $(cardTwo).css("left", "0");
 }
 
 function myTimeout4() {
-    // $(cardTwo).css("left", "0");
-    $("#enemyCardSix").css("left", "0");
+     $(cardTwo).css("left", "0");
 }
 
 function myTimeout5() {
-    // $(cardThree).css("left", "2rem");
-    $("#enemyCardFour").css("left", "2rem");
+     $(cardThree).css("left", "2rem");
 }
 
 function myTimeout6() {
-    // $(cardThree).css("left", "0");
-    $("#enemyCardFour").css("left", "0");
-    
+     $(cardThree).css("left", "0");    
 }
 
 
+var decideWhichCardsToAnimate = function (animateCards) {
+    var cardAnimationArray = [];
+    
+    if (animateCards.length >= 4) {
+        for(i=0;i<3;i++){
+            
+            // GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE RANDCARDARRAY
+            var enemySelection = Math.floor(Math.random() * animateCards.length);
+            
+            // GET A CARD BASED ON THE ABOVE RANDOM #
+            var enemyCardName = animateCards[enemySelection];
+            
+            cardAnimationArray.push(enemyCardName);
+        }
+        
+        // SET THREE CARDS FOR ANIMATION
+        cardOne = "#" + cardAnimationArray[0];
+        cardTwo = "#" + cardAnimationArray[1];
+        cardThree = "#" + cardAnimationArray[2];
+        
+    } else if (animateCards.length < 4 && animateCards.length > 2) {
+            
+        for(i=0;i<2;i++){
 
+            // GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE RANDCARDARRAY
+            var enemySelection = Math.floor(Math.random() * animateCards.length);
 
+            // GET A CARD BASED ON THE ABOVE RANDOM #
+            var enemyCardName = animateCards[enemySelection];
+
+            cardAnimationArray.push(enemyCardName);
+        }
+        
+        // SET TWO CARDS FOR ANIMATION
+        cardOne = "#" + cardAnimationArray[0];
+        cardTwo = "#" + cardAnimationArray[1];
+        
+        
+    } else if (animateCards.length <= 2) {
+
+            // GET A RANDOM NUMBER FROM 1 TO THE LENGTH OF THE RANDCARDARRAY
+            var enemySelection = Math.floor(Math.random() * animateCards.length);
+
+            // GET A CARD BASED ON THE ABOVE RANDOM #
+            var enemyCardName = animateCards[enemySelection];
+
+            cardAnimationArray.push(enemyCardName);
+            
+            // SET ONE CARD FOR ANIMATION
+            cardOne = "#" +  cardAnimationArray[0];
+    }
+
+    return {
+        cardOne: cardOne,
+        cardTwo: cardTwo,
+        cardThree: cardThree
+    };
+
+}
