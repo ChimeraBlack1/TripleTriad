@@ -1,6 +1,7 @@
 var enemyTurnAnim = function () {
         
-    AnimateEnemy();            
+    AnimateEnemy(); 
+    changeTurns.enemyTurn();
     
     var time;
 
@@ -163,4 +164,16 @@ var decideWhichCardsToAnimate = function (animateCards) {
             cardOne = "#" +  cardAnimationArray[0];
     }
 
+}
+
+
+var changeTurns = {
+    enemyTurn: function() {
+        document.getElementById("turnSpan").innerHTML = "Enemy's Turn...";
+    },
+    
+    playerTurn: function() {
+        document.getElementById("turnSpan").innerHTML = "Enemy's Turn...";
+    }
+                   
 }

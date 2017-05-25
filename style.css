@@ -44,6 +44,16 @@ Game
 }
 
 
+.TurnTitle {
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    right: 0;
+}
+
 .winner {
     position: absolute;
     height: 100vh;
@@ -265,6 +275,9 @@ hands
     right: 1.75rem;
     z-index: 1000;    
 }
+
+
+
 
 /* 
 ***
