@@ -47,6 +47,7 @@ var enemyTurnAnim = function () {
     $("#playerHandCover").removeClass("hidden");
     setTimeout(function(){
         $("#playerHandCover").addClass("hidden");
+        // CHANGE BACK TO PLAYER TURN
         changeTurns.playerTurn();
     }, time);
     
@@ -82,10 +83,8 @@ function AnimateEnemy () {
     if (usedCards.indexOf("enemyCardSix") == -1) {
         animateCards.push("enemyCardSix");
     }
-    
-    
-    decideWhichCardsToAnimate(animateCards);
 
+    decideWhichCardsToAnimate(animateCards);
 
  }
 
