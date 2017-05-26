@@ -4,6 +4,29 @@
     box-sizing: border-box;
 }
 
+
+.needMoreRes {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(img/op/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    visibility: hidden;
+}
+
+h1 {
+    color: #fff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 40vh;
+}
+
 /*
 NEW GAME
 */
@@ -53,6 +76,8 @@ Game
     left: 0;
     right: 0;
 }
+
+
 
 .winner {
     position: absolute;
@@ -149,24 +174,35 @@ Board
 */
 
 
-.game-board {
-    width: 180px;
-    height: 270px;
-	z-index: 10;
-    position: absolute;
-    padding-left: 6px;
-    top: 25%;
-    right: 0;
+.slot-container{
+    text-align: center;
+    position: fixed;
     left: 0;
-    margin: 0 auto;
+    right: 0;
+    z-index: 1;
 }
 
-.card-slot{
+.slot-con-one {
+    top: 10rem;    
+}
+
+.slot-con-two {
+    top: 16rem;
+}
+
+.slot-con-three {
+    top: 22rem;
+}
+
+.card-slot {
+    position: relative;
     height: 90px;
     width: 55px;
     background-color: black;
     display: inline-block;
+    z-index: 1000;
 }
+
 
 .card-slot:hover{
 	background-color: tan;
@@ -260,6 +296,7 @@ hands
 
 .playerHand {
 	right: 10rem;
+    z-index: 100;
 }
 
 
@@ -326,9 +363,7 @@ Cards
     animation: cardGlow 1.5s ease-in-out infinite alternate;
 }
 
-.playerSlotGlow {
-    animation: playerSlotGlow 1.5s ease-in-out infinite alternate;
-}
+
 
 
 /*
@@ -342,36 +377,37 @@ MAGNIFIED PLAYERCARDS
 	background-size: cover;
 	bottom: 125px;
 	right: 14rem;
+    top: 10rem;
 }
 
 .magOne {
 	background-image: url('./img/op/pc01_03.png');
-	top: 7rem;
+/*	top: 7rem;*/
 }
 
 .magTwo {
 	background-image: url('./img/op/pyromancerSM.png');
-	top: 10.2rem;
+/*	top: 10.2rem;*/
 }
 
 .magThree {
 	background-image: url('./img/op/enchantressSM.png');
-	top: 12.2rem;
+/*	top: 12.2rem;*/
 }
 
 .magFour {
 	background-image: url('./img/op/iceMaidenSM.png');
-	top: 14.2rem;
+/*	top: 14.2rem;*/
 }
 
 .magFive {
 	background-image: url(./img/op/doomseekerSM.png);
-	top: 16.2rem;
+/*	top: 16.2rem;*/
 }
 
 .magSix {
 	background-image: url(./img/op/acolyteSM.png);
-	top: 18.2rem;
+/*	top: 18.2rem;*/
 }
 
 
@@ -597,4 +633,10 @@ MEDIA QUERIES
 		
 	}
 */
+}
+
+@media(max-width: 600px) {
+    .needMoreRes {
+        visibility: visible;
+    }
 }
