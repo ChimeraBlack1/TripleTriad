@@ -16,11 +16,11 @@
 }
 
 
-@keyframes PlayerslotGlow {
+@keyframes playerSlotGlow {
     from {
-        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00ff00, 0 0 70px #00ff00, 0 0 80px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
+        box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 16px #00ff00, 0 0 32px #00ff00, 0 0 64px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
     }
     to {
-        box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #006400, 0 0 35px #006400, 0 0 40px #006400, 0 0 50px #006400, 0 0 75px #00ff00;
+        box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #006400, 0 0 16px #006400, 0 0 32px #006400, 0 0 50px #006400, 0 0 75px #00ff00;
     }
 }

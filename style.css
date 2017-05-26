@@ -326,7 +326,9 @@ Cards
     animation: cardGlow 1.5s ease-in-out infinite alternate;
 }
 
-
+.playerSlotGlow {
+    animation: playerSlotGlow 1.5s ease-in-out infinite alternate;
+}
 
 
 /*
@@ -472,6 +474,8 @@ ENEMY CARD IMAGES
 .enemyCard {
 	background-image: url('./img/cardBacks/skull_monk_card_back.png');
     top: -2rem;
+    transition: left 0.5s;
+    left: 0;
 }
 
 
@@ -499,6 +503,7 @@ ENEMY CARD IMAGES
 	top: 8rem;
 	z-index: 5;
 }
+
 
 .ec1 {
 	background-image: url('./img/skeleton.jpg');
@@ -587,7 +592,9 @@ MEDIA QUERIES
         right: 3rem;
     }
 	
+/*
 	.magnifiedCard {
 		
 	}
+*/
 }
