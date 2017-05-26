@@ -3,7 +3,7 @@ var enemyTurnAnim = function () {
     AnimateEnemy(); 
     changeTurns.enemyTurn();
     
-    var time;
+    time = 0;
 
     
     if (cardAnimationArray.length == 3){

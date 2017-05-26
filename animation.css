@@ -6,11 +6,21 @@
 */
 
 
-@keyframes neon3 {
+@keyframes cardGlow {
   from {
     box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00ff00, 0 0 70px #00ff00, 0 0 80px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
   }
   to {
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #006400, 0 0 35px #006400, 0 0 40px #006400, 0 0 50px #006400, 0 0 75px #00ff00;
   }
+}
+
+
+@keyframes PlayerslotGlow {
+    from {
+        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00ff00, 0 0 70px #00ff00, 0 0 80px #00ff00, 0 0 100px #00ff00, 0 0 150px #00ff00;
+    }
+    to {
+        box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #006400, 0 0 35px #006400, 0 0 40px #006400, 0 0 50px #006400, 0 0 75px #00ff00;
+    }
 }

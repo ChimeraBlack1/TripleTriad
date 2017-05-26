@@ -360,7 +360,7 @@ var Enemy = {
             $(slotID).css("border", "1px solid red");
             
         },
-                   3000);
+                   time);
 		
 	},
 			
@@ -822,13 +822,15 @@ var Game = {
         
         if (Card.posession == "player"){
 			Card.posession = "enemy";
-            $(pos).css("border", "1px solid red");
+            
+            setTimeout(function(){
+               $(pos).css("border", "1px solid red");
+            }, time);
+              
 		} else {
 			Card.posession = 'player';
-            $(pos).css("border", "1px solid green");
+               $(pos).css("border", "1px solid green");            
 		}
-		
-		
 	},
 	
 	playerScore: 6,

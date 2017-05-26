@@ -323,7 +323,7 @@ Cards
 .selected {
 	right: -3.5rem;
     z-index: 100;
-    animation: neon3 1.5s ease-in-out infinite alternate;
+    animation: cardGlow 1.5s ease-in-out infinite alternate;
 }
 
 
