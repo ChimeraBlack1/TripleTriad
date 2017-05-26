@@ -582,6 +582,10 @@ MEDIA QUERIES
 	.playerHand {
 		right: 15rem;
 	}
+    
+    .playerHandCover {
+        right: 3rem;
+    }
 	
 	.magnifiedCard {
 		

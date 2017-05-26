@@ -19,7 +19,7 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout5, 2500);
         setTimeout(myTimeout6, 3000); 
         
-        time = 3000;
+        time = 3100;
         
     }else if (cardAnimationArray.length == 2) {
         // cardOne
@@ -30,7 +30,7 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout3, 1500);	
         setTimeout(myTimeout4, 2000);
         
-        time = 2000;
+        time = 2100;
 
         
     }else if (cardAnimationArray.length == 1) {
@@ -38,13 +38,16 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout1, 500);
         setTimeout(myTimeout2, 1000);
         
-        time = 1000;
+        time = 1100;
+        
+        
     }
     
     // STOP PLAYER FROM PLAYING CARDS WHILE ENEMY IS HAVING HIS TURN
     $("#playerHandCover").removeClass("hidden");
     setTimeout(function(){
         $("#playerHandCover").addClass("hidden");
+        changeTurns.playerTurn();
     }, time);
     
 }
@@ -173,7 +176,7 @@ var changeTurns = {
     },
     
     playerTurn: function() {
-        document.getElementById("turnSpan").innerHTML = "Enemy's Turn...";
+        document.getElementById("turnSpan").innerHTML = "Your Turn!";
     }
                    
 }
