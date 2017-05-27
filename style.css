@@ -641,6 +641,9 @@ MEDIA QUERIES
         right: 3rem;
     }
 	
+	.magnifiedCard {
+		right: 20rem;
+	}
 }
 
 @media(max-width: 600px) {
