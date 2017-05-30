@@ -230,6 +230,7 @@ Board
 .back {
     transform: rotateY(180deg);
     background-image: url('img/cardBacks/skull_monk_card_back.png');
+	background-size: cover;
 }
 
 .card-slot:hover{
