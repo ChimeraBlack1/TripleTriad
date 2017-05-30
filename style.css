@@ -662,7 +662,7 @@ MEDIA QUERIES
 		width: 183.37px;
 	}
 	
-	.card-slot {
+	.card-slot, .front, .back{
     	height: 135px;
     	width: 82.5px;  
 	}
