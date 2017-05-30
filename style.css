@@ -653,6 +653,33 @@ MEDIA QUERIES
         right: 3rem;
     }
 	
+	.magnifiedCard {
+		right: 20rem;
+	}
+	
+	.card {
+		height: 295.75px;
+		width: 183.37px;
+	}
+	
+	.card-slot {
+    	height: 135px;
+    	width: 82.5px;  
+	}
+	
+	.slot-con-one {
+    	top: 10rem;    
+	}
+
+	.slot-con-two {
+		top: 19rem;
+	}
+
+	.slot-con-three {
+		top: 28rem;
+	}
+
+
 }
 
 @media(max-width: 600px) {

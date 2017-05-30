@@ -19,7 +19,7 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout5, 2500);
         setTimeout(myTimeout6, 3000); 
         
-        time = 3100;
+        time = 3700;
         
     }else if (cardAnimationArray.length == 2) {
         // cardOne
@@ -30,7 +30,7 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout3, 1500);	
         setTimeout(myTimeout4, 2000);
         
-        time = 2100;
+        time = 2700;
 
         
     }else if (cardAnimationArray.length == 1) {
@@ -38,7 +38,7 @@ var enemyTurnAnim = function () {
         setTimeout(myTimeout1, 500);
         setTimeout(myTimeout2, 1000);
         
-        time = 1100;
+        time = 1700;
         
         
     }
