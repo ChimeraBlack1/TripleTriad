@@ -193,6 +193,7 @@ Board
     top: 22rem;
 }
 
+/* Flipper */
 .card-slot {
     position: relative;
     height: 90px;
@@ -208,16 +209,27 @@ Board
 }
 
 
+.flip {
+    transform: rotateY(360deg);
+}
+
 .front, .back {
     backface-visibility: hidden;
+    height: 90px;
+    width: 55px;
     
     position: absolute;
     top: 0;
     left: 0;
 }
 
+.front {
+    transform: rotateY(0deg);
+}
+
 .back {
     transform: rotateY(180deg);
+    background-image: url('img/cardBacks/skull_monk_card_back.png');
 }
 
 .card-slot:hover{

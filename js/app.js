@@ -143,7 +143,7 @@ var card = {
 				break;
 		}
 		
-		return $("#slot" + slot).addClass(pc);
+		return $("#front" + slot).addClass(pc);
 	},
 	
 	set: function(slot) {
@@ -824,14 +824,30 @@ var Game = {
 			Card.posession = "enemy";
             
             setTimeout(function(){
-               $(pos).css("border", "1px solid red");
+                $(pos).css("border", "1px solid red");
+                
+                if ($(pos).hasClass("flip")){
+                    $(pos).removeClass("flip");
+                } else {
+                    $(pos).addClass("flip");
+                }
+                
             }, time);
               
 		} else {
 			Card.posession = 'player';
-               $(pos).css("border", "1px solid green");            
+                $(pos).css("border", "1px solid green");  
+            
+                if ($(pos).hasClass("flip")){
+                    $(pos).removeClass("flip");
+                } else {
+                    $(pos).addClass("flip");
+                }       
 		}
+        
 	},
+    
+
 	
 	playerScore: 6,
 	enemyScore: 6,
