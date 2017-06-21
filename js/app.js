@@ -30,7 +30,7 @@ var Player = {
 			posession: 'player'
 		},
 		cardFour: {
-			name:'playerCardFour',
+			name: 'playerCardFour',
 			north: 7,
 			east: 1,
 			south: 3,
@@ -52,7 +52,7 @@ var Player = {
 			south: 6,
 			west: 9,
 			posession: 'player'
-		},		
+		}
 	}
 }; //END OF PLAYER OBJECT
  
@@ -66,15 +66,15 @@ var board = {
 
 var card = {
 	
-	selected: function(newPlayerCard) {
+	selected: function (newPlayerCard) {
 		//SET PLAYER CARD
 		Player.playerCard.name = newPlayerCard;
 		// SET ID FOR GETTING ELEMENT
-		var id =  "#" + newPlayerCard;
+		var id =  "#" + newPlayerCard, playerCards = ["playerCardOne", "playerCardTwo", "playerCardThree", "playerCardFour", "playerCardFive", "playerCardSix"];
 		// ARRAY OF PLAYERCARD NAMES FOR ACCESSING BY ELEMENT ID
-		var playerCards = ["playerCardOne", "playerCardTwo","playerCardThree", "playerCardFour", "playerCardFive", "playerCardSix"];
+		
 	
-		switch(newPlayerCard) {
+		switch (newPlayerCard) {
 			case "playerCardOne":
 				Player.playerCard.value = Player.hand.cardOne;
 				break;
@@ -184,7 +184,7 @@ var card = {
 			var slottedCard = boardSlot.name;
 			
 			//board slot is full, can't place card
-			console.log(slottedCard + " is already in that slot");
+//			console.log(slottedCard + " is already in that slot");
 			return
 		}
 	},

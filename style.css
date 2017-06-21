@@ -568,27 +568,27 @@ ENEMY CARD IMAGES
 
 
 .ec1 {
-	background-image: url('./img/skeleton.jpg');
+	background-image: url('./img/op/skel1.png');
 }
 
 .ec2 {
-	background-image: url('./img/skeleton07.png');
+	background-image: url('./img/op/skel2.png');
 }
 
 .ec3 {
-	background-image: url('./img/skeleton%2003.jpg');
+	background-image: url('./img/op/skel3.png');
 }
 
 .ec4 {
-	background-image: url('./img/skeleton%2004.jpg');
+	background-image: url('./img/op/skel4.png');
 }
 
 .ec5 {
-	background-image: url('./img/skeleton%2005.jpg');
+	background-image: url('./img/op/skel5.png');
 }
 
 .ec6 {
-	background-image: url('./img/skeleton%2006.jpg');
+	background-image: url('./img/op/skel6.png');
 }
 
 
