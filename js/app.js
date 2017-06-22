@@ -184,7 +184,7 @@ var card = {
 			var slottedCard = boardSlot.name;
 			
 			//board slot is full, can't place card
-//			console.log(slottedCard + " is already in that slot");
+			console.log(slottedCard + " is already in that slot");
 			return
 		}
 	},

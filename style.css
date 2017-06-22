@@ -410,32 +410,32 @@ MAGNIFIED PLAYERCARDS
 }
 
 .magOne {
-	background-image: url('./img/op/pc01_03.png');
+	background-image: url('./img/op/pc1.png');
 /*	top: 7rem;*/
 }
 
 .magTwo {
-	background-image: url('./img/op/pyromancerSM.png');
+	background-image: url('./img/op/pc2.png');
 /*	top: 10.2rem;*/
 }
 
 .magThree {
-	background-image: url('./img/op/enchantressSM.png');
+	background-image: url('./img/op/pc3.png');
 /*	top: 12.2rem;*/
 }
 
 .magFour {
-	background-image: url('./img/op/iceMaidenSM.png');
+	background-image: url('./img/op/pc4.png');
 /*	top: 14.2rem;*/
 }
 
 .magFive {
-	background-image: url(./img/op/doomseekerSM.png);
+	background-image: url('./img/op/pc5.png');
 /*	top: 16.2rem;*/
 }
 
 .magSix {
-	background-image: url(./img/op/acolyteSM.png);
+	background-image: url('./img/op/pc6.png');
 /*	top: 18.2rem;*/
 }
 
@@ -458,7 +458,7 @@ PLAYER CARD IMAGES
 .one, 
 .pc1 {
 	z-index: 1;
-	background-image: url('./img/op/pc01_03.png');
+	background-image: url('./img/op/pc1.png');
     margin: 0 auto;
 }
 
@@ -466,33 +466,33 @@ PLAYER CARD IMAGES
 .two, 
 .pc2 {
 	z-index: 2;
-	background-image: url('./img/op/pyromancerSM.png');
+	background-image: url('./img/op/pc2.png');
 }
 
 
 .three, 
 .pc3 {
 	z-index: 3;
-	background-image: url('./img/op/enchantressSM.png');
+	background-image: url('./img/op/pc3.png');
 }
 
 .four, 
 .pc4 {
 	z-index: 4;
-	background-image: url('./img/op/iceMaidenSM.png');
+	background-image: url('./img/op/pc4.png');
 }
 
 .five, 
 .pc5 {
 	z-index: 5;
-	background-image: url(./img/op/doomseekerSM.png);
+	background-image: url('./img/op/pc5.png');
 }
 
 
 .six, 
 .pc6 {
 	z-index:6;
-	background-image: url(./img/op/acolyteSM.png);
+	background-image: url('./img/op/pc6.png');
 }
 
 .one, 
